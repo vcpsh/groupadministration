@@ -1,0 +1,17 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+.spacer {
+  flex: 1 0 auto;
+}
+
+// MaterialDesign
+mat-card {
+  margin: 2em;
+
+  mat-card-actions {
+    display: flex !important;
+  }
+}

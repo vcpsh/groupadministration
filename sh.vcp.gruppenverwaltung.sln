@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sh.vcp.groupadministration.dal", "sh.vcp.groupadministration.dal\sh.vcp.groupadministration.dal.csproj", "{166DE9C4-DDAF-4CA0-A8A5-34506580C865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sh.vcp.groupadministration", "sh.vcp.groupadministration\sh.vcp.groupadministration.csproj", "{A3D75A66-A036-4506-A62B-A0CD5CBD2604}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sh.vcp.identity", "..\single-sign-on\sh.vcp.identity\sh.vcp.identity.csproj", "{165B4323-D319-4433-BEBE-76F1BE58DC53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sh.vcp.ldap", "..\single-sign-on\sh.vcp.ldap\sh.vcp.ldap.csproj", "{562030AD-1E4B-489B-A877-C98046FDBA9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{166DE9C4-DDAF-4CA0-A8A5-34506580C865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166DE9C4-DDAF-4CA0-A8A5-34506580C865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166DE9C4-DDAF-4CA0-A8A5-34506580C865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166DE9C4-DDAF-4CA0-A8A5-34506580C865}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3D75A66-A036-4506-A62B-A0CD5CBD2604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D75A66-A036-4506-A62B-A0CD5CBD2604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D75A66-A036-4506-A62B-A0CD5CBD2604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D75A66-A036-4506-A62B-A0CD5CBD2604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{165B4323-D319-4433-BEBE-76F1BE58DC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165B4323-D319-4433-BEBE-76F1BE58DC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165B4323-D319-4433-BEBE-76F1BE58DC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165B4323-D319-4433-BEBE-76F1BE58DC53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{562030AD-1E4B-489B-A877-C98046FDBA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{562030AD-1E4B-489B-A877-C98046FDBA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{562030AD-1E4B-489B-A877-C98046FDBA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{562030AD-1E4B-489B-A877-C98046FDBA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.VersionControlPolicy = $1
+	EndGlobalSection
+EndGlobal

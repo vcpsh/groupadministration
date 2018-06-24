@@ -1,0 +1,44 @@
+@import '~@angular/material/theming';
+@import '../theme';
+
+$primary: map-get($theme, primary);
+$background: map-get($theme, background);
+
+.link {
+  margin: 0 auto;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    color: mat-color($primary);
+  }
+  color: black;
+}
+
+.bottomBar {
+  height: 40px;
+  background-color: mat-color($background, status-bar);
+}
+
+.container {
+  display: grid;
+  height: 100%;
+  min-height: 100%;
+  grid-template-rows: min-content auto min-content;
+}
+
+.content {
+  router-outlet {
+    display: none;
+  }
+  display: grid;
+  background-color: mat-color($background, background);
+}
+
+.logout {
+  cursor: pointer;
+}
+
+.userMenu {
+  margin-right: 2em;
+}
+

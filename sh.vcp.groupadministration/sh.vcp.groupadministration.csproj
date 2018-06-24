@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-Server-24441BD8-58EF-4598-9878-D4C3ADAE0FE6</UserSecretsId>
+    <LangVersion>7.2</LangVersion>
+    <AssemblyName>sh.vcp.groupadministration</AssemblyName>
+    <RootNamespace>sh.vcp.groupadministration</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="2.0.0-preview1" />
+    <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0-preview1" />
+    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="2.0.0-preview1" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.3.0" />
+    <PackageReference Include="MailKit" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.0.5" />
+    <PackageReference Include="NETCore.MailKit" Version="2.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\single-sign-on\sh.vcp.identity\sh.vcp.identity.csproj" />
+    <ProjectReference Include="..\..\single-sign-on\sh.vcp.ldap\sh.vcp.ldap.csproj" />
+    <ProjectReference Include="..\sh.vcp.groupadministration.dal\sh.vcp.groupadministration.dal.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Module 'client'" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e103aeff-06d9-418e-9729-f5c38ea99a05" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Extensions/LdapAttributeExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Extensions/LinqExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Managers/GroupManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Managers/IGroupManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Models/Tribe/TribeLr.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Models/Tribe/TribeLv.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Models/Tribe/TribeSl.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Models/WaitingUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DAL/Util/DnHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/proxy.conf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/actions/division.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/actions/tribe.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/actions/user.actions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/components/BaseComponent.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/components/group-list/group-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/components/group-list/group-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/components/group-list/group-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/models/app.state.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/models/division.state.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/models/group.state.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/models/tribe.state.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/models/user.state.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/reducers/division.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/reducers/tribe.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/reducers/user.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/services/division.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/services/rest.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/app/services/tribe.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/environments/version.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/theme.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.override.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/sh.vcp.groupadministration.client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/tribe-list/tribe-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/tribe-list/tribe-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/tribe-list/tribe-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/tribe-view/tribe-view.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/tribe-view/tribe-view.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/tribe-view/tribe-view.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/models/votedgroup.state.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/services/votedgroup.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Extensions/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/DivisionManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/GroupManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/IDivisionManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/IGroupManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/IMemberManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/ITribeManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/IVotedGroupManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/MemberManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/TribeManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.dal/Managers/VotedGroupManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration/Controllers/VotedGroupController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration/Extensions/ControllerExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.groupadministration/Filters/ValidateModelStateAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.vcp.gruppenverwaltung.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Constants/ObjectClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Constants/ObjectClass.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DAL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DAL.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Extensions/IServiceCollectionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Extensions/IServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Extensions/LdapAttributeSetExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Extensions/LdapAttributeSetExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/LdapConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/LdapConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/LdapOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/LdapOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Managers/IMemberManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Managers/IMemberManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Managers/MemberManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Managers/MemberManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Managers/TribeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Managers/TribeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Models/Common/LdapModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Models/Common/LdapModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Models/Group.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Models/Group.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Models/Member.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Models/Member.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Models/Tribe/Tribe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Models/Tribe/Tribe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Models/Tribe/TribeGs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Models/Tribe/TribeGs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/Common/SignInResult.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/Extensions/IServiceCollectionExtension.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/LdapIdentity.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LdapIdentity/LdapIdentity.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/Objects/LdapRole.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/Objects/LdapUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/Stores/LdapRoleStore.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LdapIdentity/Stores/LdapUserStore.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Common/JwtFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/AccountController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/AuthController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/MemberController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/TribeController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Controllers/ValuesController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Account/User.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Auth/JwtIssuerOptions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Auth/JwtUser.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Models/Auth/LoginModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Program.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Server.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/Startup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/.angular-cli.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/WebClient.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/e2e/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/e2e/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/e2e/tsconfig.e2e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/proxy.conf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/account.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/forgot/forgot.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/forgot/forgot.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/forgot/forgot.component.ts.inactive" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/login/login.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/login/login.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/login/login.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/register/register.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/register/register.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/components/register/register.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/models/auth/auth.get.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/models/auth/auth.get.response.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/models/jwt.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/models/user.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/services/account.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/account/services/auth-interceptor.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/admin.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/components/memberimport/memberimport.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/components/memberimport/memberimport.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/components/memberimport/memberimport.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/models/member-import.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/admin/services/import.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/app.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/base.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/components/baseComponent.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/components/dialog/dialog.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/components/dialog/dialog.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/components/dialog/dialog.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/models/dialog.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/models/member.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/models/user.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/services/dialog.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/services/ldap-helper.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/services/member.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/services/rest.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/services/settings.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/base/services/view.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/bottomBar/bottomBar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/bottomBar/bottomBar.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/bottomBar/bottomBar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/pageNotFound/pageNotFound.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/topBar/topBar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/topBar/topBar.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/components/topBar/topBar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/globals.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/lgs-menu/lgs-menu.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/lgs-menu/lgs-menu.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/lgs-menu/lgs-menu.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/member-create/member-create.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/member-create/member-create.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/member-create/member-create.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/tribe-create/tribe-create.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/tribe-create/tribe-create.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/components/tribe-create/tribe-create.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/lgs.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/lgs/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/components/tribe-list/tribe-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/components/tribe-list/tribe-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/components/tribe-list/tribe-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/models/tribe.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/services/tribe.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/app/tribe/tribe.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/assets/font/mat-icons.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/assets/i18n/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/assets/i18n/en.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/src/typings.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/tslint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sh.vcp.gruppenverwaltung.sln" beforeDir="false" afterPath="$PROJECT_DIR$/sh.vcp.gruppenverwaltung.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sh.vcp.gruppenverwaltung.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/sh.vcp.gruppenverwaltung.sln.DotSettings" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="tribe.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/services/tribe.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="131">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rest.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/services/rest.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tribe-create.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+              <folding>
+                <element signature="e#0#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tribe.reducer.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/reducers/tribe.reducer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#82#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tribe.state.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/models/tribe.state.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tribe.reducer.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/app/reducers/tribe.reducer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+              <folding>
+                <element signature="e#0#100#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tribe-create.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>signin</find>
+      <find>bottom</find>
+      <find>group adminis</find>
+      <find>@ngrx/core</find>
+      <find>material</find>
+      <find>ngrx</find>
+      <find>tribe.state</find>
+      <find>moment</find>
+      <find>dispatch</find>
+      <find>Post</find>
+      <find>proxyConf</find>
+      <find>de</find>
+      <find>target</find>
+      <find>proxy</find>
+      <find>devServer</find>
+      <find>pipe</find>
+      <find>new</find>
+      <find>_desc</find>
+      <find>id</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/admin/components/memberimport/memberimport.component.ts" />
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/base/services/rest.service.ts" />
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/base/services/dialog.service.ts" />
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/package.json" />
+        <option value="$PROJECT_DIR$/client/src/app/dashboard/dashboard.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/assets/i18n/en.json" />
+        <option value="$PROJECT_DIR$/client/src/app/services/missing_translations.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/index.html" />
+        <option value="$PROJECT_DIR$/client/src/styles.scss" />
+        <option value="$PROJECT_DIR$/client/src/app/reducers/account.reducer.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/app.component.scss" />
+        <option value="$PROJECT_DIR$/client/src/app/models/user.state.ts" />
+        <option value="$PROJECT_DIR$/client/src/proxy.conf.json" />
+        <option value="$PROJECT_DIR$/client/angular.json" />
+        <option value="$PROJECT_DIR$/client/src/app/models/tribe.state.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/tribe-list/tribe-list.component.scss" />
+        <option value="$PROJECT_DIR$/client/src/app/components/group-list/tribe-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/group-list/grop-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/models/division.state.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/models/app.state.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/reducers/division.reducer.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/BaseComponent.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.scss" />
+        <option value="$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/components/tribe-list/tribe-list.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.scss" />
+        <option value="$PROJECT_DIR$/client/src/app/models/group.state.ts" />
+        <option value="$PROJECT_DIR$/client/tsconfig.json" />
+        <option value="$PROJECT_DIR$/client/src/app/actions/tribe.actions.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/actions/division.actions.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/actions/user.actions.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/sh.vcp.groupadministration.client/tslint.json" />
+        <option value="$PROJECT_DIR$/client/src/app/services/rest.service.ts" />
+        <option value="$PROJECT_DIR$/client/package.json" />
+        <option value="$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/group-list/group-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/tribe-list/tribe-list.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/welcome/welcome.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/reducers/user.reducer.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/services/user.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/services/division.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/app.component.scss" />
+        <option value="$PROJECT_DIR$/client/src/app/services/tribe.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/reducers/tribe.reducer.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/sh.vcp.groupadministration.client/package.json" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Unnamed" pattern="src[client]:*..*" />
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/client/node_modules" />
+    <handled-path value="$PROJECT_DIR$/sh.vcp.groupadministration.client/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/client/package.json" />
+      <path value="$PROJECT_DIR$/sh.vcp.groupadministration.client/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/client/package.json" />
+    <dismissed value="$PROJECT_DIR$/sh.vcp.groupadministration.client/package.json" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="1680" />
+    <option name="y" value="-180" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sh.vcp.groupadministration" type="9c53a853:ProjectViewModuleGroupNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="group-list" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="tribe-create" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="tribe-list" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="welcome" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="reducers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sh.vcp.groupadministration" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/sh.vcp.groupadministration.client/node_modules/tslint" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
+    <property name="typescript-compiler-editor-notification" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/app/components" />
+      <recent name="$PROJECT_DIR$/client" />
+      <recent name="$PROJECT_DIR$/client/src/app/services" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/app/services" />
+      <recent name="$PROJECT_DIR$/client/src/app/components" />
+      <recent name="$PROJECT_DIR$/client/src" />
+      <recent name="$PROJECT_DIR$/client/src/environments" />
+      <recent name="$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.serve">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../sh.vcp.sso/sh.vcp.sso.client-lib/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <configuration name="serve" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/sh.vcp.groupadministration.client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+    </configuration>
+    <list>
+      <item itemvalue="npm.serve" />
+      <item itemvalue="npm.build" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.serve" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e103aeff-06d9-418e-9729-f5c38ea99a05" name="Default" comment="" />
+      <created>1520940431673</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1520940431673</updated>
+      <workItem from="1520940433699" duration="3994000" />
+      <workItem from="1520982214665" duration="1253000" />
+      <workItem from="1521144503459" duration="2993000" />
+      <workItem from="1521534995610" duration="2766000" />
+      <workItem from="1522152706784" duration="83000" />
+      <workItem from="1522231440404" duration="368000" />
+      <workItem from="1522231898635" duration="2993000" />
+      <workItem from="1522277831337" duration="284000" />
+      <workItem from="1523627490730" duration="21000" />
+      <workItem from="1523630020091" duration="2364000" />
+      <workItem from="1523656596043" duration="3032000" />
+      <workItem from="1523973291237" duration="59000" />
+      <workItem from="1524593227242" duration="554000" />
+      <workItem from="1525380469950" duration="191000" />
+      <workItem from="1525733394791" duration="2277000" />
+      <workItem from="1525775396010" duration="199000" />
+      <workItem from="1526131264292" duration="953000" />
+      <workItem from="1528901034611" duration="5444000" />
+      <workItem from="1528962842500" duration="2856000" />
+      <workItem from="1529244403426" duration="3946000" />
+      <workItem from="1529313874837" duration="28048000" />
+      <workItem from="1529858793999" duration="1179000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="65857000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1680" y="-180" width="1920" height="1080" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3487395" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info id="npm" order="3" sideWeight="0.5184615" side_tool="true" weight="0.2257721" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.31771895" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="TypeScript" order="7" weight="0.22199592" />
+      <window_info id="Designer" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48153847" visible="true" weight="0.2087327" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3077731" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299389" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" order="9" weight="0.3299389" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@angular/cli/lib/config/schema.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="485" column="22" lean-forward="true" selection-start-line="485" selection-start-column="22" selection-end-line="485" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@angular/cdk/tree/typings/control/nested-tree-control.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/base/components/baseComponent.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/components/welcome/welcome.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-list/tribe-list.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/models/tribe.state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/base/models/division.model.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/reducers/division.reducer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@ngrx/store/src/store.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@vcpsh/sso.clientlib/app/services/oidc.service.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="64" lean-forward="true" selection-start-line="8" selection-start-column="64" selection-end-line="8" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/models/app.state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/BaseComponent.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@angular/material/dialog/typings/dialog-config.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="45" column="27" lean-forward="true" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@angular/material/dialog/typings/dialog.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="56" column="106" lean-forward="true" selection-start-line="56" selection-start-column="106" selection-end-line="56" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-list/tribe-list.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/node_modules/typescript/lib/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="405" column="4" selection-start-line="405" selection-start-column="4" selection-end-line="405" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="18" lean-forward="true" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/tsconfig.app.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/actions/tribe.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/actions/division.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/models/division.state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/models/group.state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@ngrx/store/src/models.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@ngrx/store/src/store_module.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="22" column="69" lean-forward="true" selection-start-line="22" selection-start-column="69" selection-end-line="22" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="44" column="21" lean-forward="true" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/admin/admin.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/tslint.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/actions/user.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="44" column="38" lean-forward="true" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/dashboard/dashboard.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/group-list/group-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/welcome/welcome.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/reducers/user.reducer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/services/user.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/services/division.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-list/tribe-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="62" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/app.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/@angular/forms/src/model.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="195" column="15" selection-start-line="195" selection-start-column="15" selection-end-line="195" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/services/tribe.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/services/rest.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/tribe-create/tribe-create.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/reducers/tribe.reducer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/src/app/models/tribe.state.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/node_modules/typescript/lib/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="1170" column="8" lean-forward="true" selection-start-line="1170" selection-start-column="8" selection-end-line="1170" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/reducers/tribe.reducer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>client</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <last-edited>Unnamed</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+          <order>
+            <scope name="Unnamed" />
+          </order>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

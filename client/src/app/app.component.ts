@@ -1,0 +1,35 @@
+import { Component } from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {OidcService} from '@vcpsh/sso.clientlib';
+import {Observable} from 'rxjs';
+import {VERSION} from '../environments/version';
+import {AppState} from './models/app.state';
+import {IUserState} from './models/user.state';
+import {DivisionService} from './services/division.service';
+import {TribeService} from './services/tribe.service';
+import {UserService} from './services/user.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  public Version = VERSION;
+  public Date = { FullYear: new Date(Date.now()).getFullYear() };
+  private User: Observable<IUserState | null>;
+
+  public constructor(
+    private _store: Store<AppState>,
+    private _oidc: OidcService,
+    user: UserService /* Needed for init of service */,
+    tribe: TribeService /* Needed for init of service */,
+    division: DivisionService /* Needed for init of service */
+  ) {
+    this.User = this._store.pipe(select('User'));
+  }
+
+  public navigateLogin() {
+    this._oidc.login();
+  }
+}

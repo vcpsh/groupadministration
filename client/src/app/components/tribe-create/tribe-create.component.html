@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Stamm erstellen ({{ DivisionName }})</h2>
+<mat-dialog-content>
+<form [formGroup]="form">
+  <div class="form-group">
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Name" formControlName="displayName">
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Id" formControlName="tribeId">
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input matInput placeholder="DN" formControlName="dn">
+    </mat-form-field>
+  </div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="spacer"></div>
+  <button mat-raised-button mat-dialog-close>Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="clickOk()">Ok</button>
+</mat-dialog-actions>

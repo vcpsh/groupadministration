@@ -1,0 +1,23 @@
+<div class="container mat-typography">
+  <mat-toolbar color="primary">
+    <span>Gruppenverwaltung</span>
+    <span class="spacer"></span>
+    <button *ngIf="(User | async) === null" mat-button (click)="navigateLogin()">Login</button>
+    <div *ngIf="(User | async) !== null">
+      <button mat-icon-button class="userMenu" [matMenuTriggerFor]="menu">
+        {{ (User | async).Name }}
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #menu>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  <div class="content">
+    <router-outlet>
+    </router-outlet>
+  </div>
+  <mat-toolbar class="bottomBar">
+    <a class="mat-subheading-2 link" href="https://vcp.sh">&copy;2017-{{ Date.FullYear }}, VCP Land Schleswig-Holstein</a>
+    <a class="mat-caption">Version {{ Version.version }} ({{ Version.suffix }})</a>
+  </mat-toolbar>
+</div>

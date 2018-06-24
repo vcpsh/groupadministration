@@ -1,0 +1,16 @@
+<mat-list>
+  <div *ngFor="let division of Divisions">
+    <div mat-subheader><span>{{ division.displayName }}</span>
+      <div class="spacer"></div>
+      <button *ngIf="division.isLgs" mat-icon-button class="card-menu" (click)="onTribeCreateClick(division.divisionId)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <mat-list-item *ngFor="let tribe of division.tribes">
+      <button mat-button>
+        {{tribe.DisplayName}}
+      </button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>

@@ -1,0 +1,3 @@
+@import '~@angular/material/theming';
+
+$theme: mat-light-theme(mat-palette($mat-indigo), mat-palette($mat-pink), mat-palette($mat-red));

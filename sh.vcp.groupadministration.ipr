@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="InspectionProjectProfileManager">
+    <profile version="1.0">
+      <option name="myName" value="Project Default" />
+      <inspection_tool class="TsLint" enabled="true" level="ERROR" enabled_by_default="true" />
+    </profile>
+    <version value="1.0" />
+  </component>
+  <component name="ProjectCodeStyleConfiguration">
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+    <code_scheme name="Project" version="173">
+      <JSCodeStyleSettings>
+        <option name="FORCE_SEMICOLON_STYLE" value="true" />
+        <option name="USE_DOUBLE_QUOTES" value="false" />
+        <option name="FORCE_QUOTE_STYlE" value="true" />
+        <option name="ENFORCE_TRAILING_COMMA" value="WhenMultiline" />
+      </JSCodeStyleSettings>
+      <TypeScriptCodeStyleSettings>
+        <option name="FORCE_SEMICOLON_STYLE" value="true" />
+        <option name="USE_PUBLIC_MODIFIER" value="true" />
+        <option name="USE_DOUBLE_QUOTES" value="false" />
+        <option name="FORCE_QUOTE_STYlE" value="true" />
+        <option name="ENFORCE_TRAILING_COMMA" value="WhenMultiline" />
+        <option name="IMPORT_SORT_MODULE_NAME" value="true" />
+      </TypeScriptCodeStyleSettings>
+      <codeStyleSettings language="JAVA">
+        <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true" />
+        <option name="CALL_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
+        <option name="CALL_PARAMETERS_RPAREN_ON_NEXT_LINE" value="true" />
+      </codeStyleSettings>
+      <codeStyleSettings language="TypeScript">
+        <option name="RIGHT_MARGIN" value="140" />
+      </codeStyleSettings>
+    </code_scheme>
+  </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="jan-hendrik">
+      <words>
+        <w>oidc</w>
+      </words>
+    </dictionary>
+  </component>
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/sh.vcp.groupadministration.client.iml" filepath="$PROJECT_DIR$/sh.vcp.groupadministration.client/sh.vcp.groupadministration.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sh.vcp.sso/sh.vcp.sso.client-lib/sh.vcp.sso.client-lib.iml" filepath="$PROJECT_DIR$/../sh.vcp.sso/sh.vcp.sso.client-lib/sh.vcp.sso.client-lib.iml" />
+    </modules>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
+  </component>
+  <component name="TypeScriptCompiler">
+    <option name="showAllErrors" value="true" />
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
