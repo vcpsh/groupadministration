@@ -3,4 +3,5 @@ export interface IUserState {
   Divisions: string[];
   DivisionsLgs: string[];
   Tribes: string[];
+  TribesAdmin: string[];
 }

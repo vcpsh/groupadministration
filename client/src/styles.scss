@@ -7,6 +7,18 @@ body {
   flex: 1 0 auto;
 }
 
+// Grid List
+.gv-grid-list {
+  height: 100%;
+  margin: 0 !important;
+  .gv-card {
+    width: 100%;
+    //:not(:first-child) {
+    //  margin-top: 1em;
+    //}
+  }
+}
+
 // MaterialDesign
 mat-card {
   margin: 2em;

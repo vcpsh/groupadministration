@@ -1,0 +1,7 @@
+<mat-list *ngIf="Group">
+  <mat-list-item *ngFor="let member of Group.MemberIds">
+    <button mat-button [routerLink]="[ '/member', member ]">
+      {{member}}
+    </button>
+  </mat-list-item>
+</mat-list>

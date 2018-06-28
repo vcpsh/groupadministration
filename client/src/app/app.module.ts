@@ -19,6 +19,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {InitialState} from './models/app.state';
+import {BaseModule} from './modules/base-module/base.module';
 import {divisionReducer} from './reducers/division.reducer';
 import {tribeReducer} from './reducers/tribe.reducer';
 import {userReducer} from './reducers/user.reducer';
@@ -30,6 +31,9 @@ import {TribeService} from './services/tribe.service';
 import {UserService} from './services/user.service';
 import { TribeListComponent } from './components/tribe-list/tribe-list.component';
 import { TribeCreateComponent } from './components/tribe-create/tribe-create.component';
+import { TribeDetailComponent } from './components/tribe-detail/tribe-detail.component';
+import { GroupMemberListComponent } from './components/group-member-list/group-member-list.component';
+import { MemberImportComponent } from './modules/division-admin/components/member-import/member-import.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +43,14 @@ import { TribeCreateComponent } from './components/tribe-create/tribe-create.com
     WelcomeComponent,
     TribeListComponent,
     TribeCreateComponent,
+    TribeDetailComponent,
+    GroupMemberListComponent,
   ],
   imports: [
     BrowserModule,
+    BaseModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // TS
     StoreModule.forRoot({
       User: userReducer as any,
       Tribes: tribeReducer as any,
@@ -64,19 +70,6 @@ import { TribeCreateComponent } from './components/tribe-create/tribe-create.com
       loadUserInfo: true,
     }),
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatTreeModule,
   ],
   providers: [
     DivisionService,

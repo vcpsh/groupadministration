@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {AppState} from '../../models/app.state';
 import {ITribeState} from '../../models/tribe.state';
+import {BaseComponent} from '../BaseComponent';
 import {TribeCreateComponent} from '../tribe-create/tribe-create.component';
 
 @Component({
@@ -11,16 +13,16 @@ import {TribeCreateComponent} from '../tribe-create/tribe-create.component';
   templateUrl: './tribe-list.component.html',
   styleUrls: ['./tribe-list.component.scss'],
 })
-export class TribeListComponent implements OnInit, OnDestroy {
+export class TribeListComponent extends BaseComponent  {
   public Divisions?: { divisionId: string; displayName: string; isLgs: boolean; tribes: ITribeState[] }[];
-
-  private _subs: Subscription[] = [];
 
   constructor(
     private _store: Store<AppState>,
     private _dialog: MatDialog,
+    private _router: Router,
   ) {
-    this._subs.push(this._store.select(s => ({
+    super();
+    this.addSub(this._store.select(s => ({
       tribes: s.Tribes,
       divisions: s.Divisions,
       lgsDivisions: s.User ? s.User.DivisionsLgs : [],
@@ -50,12 +52,5 @@ export class TribeListComponent implements OnInit, OnDestroy {
       disableClose: true,
       width: '60%',
     });
-  }
-
-  public ngOnInit() {
-  }
-
-  public ngOnDestroy() {
-    this._subs.forEach(s => s.unsubscribe());
   }
 }

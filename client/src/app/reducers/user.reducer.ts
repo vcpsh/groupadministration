@@ -7,6 +7,7 @@ export function userReducer(state: IUserState | null, action: UserActions): IUse
       return action.user;
     }
     case UserActionTypes.LOGOUT:
+      return null;
     default:
       return state;
   }

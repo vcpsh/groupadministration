@@ -1,0 +1,9 @@
+.import-field-select {
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
+  grid-column-gap: 1em;
+  justify-content: center;
+  mat-form-field {
+    max-width: 15em;
+  }
+}

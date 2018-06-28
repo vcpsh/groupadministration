@@ -13,6 +13,14 @@ export class UserService {
 
   private userChanged(user: UserModel | null) {
     if (user) {
+      let tribeAdmin: string[] = [];
+      if (user.profile.is_tribe_gs) {
+        tribeAdmin = tribeAdmin.concat(user.profile.is_tribe_gs);
+      }
+      if (user.profile.is_tribe_sl) {
+        tribeAdmin = tribeAdmin.concat(user.profile.is_tribe_sl);
+      }
+
       const u: IUserState = {
         Name: user.profile.preferred_username,
         Divisions: user.profile.division_member
@@ -25,11 +33,12 @@ export class UserService {
             ? user.profile.is_division_lgs
             : [user.profile.is_division_lgs])
           : [],
-        Tribes: user.profile.tribe_member ?
-          (Array.isArray(user.profile.tribe_member)
+        Tribes: user.profile.tribe_member
+          ? (Array.isArray(user.profile.tribe_member)
             ? user.profile.tribe_member
             : [user.profile.tribe_member])
           : [],
+        TribesAdmin: tribeAdmin
       };
       this._store.dispatch({
         type: UserActionTypes.LOGIN,

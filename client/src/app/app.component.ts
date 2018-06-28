@@ -32,4 +32,8 @@ export class AppComponent {
   public navigateLogin() {
     this._oidc.login();
   }
+
+  public onLogoutClick() {
+    this._oidc.logout();
+  }
 }
