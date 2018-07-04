@@ -18,14 +18,16 @@ namespace Server.Controllers
     [Route("api/member")]
     public class MemberController: Controller
     {
+        private readonly IDivisionManager _division;
         private readonly IMemberManager _manager;
         private readonly ITribeManager _tribe;
         private readonly IGroupManager _group;
         private readonly ILogger<MemberController> _logger;
         private readonly IHostingEnvironment _env;
 
-        public MemberController(IMemberManager manager, ITribeManager tribe, IGroupManager group, ILogger<MemberController> logger, IHostingEnvironment env)
+        public MemberController(IDivisionManager division, IMemberManager manager, ITribeManager tribe, IGroupManager group, ILogger<MemberController> logger, IHostingEnvironment env)
         {
+            this._division = division;
             this._manager = manager;
             this._group = group;
             this._logger = logger;
@@ -85,9 +87,13 @@ namespace Server.Controllers
                 {
                     return this.BadRequest($"The tribe {tribeId} does not exist.");
                 }
+
+                var division = await this._division.Get(t.DivisionId);
                 var m = await this._manager.Create(member);
+                division.MemberIds.Add(m.Id);
                 t.MemberIds.Add(m.Id);
-                await this._group.SetMembers(t.Dn, t.MemberIds.ToArray());
+                await this._group.SetMembers(division);
+                await this._group.SetMembers(t);
                 
                 return this.Ok(m);
             }

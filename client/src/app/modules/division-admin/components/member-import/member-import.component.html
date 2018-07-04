@@ -3,7 +3,7 @@
     <mat-card-title>Mitglieder importieren ({{ Division.DisplayName}})</mat-card-title>
   </mat-card-header>
   <mat-card-content class="gv-card-content">
-    <mat-horizontal-stepper linear>
+    <mat-vertical-stepper linear>
       <mat-step label="Datei auswählen" editable="false" [stepControl]="FileStepForm">
         <form [formGroup]="FileStepForm">
           <p>Die Datei muss ein CSV sein (Semikolonsepariert). In der ersten Zeile müssen die Feldnamen für das Mapping stehen.</p>
@@ -31,6 +31,9 @@
       </mat-step>
       <mat-step label="Neue Mitglieder" editable="false" [stepControl]="NewMemberStepForm">
         <form [formGroup]="NewMemberStepForm">
+          <mat-progress-bar mode="determinate" [value]="NewMemberPercentImported"></mat-progress-bar>
+          <p>Es gibt {{ NewMembers.length }} neue Mitglieder zum Importieren.</p>
+          <button mat-raised-button (click)="onNewMemberImportClick()" [disabled]="NewMemberStepForm.valid">Import starten</button>
           <mat-selection-list class="limited-list">
             <mat-list-option disabled="true" *ngFor="let member of NewMembers" [selected]="member.Imported">
               <span matLine >{{ member.FirstName }} {{ member.LastName}}</span>
@@ -38,14 +41,35 @@
               <span matLine class="error" *ngIf="member.Error">{{ member.Error }}</span>
             </mat-list-option>
           </mat-selection-list>
-          <p>Es gibt {{ NewMembers.length }} neue Mitglieder zum Importieren.</p>
-          <mat-progress-bar mode="determinate" [value]="NewMemberPercentImported"></mat-progress-bar>
           <div>
-            <button mat-raised-button (click)="onNewMemberImportClick()">Import starten</button>
-            <button mat-raised-button matStepperNext (click)="onNewMemberContinueClick()" [disabled]="NewMemberStepForm.valid">Weiter</button>
+            <button mat-raised-button matStepperNext (click)="onNewMemberContinueClick()" [disabled]="!NewMemberStepForm.valid">Weiter</button>
           </div>
         </form>
       </mat-step>
-    </mat-horizontal-stepper>
+      <mat-step label="Gelöschte Mitglieder" editable="false">
+        <form [formGroup]="DeletedMemberStepForm">
+      <p>Gelöschte Mitglieder sind noch nicht implementiert.</p>
+        <div>
+          <button mat-raised-button matStepperNext (click)="onDeletedMemberContinueClick()" [disabled]="false">Weiter</button>
+        </div>
+        </form>
+      </mat-step>
+      <mat-step label="Geänderte Mitglieder" editable="false">
+        <form [formGroup]="ChangedMemberStepForm">
+        <p>Geänderte Mitglieder sind noch nicht implementiert.</p>
+        <div>
+          <button mat-raised-button matStepperNext (click)="onChangedMemberContinueClick()" [disabled]="false">Weiter</button>
+        </div>
+        </form>
+      </mat-step>
+      <mat-step label="Übersicht" editable="false">
+        <form [formGroup]="ResultForm">
+          <p>Es gibt {{ NewMembers.length }} neue Mitglieder. Davon wurden {{ NewMemberImported }} erfolgreich importiert.</p>
+          <div>
+            <button mat-raised-button [routerLink]="['/start']" [disabled]="false">Beenden</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-vertical-stepper>
   </mat-card-content>
 </mat-card>

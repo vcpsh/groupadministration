@@ -7,6 +7,7 @@ using sh.vcp.identity.Model;
 using sh.vcp.identity.Model.Tribe;
 using sh.vcp.identity.Models;
 using sh.vcp.ldap;
+using sh.vcp.ldap.Exceptions;
 using ILdapConnection = sh.vcp.ldap.ILdapConnection;
 
 namespace sh.vcp.groupadministration.dal.Managers
@@ -24,9 +25,14 @@ namespace sh.vcp.groupadministration.dal.Managers
 
         public async Task<Tribe> Get(int tribeId, CancellationToken cancellationToken = default)
         {
-            // TODO: Find a more performant solution for this
-            ICollection<Tribe> tribes = await this.List(cancellationToken);
-            return tribes.FirstOrDefault(t => t.DepartmentId == tribeId);
+            ICollection<Tribe> tribes = await this._connection.Search<Tribe>(this._config.GroupDn, $"{LdapProperties.DepartmentId}={tribeId}", LdapObjectTypes.Tribe,
+                LdapConnection.SCOPE_SUB, Tribe.LoadProperties, cancellationToken);
+
+            if (tribes.Count > 1)
+            {
+                throw new LdapSearchNotUniqueException($"{LdapProperties.DepartmentId}={tribeId}", tribes.Count);
+            }
+            return tribes.FirstOrDefault();
         }
 
         public async Task<ICollection<Tribe>> List(CancellationToken cancellationToken = default)

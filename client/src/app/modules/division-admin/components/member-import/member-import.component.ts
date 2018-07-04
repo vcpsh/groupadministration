@@ -24,11 +24,17 @@ export class MemberImportComponent extends BaseComponent {
   public NewMembers: IImportMember[] = [];
   public NewMemberStepForm: FormGroup;
   public NewMemberPercentImported = 0;
+  public NewMemberImported = 0;
 
   // step deleted members
   public DeletedMembers: IImportMember[] = [];
   public DeletedMemberStepForm: FormGroup;
 
+  // step changed members
+  public ChangedMemberStepForm: FormGroup;
+
+  // step result
+  public ResultForm: FormGroup;
 
   @ViewChild('fileInput') private _fileInput: ElementRef;
   public MappingKeys: string[] = [];
@@ -66,6 +72,12 @@ export class MemberImportComponent extends BaseComponent {
     });
     this.DeletedMemberStepForm = fb.group({
       toImport: [0, Validators.max(0)]
+    });
+    this.ChangedMemberStepForm = fb.group({
+      toImport: [0, Validators.max(0)]
+    });
+    this.ResultForm = fb.group({
+
     });
   }
 
@@ -111,9 +123,17 @@ export class MemberImportComponent extends BaseComponent {
   onNewMemberImportClick() {
     this.addSub(this._service.startNewMemberImport().subscribe(val => {
       this.NewMembers = this._service.NewMembers;
-      this.NewMemberStepForm.setValue({ toImport: val });
-      this.NewMemberPercentImported = this.NewMembers.length / 100 * (this.NewMembers.length - val);
-      console.log(this.NewMemberPercentImported);
+      this.NewMemberStepForm.setValue({ toImport: val - this.NewMembers.filter(m => m.Error !== null).length });
+      this.NewMemberPercentImported = (this.NewMembers.length * 1.0 - val) / this.NewMembers.length * 100;
+      this.NewMemberImported = this.NewMembers.filter(m => m.Imported).length;
     }));
+  }
+
+  onDeletedMemberContinueClick() {
+
+  }
+
+  onChangedMemberContinueClick() {
+
   }
 }

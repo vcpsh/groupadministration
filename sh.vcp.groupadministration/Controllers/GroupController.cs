@@ -26,9 +26,10 @@ namespace Server.Controllers
         [HttpPost("{dn}/memberIds")]
         public async Task<IActionResult> SetMemberIds(string dn, [FromBody] string[] nextMembers)
         {
+                throw new System.NotImplementedException();
             try
             {
-                return this.Ok(await this._manager.SetMembers(dn, nextMembers));
+//                return this.Ok(await this._manager.SetMembers(dn, nextMembers));
             }
             catch (Exception ex)
             {

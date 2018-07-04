@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {IMemberState} from '../../../models/member.state';
 import {RestError, RestService} from '../../../services/rest.service';
+import * as moment from 'moment';
 
 export type IImportMember = IMemberState & { Imported: boolean, Error: string | null, TribeId: string };
 
@@ -119,16 +119,29 @@ export class ImportService {
 
       // parse to member state
       const members: IImportMember[] = this._rawMembers.map(m => {
-        const dateOfBirthParts = m[this._reverseMapping[DATE_OF_BIRTH]].split('.').map(v => Number.parseInt(v, 10));
-        const accessionDateParts = m[this._reverseMapping[ACCESSION_DATE]].split('.').map(v => Number.parseInt(v, 10));
+        const dateOfBirth = moment(m[this._reverseMapping[DATE_OF_BIRTH]], 'DD.MM.YY');
+        let accessionDate = moment(m[this._reverseMapping[ACCESSION_DATE]], 'DD.MM.YY');
+        // const dateOfBirthParts = m[this._reverseMapping[DATE_OF_BIRTH]].split('.').map(v => Number.parseInt(v, 10));
+        // const dateOfBirth = new Date(dateOfBirthParts[2], dateOfBirthParts[1], dateOfBirthParts[0]);
+        // const accessionDateParts = m[this._reverseMapping[ACCESSION_DATE]].split('.').map(v => Number.parseInt(v, 10));
+        // const accessionDate = new Date(accessionDateParts[2], accessionDateParts[1], accessionDateParts[0]);
+        if (dateOfBirth.isValid() === false) {
+          console.log('invalid date', m);
+        }
+        if (accessionDate.isValid() === false) {
+          if (m[this._reverseMapping[ACCESSION_DATE]] === '') {
+            // some people do not have an accession date. use this as fallback
+            accessionDate = moment('01.01.1900', 'DD.MM.YYYY');
+          }
+        }
         return {
           Id: m[this._reverseMapping[CN]],
           Dn: '',
           FirstName: m[this._reverseMapping[FIRST_NAME]],
           LastName: m[this._reverseMapping[LAST_NAME]],
           TribeId: m[this._reverseMapping[TRIBE_ID]],
-          DateOfBirth: new Date(dateOfBirthParts[2], dateOfBirthParts[1], dateOfBirthParts[0]),
-          AccessionDate: new Date(accessionDateParts[2], accessionDateParts[1], accessionDateParts[0]),
+          DateOfBirth: dateOfBirth.toDate(),
+          AccessionDate: accessionDate.toDate(),
           Gender: m[this._reverseMapping[GENDER]] === 'Herrn' ? 'M' : 'F' as 'M' | 'F',
           Imported: false,
           Error: null,
@@ -160,7 +173,7 @@ export class ImportService {
     const fnImportOne = () => {
         const unimportedNew = this.NewMembers.find(m => !m.Imported && m.Error == null);
         if (!unimportedNew) {
-          obs.next(0);
+          obs.next(this.NewMembers.filter(m => !m.Imported).length);
           return;
         }
         this._memberApi.post({ url: `create/${unimportedNew.TribeId}`, content: unimportedNew})
@@ -172,8 +185,15 @@ export class ImportService {
           .catch((err: RestError) => {
             if (err.Code === 400) {
               unimportedNew.Error = err.Message;
+
+              // if the tribe does not exist mark all members of the tribe as not importable
+              if (err.Message === `The tribe ${unimportedNew.TribeId} does not exist.`) {
+                this.NewMembers
+                  .filter(m => m.TribeId === unimportedNew.TribeId)
+                  .forEach(m => m.Error = err.Message);
+              }
             }
-            fnImportOne()
+            fnImportOne();
           });
     };
     const p = new Promise(resolve => fnImportOne());
