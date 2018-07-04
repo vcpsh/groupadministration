@@ -1,4 +1,10 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import {IMemberState} from '../../../models/member.state';
+import {RestError, RestService} from '../../../services/rest.service';
+
+export type IImportMember = IMemberState & { Imported: boolean, Error: string | null, TribeId: string };
 
 const MAPPING_STORAGE_KEY = 'IMPORT_MAPPING';
 
@@ -18,7 +24,7 @@ const EMAIL = 'email';
 
 @Injectable()
 export class ImportService {
-  public static FieldNamesMember = [
+  public static FieldNamesMember: string[] = [
     CN,
     FIRST_NAME,
     LAST_NAME,
@@ -31,14 +37,21 @@ export class ImportService {
     TOWN,
     POSTAL_CODE,
     TITLE,
-    EMAIL
+    EMAIL,
   ];
 
+  private _reverseMapping: { [key: string]: string } = {};
   public Mapping: { [key: string]: string } = {};
   private _rawMembers: { [key: string]: string }[];
+  public NewMembers: IImportMember[] = [];
+  public DeletedMembers: IImportMember[] = [];
+  private _memberApi: RestService;
+  public DivisionId: string;
 
   constructor(
+    rest: RestService,
   ) {
+    this._memberApi = rest.all('member');
     const mapping = window.localStorage.getItem(MAPPING_STORAGE_KEY);
     if (mapping) {
       this.Mapping = JSON.parse(mapping);
@@ -61,7 +74,7 @@ export class ImportService {
             prev[curr] = '';
             return prev;
           },
-          {} as { [key: string]: string }
+          {} as { [key: string]: string },
         );
         dataRaw.shift(); // remove the first line with the mapping
 
@@ -86,12 +99,84 @@ export class ImportService {
     });
   }
 
-  public setMapping(mapping: { [key: string]: string}) {
-    Object.keys(mapping).forEach(key => {
-      if (this.Mapping[mapping[key]] !== undefined) {
-        this.Mapping[mapping[key]] = key;
-      }
+  public setMapping(mapping: { [key: string]: string }) {
+    return new Promise(resolve => {
+      // update mapping
+      Object.keys(mapping).forEach(key => {
+        if (this.Mapping[mapping[key]] !== undefined) {
+          this.Mapping[mapping[key]] = key;
+        }
+      });
+
+      this._reverseMapping = {};
+      Object.keys(this.Mapping).forEach(key => {
+        if (this.Mapping[key] !== '') {
+          this._reverseMapping[this.Mapping[key]] = key;
+        }
+      });
+
+      window.localStorage.setItem(MAPPING_STORAGE_KEY, JSON.stringify(this.Mapping));
+
+      // parse to member state
+      const members: IImportMember[] = this._rawMembers.map(m => {
+        const dateOfBirthParts = m[this._reverseMapping[DATE_OF_BIRTH]].split('.').map(v => Number.parseInt(v, 10));
+        const accessionDateParts = m[this._reverseMapping[ACCESSION_DATE]].split('.').map(v => Number.parseInt(v, 10));
+        return {
+          Id: m[this._reverseMapping[CN]],
+          Dn: '',
+          FirstName: m[this._reverseMapping[FIRST_NAME]],
+          LastName: m[this._reverseMapping[LAST_NAME]],
+          TribeId: m[this._reverseMapping[TRIBE_ID]],
+          DateOfBirth: new Date(dateOfBirthParts[2], dateOfBirthParts[1], dateOfBirthParts[0]),
+          AccessionDate: new Date(accessionDateParts[2], accessionDateParts[1], accessionDateParts[0]),
+          Gender: m[this._reverseMapping[GENDER]] === 'Herrn' ? 'M' : 'F' as 'M' | 'F',
+          Imported: false,
+          Error: null,
+        };
+      });
+
+      // load all members from the server
+      this._memberApi.list<IMemberState>({url: `division/${this.DivisionId}`})
+        .then(serverMembers => {
+          this.NewMembers = members.filter(m => {
+            const serverMember = serverMembers.find(sm => sm.Id === m.Id);
+            return serverMember === undefined;
+          });
+
+          this.DeletedMembers = serverMembers.filter(sm => {
+            const member = members.find(m => sm.Id === m.Id);
+            return member === undefined;
+          }).map(sm => {
+            (sm as IImportMember).Imported = false;
+            return sm as IImportMember;
+          });
+          resolve();
+        });
     });
-    window.localStorage.setItem(MAPPING_STORAGE_KEY, JSON.stringify(this.Mapping));
+  }
+
+  public startNewMemberImport(): Observable<number> {
+    const obs = new BehaviorSubject(this.NewMembers.length);
+    const fnImportOne = () => {
+        const unimportedNew = this.NewMembers.find(m => !m.Imported && m.Error == null);
+        if (!unimportedNew) {
+          obs.next(0);
+          return;
+        }
+        this._memberApi.post({ url: `create/${unimportedNew.TribeId}`, content: unimportedNew})
+          .then(res => {
+            unimportedNew.Imported = true;
+            fnImportOne();
+            obs.next(this.NewMembers.filter(m => !m.Imported).length);
+          })
+          .catch((err: RestError) => {
+            if (err.Code === 400) {
+              unimportedNew.Error = err.Message;
+            }
+            fnImportOne()
+          });
+    };
+    const p = new Promise(resolve => fnImportOne());
+    return obs.asObservable();
   }
 }

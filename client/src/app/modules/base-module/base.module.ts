@@ -9,7 +9,7 @@ import {
   MatGridListModule, MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule, MatSelectModule, MatToolbarModule, MatTreeModule,
+  MatMenuModule, MatProgressBarModule, MatSelectModule, MatToolbarModule, MatTreeModule,
 } from '@angular/material';
 
 @NgModule({
@@ -26,6 +26,7 @@ import {
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatProgressBarModule,
     MatSelectModule,
     MatToolbarModule,
     MatTreeModule,
@@ -43,6 +44,7 @@ import {
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatProgressBarModule,
     MatSelectModule,
     MatToolbarModule,
     MatTreeModule,

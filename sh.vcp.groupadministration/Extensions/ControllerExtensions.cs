@@ -30,7 +30,13 @@ namespace sh.vcp.groupadministration.Extensions
 
         public static ICollection<string> GetUserDivisions(this Controller controller)
         {
-            return controller.User.Claims.Where(c => c.Type == LdapClaims.DivisionClaim || c.Type == LdapClaims.IsDivisionLgsClaim).Select(c => c.Value)
+            return controller.User.Claims.Where(c => c.Type == LdapClaims.DivisionClaim).Select(c => c.Value).Concat(controller.GetUserLgsDivisions())
+                .ToList();
+        }
+
+        public static ICollection<string> GetUserLgsDivisions(this Controller controller)
+        {
+            return controller.User.Claims.Where(c => c.Type == LdapClaims.IsDivisionLgsClaim).Select(c => c.Value)
                 .ToList();
         }
 

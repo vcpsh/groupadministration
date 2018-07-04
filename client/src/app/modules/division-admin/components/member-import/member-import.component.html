@@ -29,6 +29,23 @@
           </div>
         </form>
       </mat-step>
+      <mat-step label="Neue Mitglieder" editable="false" [stepControl]="NewMemberStepForm">
+        <form [formGroup]="NewMemberStepForm">
+          <mat-selection-list class="limited-list">
+            <mat-list-option disabled="true" *ngFor="let member of NewMembers" [selected]="member.Imported">
+              <span matLine >{{ member.FirstName }} {{ member.LastName}}</span>
+              <span matLine class="mid">{{ member.Id}}</span>
+              <span matLine class="error" *ngIf="member.Error">{{ member.Error }}</span>
+            </mat-list-option>
+          </mat-selection-list>
+          <p>Es gibt {{ NewMembers.length }} neue Mitglieder zum Importieren.</p>
+          <mat-progress-bar mode="determinate" [value]="NewMemberPercentImported"></mat-progress-bar>
+          <div>
+            <button mat-raised-button (click)="onNewMemberImportClick()">Import starten</button>
+            <button mat-raised-button matStepperNext (click)="onNewMemberContinueClick()" [disabled]="NewMemberStepForm.valid">Weiter</button>
+          </div>
+        </form>
+      </mat-step>
     </mat-horizontal-stepper>
   </mat-card-content>
 </mat-card>

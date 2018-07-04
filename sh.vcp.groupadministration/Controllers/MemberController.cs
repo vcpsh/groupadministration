@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -13,6 +14,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {
+    [Authorize]
     [Route("api/member")]
     public class MemberController: Controller
     {
@@ -31,20 +33,21 @@ namespace Server.Controllers
             this._tribe = tribe;
         }
 
-        [HttpGet]
+        [HttpGet("division/{id}")]
         [SwaggerResponse(200, typeof(List<LdapMember>))]
-        // TODO: Swagger response type not correct for idsOnly == true
-        // [SwaggerResponse(200, typeof(List<string>))]
-        public async Task<IActionResult> GetMembers(bool idsOnly = true)
+        public async Task<IActionResult> GetDivisionMembers(string id)
         {
             try
             {
-                // TODO: null checks
-                return idsOnly ? this.Ok(await this._manager.ListIds()) : this.Ok(await this._manager.List());
+                if (!this.GetUserLgsDivisions().Contains(id))
+                {
+                    return this.Unauthorized();
+                }
+                return this.Ok(await this._manager.ListDivisionMembers(id));
             }
             catch (Exception ex)
             {
-                this._logger.LogError(ex, nameof(MemberController) + nameof(this.GetMembers));
+                this._logger.LogError(ex, nameof(MemberController) + nameof(this.GetDivisionMembers));
                 return this.Error(this._env, ex);
             }
         }
@@ -55,8 +58,13 @@ namespace Server.Controllers
         {
             try
             {
-                // TODO: null checks
-                return this.Ok(await this._manager.Get(id));
+                var member = await this._manager.Get(id);
+                if (member == null)
+                {
+                    return this.NotFound();
+                }
+
+                return this.Ok(member);
             }
             catch (Exception ex)
             {
@@ -65,15 +73,19 @@ namespace Server.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("create/{tribeId}")]
         [SwaggerResponse(200, typeof(LdapMember))]
-        public async Task<IActionResult> Create([FromBody] LdapMember member)
+        public async Task<IActionResult> Create(int tribeId, [FromBody] LdapMember member)
         {
             try
             {
                 // TODO: null checks
+                var t = await this._tribe.Get(tribeId);
+                if (t == null)
+                {
+                    return this.BadRequest($"The tribe {tribeId} does not exist.");
+                }
                 var m = await this._manager.Create(member);
-                var t = await this._tribe.Get(m.TribeId);
                 t.MemberIds.Add(m.Id);
                 await this._group.SetMembers(t.Dn, t.MemberIds.ToArray());
                 

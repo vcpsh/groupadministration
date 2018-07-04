@@ -7,3 +7,17 @@
     max-width: 15em;
   }
 }
+
+.limited-list {
+  max-height: 50em;
+  overflow-y: scroll;
+}
+
+.mid {
+  font-style: italic;
+}
+
+/* TODO: Use mat error color */
+.error {
+  color: red;
+}

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Novell.Directory.Ldap;
@@ -21,25 +22,23 @@ namespace sh.vcp.groupadministration.dal.Managers
             this._config = config;
         }
 
-        public Task<Tribe> Get(int tribeId, CancellationToken cancellationToken = default)
+        public async Task<Tribe> Get(int tribeId, CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            // TODO: Find a more performant solution for this
+            ICollection<Tribe> tribes = await this.List(cancellationToken);
+            return tribes.FirstOrDefault(t => t.DepartmentId == tribeId);
         }
 
-        public Task<ICollection<Tribe>> List(CancellationToken cancellationToken = default)
+        public async Task<ICollection<Tribe>> List(CancellationToken cancellationToken = default)
         {
-            return Task.Run(async () =>
-            {
-                ICollection<Tribe> tribes = await this._connection.Search<Tribe>(this._config.GroupDn, null,
-                    LdapObjectTypes.Tribe, LdapConnection.SCOPE_SUB,
-                    Tribe.LoadProperties, cancellationToken);
-                return tribes;
-            }, cancellationToken);
+            ICollection<Tribe> tribes = await this._connection.Search<Tribe>(this._config.GroupDn, null,
+                LdapObjectTypes.Tribe, LdapConnection.SCOPE_SUB,
+                Tribe.LoadProperties, cancellationToken);
+            return tribes;
         }
 
         public async Task<Tribe> Create(Tribe tribe, CancellationToken cancellationToken = default)
         {
-            
             tribe.Gs = new TribeGs
             {
                 DisplayName = $"{tribe.DisplayName} Geschäftsstelle",

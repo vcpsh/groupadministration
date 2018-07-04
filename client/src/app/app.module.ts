@@ -21,6 +21,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {InitialState} from './models/app.state';
 import {BaseModule} from './modules/base-module/base.module';
 import {divisionReducer} from './reducers/division.reducer';
+import {memberReducer} from './reducers/member.reducer';
 import {tribeReducer} from './reducers/tribe.reducer';
 import {userReducer} from './reducers/user.reducer';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -55,6 +56,7 @@ import { MemberImportComponent } from './modules/division-admin/components/membe
       User: userReducer as any,
       Tribes: tribeReducer as any,
       Divisions: divisionReducer as any,
+      Members: memberReducer as any,
       }, {
         initialState: InitialState as any,
     }),

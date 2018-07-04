@@ -5,7 +5,8 @@ import {Store} from '@ngrx/store';
 import {BaseComponent} from '../../../../components/BaseComponent';
 import {AppState} from '../../../../models/app.state';
 import {IDivisionState} from '../../../../models/division.state';
-import {ImportService} from '../../services/import.service';
+import {IMemberState} from '../../../../models/member.state';
+import {IImportMember, ImportService} from '../../services/import.service';
 
 @Component({
   selector: 'app-member-import',
@@ -19,6 +20,16 @@ export class MemberImportComponent extends BaseComponent {
   public MappingStepForm: FormGroup;
   public FieldNamesMember = ImportService.FieldNamesMember;
 
+  // step new members
+  public NewMembers: IImportMember[] = [];
+  public NewMemberStepForm: FormGroup;
+  public NewMemberPercentImported = 0;
+
+  // step deleted members
+  public DeletedMembers: IImportMember[] = [];
+  public DeletedMemberStepForm: FormGroup;
+
+
   @ViewChild('fileInput') private _fileInput: ElementRef;
   public MappingKeys: string[] = [];
   constructor(
@@ -31,6 +42,7 @@ export class MemberImportComponent extends BaseComponent {
     this.addSub(
       route.params.subscribe(params => {
         this._divisionId = params['id'];
+        this._service.DivisionId = params['id'];
       }),
       this._store.select(s => ({division: s.Divisions.find(d => d.Id === this._divisionId)})).subscribe(data => {
         this.Division = data.division ? data.division : null;
@@ -49,6 +61,12 @@ export class MemberImportComponent extends BaseComponent {
       mappingFormObj[val] = [kvreversedMapping[val] !== undefined ? kvreversedMapping[val] : '', Validators.required ];
     });
     this.MappingStepForm = fb.group(mappingFormObj);
+    this.NewMemberStepForm = fb.group({
+      toImport: [0, Validators.max(0)]
+    });
+    this.DeletedMemberStepForm = fb.group({
+      toImport: [0, Validators.max(0)]
+    });
   }
 
   /**
@@ -69,7 +87,33 @@ export class MemberImportComponent extends BaseComponent {
    */
   public onMappingContinueClick() {
     if (this.MappingStepForm.valid) {
-      this._service.setMapping(this.MappingStepForm.value);
+      this._service.setMapping(this.MappingStepForm.value)
+        .then(_ => {
+          this.NewMembers = this._service.NewMembers;
+          this.DeletedMembers = this._service.DeletedMembers;
+          this.NewMemberStepForm.setValue({ toImport: this.NewMembers.length });
+          this.DeletedMemberStepForm.setValue({ toImport: this.DeletedMembers.length });
+        });
     }
+  }
+
+  /**
+   * Click handler for the continue button of the new member step.
+   */
+  public onNewMemberContinueClick() {
+    if (this.NewMemberStepForm.valid) {
+      console.log('read');
+    } else {
+      console.log(this.NewMemberStepForm.value);
+    }
+  }
+
+  onNewMemberImportClick() {
+    this.addSub(this._service.startNewMemberImport().subscribe(val => {
+      this.NewMembers = this._service.NewMembers;
+      this.NewMemberStepForm.setValue({ toImport: val });
+      this.NewMemberPercentImported = this.NewMembers.length / 100 * (this.NewMembers.length - val);
+      console.log(this.NewMemberPercentImported);
+    }));
   }
 }

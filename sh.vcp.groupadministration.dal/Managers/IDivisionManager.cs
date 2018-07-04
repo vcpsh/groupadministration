@@ -7,6 +7,7 @@ namespace sh.vcp.groupadministration.dal.Managers
 {
     public interface IDivisionManager
     {
-        Task<ICollection<Division>> List(ICollection<string> memberOf, CancellationToken cancellationToken = default);
+        Task<ICollection<Division>> List(CancellationToken cancellationToken = default);
+        Task<Division> Get(string divisionId, CancellationToken cancellationToken = default);
     }
 }

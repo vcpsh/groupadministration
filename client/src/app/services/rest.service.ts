@@ -1,6 +1,6 @@
 import { BehaviorSubject ,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams as HP } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams as HP} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 /**
@@ -12,6 +12,14 @@ interface HPO {
   [key: string]: string | boolean | number;
 }
 type HttpParams = HP | HPO;
+
+/**
+ * Interface for errors by the rest client.
+ */
+export interface RestError {
+  Code: 400;
+  Message: string;
+}
 
 /**
  * Basic rest service to access the server with some rest functions.
@@ -124,9 +132,6 @@ export class RestService {
     content: any,
     params?: {}
   ): Promise<TResponse> {
-    if (!this._http) {
-      throw new Error('RestService \'_http\' not set.');
-    }
     if (params) {
       // TODO: implement
     } else {
@@ -134,9 +139,29 @@ export class RestService {
     Object.keys(content).forEach(key => {
       if (content[key] instanceof Date) {
         content[key] = content[key].toISOString();
-        console.log('date', content[key]);
       }
     });
-    return this._http.post(url, content).pipe(map(res => res as TResponse)).toPromise();
+
+    return new Promise((resolve, reject) => {
+      if (!this._http) {
+        throw new Error('RestService \'_http\' not set.');
+      }
+      this._http.post(url, content)
+        .subscribe(
+          data => resolve(data as TResponse),
+          error => reject(this.handleError(error)));
+    });
+  }
+
+  private handleError(error: HttpErrorResponse): RestError | void {
+    switch (error.status) {
+      case 400:
+        return {
+          Code: 400,
+          Message: error.error
+        };
+      default:
+        console.error('Rest error', error);
+    }
   }
 }
