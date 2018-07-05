@@ -121,10 +121,6 @@ export class ImportService {
       const members: IImportMember[] = this._rawMembers.map(m => {
         const dateOfBirth = moment(m[this._reverseMapping[DATE_OF_BIRTH]], 'DD.MM.YY');
         let accessionDate = moment(m[this._reverseMapping[ACCESSION_DATE]], 'DD.MM.YY');
-        // const dateOfBirthParts = m[this._reverseMapping[DATE_OF_BIRTH]].split('.').map(v => Number.parseInt(v, 10));
-        // const dateOfBirth = new Date(dateOfBirthParts[2], dateOfBirthParts[1], dateOfBirthParts[0]);
-        // const accessionDateParts = m[this._reverseMapping[ACCESSION_DATE]].split('.').map(v => Number.parseInt(v, 10));
-        // const accessionDate = new Date(accessionDateParts[2], accessionDateParts[1], accessionDateParts[0]);
         if (dateOfBirth.isValid() === false) {
           console.log('invalid date', m);
         }
