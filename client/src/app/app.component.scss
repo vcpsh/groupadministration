@@ -4,16 +4,6 @@
 $primary: map-get($theme, primary);
 $background: map-get($theme, background);
 
-.link {
-  margin: 0 auto;
-  text-decoration: none;
-  &:hover {
-    cursor: pointer;
-    color: mat-color($primary);
-  }
-  color: black;
-}
-
 .bottomBar {
   height: 40px;
   background-color: mat-color($background, status-bar);
@@ -42,3 +32,33 @@ $background: map-get($theme, background);
   margin-right: 2em;
 }
 
+.consent {
+  //position: absolute;
+  //z-index: 1;
+  height: unset;
+  align-items: flex-end;
+  button {
+    margin-bottom: 1em;
+  }
+  p {
+    white-space: normal;
+    font-size: 15px;
+    a:link,
+    a:visited {
+      color: mat-color($primary);
+      text-decoration: none;
+    }
+  }
+}
+
+.privacy {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.version {
+  z-index: 1;
+  position: relative;
+}

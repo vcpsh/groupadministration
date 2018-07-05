@@ -139,7 +139,7 @@ export class ImportService {
           DateOfBirth: dateOfBirth.toDate(),
           AccessionDate: accessionDate.toDate(),
           Gender: m[this._reverseMapping[GENDER]] === 'Herrn' ? 'M' : 'F' as 'M' | 'F',
-          Type: UserType[UserType.FullUser],
+          Type: UserType.FullUser,
           Imported: false,
           Error: null,
         };

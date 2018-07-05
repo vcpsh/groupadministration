@@ -44,9 +44,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sh.vcp.groupadministration.client/sh.vcp.groupadministration.client.iml" filepath="$PROJECT_DIR$/sh.vcp.groupadministration.client/sh.vcp.groupadministration.client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../sh.vcp.sso/sh.vcp.sso.client-lib/sh.vcp.sso.client-lib.iml" filepath="$PROJECT_DIR$/../sh.vcp.sso/sh.vcp.sso.client-lib/sh.vcp.sso.client-lib.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager">

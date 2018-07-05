@@ -14,6 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Action, ActionReducerMap, StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {VcpshSsoClientlib} from '@vcpsh/sso.clientlib';
+import {CookieLawModule} from 'angular2-cookie-law';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';

@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {OidcService, UserModel} from '@vcpsh/sso.clientlib';
 import {UserActionTypes} from '../actions/user.actions';
@@ -7,7 +8,10 @@ import {IUserState} from '../models/user.state';
 
 @Injectable()
 export class UserService {
-  constructor(private _oicd: OidcService, private _store: Store<AppState>) {
+  constructor(
+    private _oicd: OidcService,
+    private _store: Store<AppState>,
+  ) {
     this._oicd.UserChanged = user => this.userChanged(user);
   }
 

@@ -1,10 +1,26 @@
+@import '~@angular/material/theming';
+@import './theme';
+
+$primary: map-get($theme, primary);
+
 html,
 body {
   height: 100%;
   margin: 0;
 }
+
 .spacer {
   flex: 1 0 auto;
+}
+
+.link {
+  margin: 0 auto;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    color: mat-color($primary);
+  }
+  color: black;
 }
 
 // Grid List
@@ -27,3 +43,4 @@ mat-card {
     display: flex !important;
   }
 }
+

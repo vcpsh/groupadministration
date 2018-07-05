@@ -6,12 +6,12 @@ export interface IInternalMinimalUser {
   LastName: string;
 }
 
-export type IMinimalUser = IInternalMinimalUser & { Type: UserType.MinimalUser };
+export type IMinimalUser = IInternalMinimalUser & { Type: UserType.MinimalUser | UserType.ContactUser | UserType.FullUser };
 
 export interface IInternalContactUser {
 }
 
-export type IContactUser = IInternalMinimalUser & IInternalContactUser & { Type: UserType.ContactUser };
+export type IContactUser = IInternalMinimalUser & IInternalContactUser & { Type: UserType.ContactUser | UserType.FullUser };
 
 export interface IInternalFullUser {
   DateOfBirth: Date;
@@ -22,9 +22,9 @@ export interface IInternalFullUser {
 export type IFullUser = IInternalMinimalUser & IInternalContactUser & IInternalFullUser & { Type: UserType.FullUser };
 
 export enum UserType {
-  FullUser,
-  ContactUser,
-  MinimalUser,
+  FullUser = 0,
+  ContactUser = 1,
+  MinimalUser = 2,
 }
 
 export type IMemberState = IMinimalUser | IContactUser | IFullUser;
