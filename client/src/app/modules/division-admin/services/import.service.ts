@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {IMemberState} from '../../../models/member.state';
+import {IMemberState, UserType} from '../../../models/member.state';
 import {RestError, RestService} from '../../../services/rest.service';
 import * as moment from 'moment';
 
@@ -139,6 +139,7 @@ export class ImportService {
           DateOfBirth: dateOfBirth.toDate(),
           AccessionDate: accessionDate.toDate(),
           Gender: m[this._reverseMapping[GENDER]] === 'Herrn' ? 'M' : 'F' as 'M' | 'F',
+          Type: UserType[UserType.FullUser],
           Imported: false,
           Error: null,
         };
