@@ -1,42 +1,32 @@
-<mat-grid-list cols="4" rowHeight="10em" gutterSize="2em" class="gv-grid-list" *ngIf="Tribe && CanView">
-  <mat-grid-tile colspan="4">
-    <mat-card class="gv-card">
-      <mat-card-header>
-        <mat-card-title>{{ Tribe.DisplayName }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="gv-card-content">
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <mat-card class="gv-card">
-      <mat-card-header>
-        <mat-card-title>{{ Tribe.Sl.DisplayName }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="gv-card-content">
-        <app-group-member-list [Group]="Tribe.Sl" [CanEdit]="CanEdit"></app-group-member-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2">
-    <mat-card class="gv-card">
-      <mat-card-header>
-        <mat-card-title>{{ Tribe.Gs.DisplayName }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="gv-card-content">
-        <app-group-member-list [Group]="Tribe.Gs" [CanEdit]="CanEdit"></app-group-member-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="4" *ngIf="CanEdit">
-    <mat-card class="gv-card">
-      <mat-card-header>
-        <mat-card-title>{{ Tribe.DisplayName }} Mitglieder</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="gv-card-content">
-        <app-group-member-list [Group]="Tribe" [CanEdit]="CanEdit"></app-group-member-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
-<p *ngIf="Tribe && !CanView">You are not allowed to view this Tribe. // TODO: Route Check</p>
+<mat-card class="gv-card" *ngIf="Tribe">
+  <mat-card-header>
+    <mat-card-title>{{ Tribe.DisplayName }} <span *ngIf="CanEdit">({{ Tribe.TribeId }})</span></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="gv-card-content" *ngIf="Tribe && !CanView">You are not allowed to view this Tribe. // TODO:
+    Route Check
+  </mat-card-content>
+  <mat-card-content class="gv-card-content tribe" *ngIf="CanView">
+    <mat-divider></mat-divider>
+    <div class="list">
+      <span class="mat-subheading-2">Stammesleitung</span>
+      <app-group-member-list [Group]="Tribe.Sl" [CanEdit]="CanEdit"></app-group-member-list>
+    </div>
+    <div class="list">
+      <span class="mat-subheading-2">Geschäftsstelle</span>
+      <app-group-member-list [Group]="Tribe.Gs" [CanEdit]="CanEdit"></app-group-member-list>
+    </div>
+    <div class="list">
+      <span class="mat-subheading-2">LR-Delegierte</span>
+      <app-group-member-list [Group]="Tribe.Lr" [CanEdit]="CanEdit"></app-group-member-list>
+    </div>
+    <div class="list">
+      <span class="mat-subheading-2">LV-Delegierte</span>
+      <app-group-member-list [Group]="Tribe.Lv" [CanEdit]="CanEdit"></app-group-member-list>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="list memberlist" *ngIf="CanEdit">
+      <span class="mat-subheading-2">Mitglieder</span>
+      <app-group-member-list [Group]="Tribe" [CanEdit]="CanEdit"></app-group-member-list>
+    </div>
+  </mat-card-content>
+</mat-card>

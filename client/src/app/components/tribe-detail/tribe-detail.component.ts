@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../models/app.state';
 import {ITribeState} from '../../models/tribe.state';
+import {TribeService} from '../../services/tribe.service';
 import {BaseComponent} from '../BaseComponent';
 
 @Component({
@@ -19,6 +20,7 @@ export class TribeDetailComponent extends BaseComponent {
   constructor(
     private _store: Store<AppState>,
     private _route: ActivatedRoute,
+    service: TribeService,
   ) {
     super();
     this.addSub(
@@ -32,8 +34,19 @@ export class TribeDetailComponent extends BaseComponent {
         divisions: s.User ? s.User.Divisions : [],
         tribes: s.User ? s.User.Tribes : [],
       })).subscribe(data => {
+        if (data.admin) {
+          this.CanEdit = true;
+        } else if (data.tribe && data.lgsDivisions.includes(data.tribe.DivisionId)) {
+          this.CanEdit = true;
+        }
+        if (!this.Tribe && data.tribe) {
+          if (this.CanEdit) {
+           service.loadTribeMembers(data.tribe.TribeId);
+          } else {
+            service.loadTribeSpecialMembers(data.tribe.TribeId);
+          }
+        }
         this.Tribe = data.tribe ? data.tribe : null;
-        this.CanEdit = data.admin;
         this.CanView = data.tribe ? data.divisions.includes(data.tribe.DivisionId) || data.tribes.includes(data.tribe.Id) : false;
       }));
   }

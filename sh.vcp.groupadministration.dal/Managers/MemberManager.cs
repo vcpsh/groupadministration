@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Novell.Directory.Ldap;
+using sh.vcp.groupadministration.dal.Extensions;
 using sh.vcp.identity.Model;
+using sh.vcp.identity.Model.Tribe;
 using sh.vcp.ldap;
 using ILdapConnection = sh.vcp.ldap.ILdapConnection;
 
@@ -37,9 +39,20 @@ namespace sh.vcp.groupadministration.dal.Managers
             return allMembers.Where(m => division.MemberIds.Contains(m.Id)).ToList();
         }
 
+        public Task<ICollection<LdapMember>> ListTribeSpecialMembers(Tribe tribe, CancellationToken cancellationToken = default)
+        {
+            List<string> memberIds = new List<string>();
+            memberIds.AddRange(tribe.Sl.MemberIds);
+            memberIds.AddRange(tribe.Gs.MemberIds);
+            memberIds.AddRange(tribe.Lv.MemberIds);
+            memberIds.AddRange(tribe.Lr.MemberIds);
+
+            return memberIds.Distinct().SelectAsync(m => this.Get(m, cancellationToken));
+        }
+
         public Task<LdapMember> Get(string id, CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            return this._connection.Read<LdapMember>($"cn={id},{this._config.MemberDn}", cancellationToken);
         }
 
         public async Task<LdapMember> Create(LdapMember member, CancellationToken cancellationToken = default)
@@ -47,6 +60,11 @@ namespace sh.vcp.groupadministration.dal.Managers
             member.Dn = $"cn={member.Id},{this._config.MemberDn}";
             await this._connection.Add(member, cancellationToken);
             return member;
+        }
+
+        public Task<ICollection<LdapMember>> ListTribeMembers(Tribe tribe, CancellationToken cancellationToken = default)
+        {
+            return tribe.MemberIds.SelectAsync(m => this.Get(m, cancellationToken));
         }
     }
 }

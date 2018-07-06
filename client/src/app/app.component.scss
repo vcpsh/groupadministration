@@ -21,6 +21,7 @@ $background: map-get($theme, background);
     display: none;
   }
   display: grid;
+  overflow-y: auto;
   background-color: mat-color($background, background);
 }
 

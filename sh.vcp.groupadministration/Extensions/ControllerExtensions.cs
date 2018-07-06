@@ -24,13 +24,16 @@ namespace sh.vcp.groupadministration.Extensions
         {
             if (env == null) throw new ArgumentNullException(nameof(env));
             if (ex == null) throw new ArgumentNullException(nameof(ex));
-            
-            return env.IsDevelopment() ? new ErrorObjectResult(ex.GetType().Namespace + ex.GetType().Name) : new ErrorObjectResult(ex);
+
+            return env.IsDevelopment()
+                ? new ErrorObjectResult(ex.GetType().Namespace + ex.GetType().Name)
+                : new ErrorObjectResult(ex);
         }
 
         public static ICollection<string> GetUserDivisions(this Controller controller)
         {
-            return controller.User.Claims.Where(c => c.Type == LdapClaims.DivisionClaim).Select(c => c.Value).Concat(controller.GetUserLgsDivisions())
+            return controller.User.Claims.Where(c => c.Type == LdapClaims.DivisionClaim).Select(c => c.Value)
+                .Concat(controller.GetUserLgsDivisions())
                 .ToList();
         }
 
@@ -38,6 +41,19 @@ namespace sh.vcp.groupadministration.Extensions
         {
             return controller.User.Claims.Where(c => c.Type == LdapClaims.IsDivisionLgsClaim).Select(c => c.Value)
                 .ToList();
+        }
+
+        public static ICollection<string> GetUserTribes(this Controller controller)
+        {
+            return controller.User.Claims.Where(c => c.Type == LdapClaims.TribeClaim).Select(c => c.Value)
+                .Concat(controller.GetUserAdminTribes()).ToList();
+        }
+
+        public static ICollection<string> GetUserAdminTribes(this Controller controller)
+        {
+            return controller.User.Claims
+                .Where(c => c.Type == LdapClaims.IsTribeGsClaim || c.Type == LdapClaims.IsTribeSlClaim)
+                .Select(c => c.Value).ToList();
         }
 
         private class ErrorObjectResult : ObjectResult

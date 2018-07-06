@@ -69,16 +69,17 @@ export class RestService {
   }
 
   public list<TResponse>(params: {
-    url?: string;
+    url?: string | string[];
     queryParams?: HttpParams;
   }): Promise<TResponse[]> {
     return this.get<TResponse[]>(params).then(v => (v == null ? [] : v));
   }
 
   public get<TResponse>(params: {
-    url?: string;
+    url?: string | string[];
     queryParams?: HttpParams;
   }): Promise<TResponse | null> {
+    params.url = this.flattenUrl(params.url);
     if (this._parent) {
       params.url = params.url ? `${this.BaseUrl}/${params.url}` : this.BaseUrl;
       return this._parent.get<TResponse>(params);
@@ -89,9 +90,10 @@ export class RestService {
   }
 
   public post<TResponse>(params: {
-    url?: string;
+    url?: string | string[];
     content: any;
   }): Promise<TResponse> {
+    params.url = this.flattenUrl(params.url);
     if (this._parent) {
       params.url = params.url ? `${this.BaseUrl}/${params.url}` : this.BaseUrl;
       return this._parent.post<TResponse>(params);
@@ -111,6 +113,11 @@ export class RestService {
     if (!this._http) {
       throw new Error('RestService \'_http\' not set.');
     }
+
+    if (Array.isArray(url)) {
+      url = url.reduce((a, b) => `${a}/${b}`, '');
+    }
+
     if (params) {
       const newParas: { [key: string]: string } = {};
       if (params.queryParams && !(params.queryParams instanceof HP)) {
@@ -146,10 +153,13 @@ export class RestService {
       if (!this._http) {
         throw new Error('RestService \'_http\' not set.');
       }
+      if (Array.isArray(url)) {
+        url = url.reduce((a, b) => `${a}/${b}`, '');
+      }
       this._http.post(url, content)
         .subscribe(
-          data => resolve(data as TResponse),
-          error => reject(this.handleError(error)));
+          (data: any) => resolve(data as TResponse),
+          (error: HttpErrorResponse) => reject(this.handleError(error)));
     });
   }
 
@@ -163,5 +173,12 @@ export class RestService {
       default:
         console.error('Rest error', error);
     }
+  }
+
+  private flattenUrl(url?: string | string[]): string | undefined {
+    if (Array.isArray(url)) {
+      return url.reduce((a, b) => a === '' ? b : `${a}/${b}`, '');
+    }
+    return url;
   }
 }

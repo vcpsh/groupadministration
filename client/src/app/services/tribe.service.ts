@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs/internal/Subscription';
+import {MemberActionTypes} from '../actions/member.actions';
 import {TribeActionTypes} from '../actions/tribe.actions';
 import {AppState} from '../models/app.state';
 import {ITribeState} from '../models/tribe.state';
@@ -24,6 +25,32 @@ export class TribeService {
         this._store.dispatch({
           type: TribeActionTypes.ADD,
           tribe: res
+        });
+      });
+  }
+
+  /**
+   * Load the gs, lr, lv and sl members.
+   */
+  public loadTribeSpecialMembers(tribeId: number) {
+    this._api.get({ url: [tribeId.toString(10), 'specialmembers']})
+      .then(res => {
+        this._store.dispatch({
+          type: MemberActionTypes.ADD_MULTIPLE,
+          members: res,
+        });
+      });
+  }
+
+  /**
+   * Load all tribe members. Only for admins.
+   */
+  public loadTribeMembers(tribeId: number) {
+    this._api.get({ url: [tribeId.toString(10), 'members']})
+      .then(res => {
+        this._store.dispatch({
+          type: MemberActionTypes.ADD_MULTIPLE,
+          members: res,
         });
       });
   }
