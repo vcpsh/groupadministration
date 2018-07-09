@@ -8,6 +8,7 @@ import {BaseComponent} from './components/BaseComponent';
 import {AppState} from './models/app.state';
 import {IUserState} from './models/user.state';
 import {DivisionService} from './services/division.service';
+import {GroupService} from './services/group.service';
 import {TribeService} from './services/tribe.service';
 import {UserService} from './services/user.service';
 
@@ -30,7 +31,8 @@ export class AppComponent extends BaseComponent {
     router: Router,
     user: UserService /* Needed for init of service */,
     tribe: TribeService /* Needed for init of service */,
-    division: DivisionService /* Needed for init of service */
+    division: DivisionService /* Needed for init of service */,
+    group: GroupService /* Needed for init of the services */,
   ) {
     super();
     this.User = this._store.pipe(select('User'));

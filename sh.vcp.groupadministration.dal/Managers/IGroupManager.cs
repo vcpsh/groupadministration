@@ -8,7 +8,8 @@ namespace sh.vcp.groupadministration.dal.Managers
     {
         Task<bool> SetMembers<TModel>(TModel model, CancellationToken cancellationToken = default)
             where TModel : LdapGroup;
+
         Task<object> GetMembers(string dn, CancellationToken cancellationToken = default);
-        Task<object> Get(string dn, CancellationToken cancellationToken = default);
+        Task<LdapGroup> Get(string dn, CancellationToken cancellationToken = default);
     }
 }

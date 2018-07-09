@@ -4,7 +4,10 @@
     <span *ngIf="Members[member] !== undefined && Members[member].Username">{{ Members[member].Username}} ({{ Members[member].FirstName }} {{ Members[member].LastName}})</span>
     <span *ngIf="Members[member] !== undefined && !Members[member].Username">{{ Members[member].FirstName }} {{ Members[member].LastName}}</span>
   </mat-list-item>
-  <mat-list-item *ngIf="Group.MemberIds.length === 0">
+  <mat-list-item *ngIf="Group.MemberIds.length === 0 && !CanEdit">
     <span>keine Mitglieder eingetragen</span>
+  </mat-list-item>
+  <mat-list-item *ngIf="CanEdit">
+    <button mat-button (click)="onMemberAddClick()"><mat-icon>add</mat-icon>Mitglied hinzufügen</button>
   </mat-list-item>
 </mat-list>

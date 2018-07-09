@@ -35,6 +35,12 @@ namespace sh.vcp.groupadministration.dal.Managers
             return tribes.FirstOrDefault();
         }
 
+        public async Task<Tribe> GetByDn(string dn, CancellationToken cancellationToken = default)
+        {
+            var tribe = await this._connection.Read<Tribe>(dn, cancellationToken);
+            return tribe;
+        }
+
         public async Task<ICollection<Tribe>> List(CancellationToken cancellationToken = default)
         {
             ICollection<Tribe> tribes = await this._connection.Search<Tribe>(this._config.GroupDn, null,

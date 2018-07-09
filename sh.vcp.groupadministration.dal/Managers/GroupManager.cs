@@ -33,9 +33,9 @@ namespace sh.vcp.groupadministration.dal.Managers
             throw new System.NotImplementedException();
         }
 
-        public Task<object> Get(string dn, CancellationToken cancellationToken = default)
+        public Task<LdapGroup> Get(string dn, CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            return this._connection.Read<LdapGroup>(dn, cancellationToken);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using sh.vcp.identity.Claims;
+using sh.vcp.identity.Model.Tribe;
 
 namespace sh.vcp.groupadministration.Extensions
 {
@@ -54,6 +55,12 @@ namespace sh.vcp.groupadministration.Extensions
             return controller.User.Claims
                 .Where(c => c.Type == LdapClaims.IsTribeGsClaim || c.Type == LdapClaims.IsTribeSlClaim)
                 .Select(c => c.Value).ToList();
+        }
+
+        public static bool CanEditTribe(this Controller controller, Tribe tribe)
+        {
+            return controller.GetUserDivisions().Contains(tribe.DivisionId) ||
+                   controller.GetUserAdminTribes().Contains(tribe.Id);
         }
 
         private class ErrorObjectResult : ObjectResult

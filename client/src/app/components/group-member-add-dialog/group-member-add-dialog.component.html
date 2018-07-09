@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Mitglied hinzufügen ({{ Group.DisplayName }})</h2>
+<mat-dialog-content>
+  <mat-selection-list #membersToAdd>
+    <mat-list-option *ngFor="let m of PossibleMembers" [value]="m.Id">
+      <span *ngIf="m.Username">{{ m.Username}} ({{ m.FirstName }} {{ m.LastName }})</span>
+      <span *ngIf="!m.Username">{{ m.FirstName }} {{ m.LastName }}</span>
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="spacer"></div>
+  <button mat-raised-button mat-dialog-close>Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="onOkClick()">Hinzufügen</button>
+</mat-dialog-actions>

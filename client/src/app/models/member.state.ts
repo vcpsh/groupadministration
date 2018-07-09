@@ -1,4 +1,4 @@
-export interface IInternalMinimalUser {
+export interface IInternalMinimalMember {
   Id: string;
   Dn: string;
   Username?: string;
@@ -6,20 +6,20 @@ export interface IInternalMinimalUser {
   LastName: string;
 }
 
-export type IMinimalUser = IInternalMinimalUser & { Type: UserType.MinimalUser | UserType.ContactUser | UserType.FullUser };
+export type IMinimalMember = IInternalMinimalMember & { Type: UserType.MinimalUser | UserType.ContactUser | UserType.FullUser };
 
-export interface IInternalContactUser {
+export interface IInternalContactMember {
 }
 
-export type IContactUser = IInternalMinimalUser & IInternalContactUser & { Type: UserType.ContactUser | UserType.FullUser };
+export type IContactMember = IInternalMinimalMember & IInternalContactMember & { Type: UserType.ContactUser | UserType.FullUser };
 
-export interface IInternalFullUser {
+export interface IInternalFullMember {
   DateOfBirth: Date;
   AccessionDate: Date;
   Gender: 'M' | 'F';
 }
 
-export type IFullUser = IInternalMinimalUser & IInternalContactUser & IInternalFullUser & { Type: UserType.FullUser };
+export type IFullMember = IInternalMinimalMember & IInternalContactMember & IInternalFullMember & { Type: UserType.FullUser };
 
 export enum UserType {
   FullUser = 0,
@@ -27,4 +27,4 @@ export enum UserType {
   MinimalUser = 2,
 }
 
-export type IMemberState = IMinimalUser | IContactUser | IFullUser;
+export type IMemberState = IMinimalMember | IContactMember | IFullMember;

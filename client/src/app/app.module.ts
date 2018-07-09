@@ -36,6 +36,7 @@ import { TribeCreateComponent } from './components/tribe-create/tribe-create.com
 import { TribeDetailComponent } from './components/tribe-detail/tribe-detail.component';
 import { GroupMemberListComponent } from './components/group-member-list/group-member-list.component';
 import { MemberImportComponent } from './modules/division-admin/components/member-import/member-import.component';
+import { GroupMemberAddDialogComponent } from './components/group-member-add-dialog/group-member-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MemberImportComponent } from './modules/division-admin/components/membe
     TribeCreateComponent,
     TribeDetailComponent,
     GroupMemberListComponent,
+    GroupMemberAddDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { MemberImportComponent } from './modules/division-admin/components/membe
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    TribeCreateComponent
+    TribeCreateComponent,
+    GroupMemberAddDialogComponent,
   ]
 })
 

@@ -1,9 +1,11 @@
 import {Component, Input} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../models/app.state';
 import {IGroupState} from '../../models/group.state';
-import {IMinimalUser} from '../../models/member.state';
+import {IMinimalMember} from '../../models/member.state';
 import {BaseComponent} from '../BaseComponent';
+import {GroupMemberAddDialogComponent} from '../group-member-add-dialog/group-member-add-dialog.component';
 
 @Component({
   selector: 'app-group-member-list',
@@ -13,9 +15,10 @@ import {BaseComponent} from '../BaseComponent';
 export class GroupMemberListComponent extends BaseComponent {
   @Input() public Group: IGroupState | null = null;
   @Input() public CanEdit = false;
-  public Members: { [p: string]: IMinimalUser } = {};
+  public Members: { [p: string]: IMinimalMember } = {};
 
   constructor(
+    private _dialog: MatDialog,
     store: Store<AppState>,
   ) {
     super();
@@ -25,5 +28,13 @@ export class GroupMemberListComponent extends BaseComponent {
     })).subscribe(data => {
       this.Members = data.members;
     }));
+  }
+
+  public onMemberAddClick() {
+    const dialogRef = this._dialog.open(GroupMemberAddDialogComponent, {
+      data: { group: this.Group},
+      disableClose: true,
+      width: '60%',
+    });
   }
 }

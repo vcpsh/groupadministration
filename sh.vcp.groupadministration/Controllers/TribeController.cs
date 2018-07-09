@@ -112,7 +112,7 @@ namespace Server.Controllers
                     return this.NotFound();
                 }
 
-                if (!this.GetUserDivisions().Contains(tribe.DivisionId) && !this.GetUserAdminTribes().Contains(tribe.Id))
+                if (!this.CanEditTribe(tribe))
                 {
                     return this.Unauthorized();
                 }

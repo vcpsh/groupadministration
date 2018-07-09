@@ -41,3 +41,4 @@ Thumbs.db
 yarn-error.log
 UserPrefs.xml
 sh.vcp.groupadministration.client
+*.iws
