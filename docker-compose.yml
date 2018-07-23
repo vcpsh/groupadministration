@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   sh.vcp.groupadministration:
-    image: shvcp
+    image: ${DOCKER_REGISTRY}shvcpgroupadministration
     build:
       context: .
       dockerfile: sh.vcp.groupadministration/Dockerfile
