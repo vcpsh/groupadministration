@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import { OidcService, UserModel } from '@vcpsh/sso.clientlib';
+import { OidcService, UserModel } from '@vcpsh/sso-client-lib';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {DivisionActionTypes} from '../actions/division.actions';
 import {TribeActionTypes} from '../actions/tribe.actions';

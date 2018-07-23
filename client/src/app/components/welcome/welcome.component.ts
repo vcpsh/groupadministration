@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {OidcService} from '@vcpsh/sso.clientlib';
+import {OidcService} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../models/app.state';
 import {BaseComponent} from '../BaseComponent';
 

@@ -1,13 +1,23 @@
-<mat-list *ngIf="Group">
-  <mat-list-item *ngFor="let member of Group.MemberIds">
+<mat-list *ngIf="Group && !CanEdit">
+  <mat-list-item *ngFor="let member of Group!.MemberIds">
     <span *ngIf="Members[member] === undefined">{{ member}}</span>
     <span *ngIf="Members[member] !== undefined && Members[member].Username">{{ Members[member].Username}} ({{ Members[member].FirstName }} {{ Members[member].LastName}})</span>
     <span *ngIf="Members[member] !== undefined && !Members[member].Username">{{ Members[member].FirstName }} {{ Members[member].LastName}}</span>
   </mat-list-item>
-  <mat-list-item *ngIf="Group.MemberIds.length === 0 && !CanEdit">
+  <mat-list-item *ngIf="Group!.MemberIds.length === 0 && !CanEdit">
     <span>keine Mitglieder eingetragen</span>
   </mat-list-item>
-  <mat-list-item *ngIf="CanEdit">
+</mat-list>
+<mat-selection-list *ngIf="Group && CanEdit" #selectionList>
+  <mat-list-option *ngFor="let member of Group!.MemberIds" [value]="member">
+    <span *ngIf="Members[member] === undefined">{{ member}}</span>
+    <span *ngIf="Members[member] !== undefined && Members[member].Username">{{ Members[member].Username}} ({{ Members[member].FirstName }} {{ Members[member].LastName}})</span>
+    <span *ngIf="Members[member] !== undefined && !Members[member].Username">{{ Members[member].FirstName }} {{ Members[member].LastName}}</span>
+  </mat-list-option>
+  <mat-list-item *ngIf="selectionList.selectedOptions.selected.length > 0">
+    <button mat-button (click)="onMemberRemoveClick()"><mat-icon>delete</mat-icon>Mitglieder entfernen</button>
+  </mat-list-item>
+  <mat-list-item>
     <button mat-button (click)="onMemberAddClick()"><mat-icon>add</mat-icon>Mitglied hinzufügen</button>
   </mat-list-item>
-</mat-list>
+</mat-selection-list>

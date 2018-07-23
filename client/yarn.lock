@@ -91,9 +91,9 @@
     "@angular-devkit/core" "0.6.8"
     rxjs "^6.0.0"
 
-"@angular/animations@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-6.0.5.tgz#3964bc2a60facf3c3b417925c4a395b3f44abb94"
+"@angular/animations@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-6.0.9.tgz#c077b8d7542117e42365e14f0f030ea9f9a7db78"
   dependencies:
     tslib "^1.9.0"
 
@@ -120,48 +120,48 @@
     symbol-observable "^1.2.0"
     yargs-parser "^10.0.0"
 
-"@angular/common@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-6.0.5.tgz#7960e1cfc180afb4a1bd56371c48840173cc5a92"
+"@angular/common@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-6.0.9.tgz#e12fc4ea74cdb9f007af1098d3573c8d5441680a"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-6.0.5.tgz#e3ae6a1042e4a08c43f2554685718a4402710958"
+"@angular/compiler-cli@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-6.0.9.tgz#a4b48b37d8b3dd8d702e034d4f062596d048a8a2"
   dependencies:
     chokidar "^1.4.2"
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
     tsickle "^0.29.0"
 
-"@angular/compiler@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-6.0.5.tgz#cb8fdb17b0d736c9054c1c9ab382c9cd2cc7ba5d"
+"@angular/compiler@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-6.0.9.tgz#7d4fbb08f88cbef7cff78e11a9474e8df5516bee"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-6.0.5.tgz#5846f1b3143f43657dc704fe4bcf9e75b94ec325"
+"@angular/core@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-6.0.9.tgz#a68cc0f5ddffa535df65f3e798ba2fcd6f6eec1b"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/forms@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-6.0.5.tgz#d3ec7886d8b61a97b2c0b7501b304b449a2dcae6"
+"@angular/forms@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-6.0.9.tgz#4252626875319f09e03d6b5eb61ea8d274061b8f"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/http@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-6.0.5.tgz#53835564bb5c7a4eac7893a28bcaaf0e73fec2cd"
+"@angular/http@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-6.0.9.tgz#199c04cc0085bbeba44b9832ba029848c376d5a9"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/language-service@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-6.0.5.tgz#824c8cb43ab3976ddb9442ba39562e1dd0108155"
+"@angular/language-service@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-6.0.9.tgz#46663338185d321dc5cabeed72bec695775a104d"
 
 "@angular/material@^6.2.1":
   version "6.2.1"
@@ -169,21 +169,21 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser-dynamic@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-6.0.5.tgz#21c9a702fbd4a153ae8aa35fef89ca1a6dfaa658"
+"@angular/platform-browser-dynamic@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-6.0.9.tgz#237fff728a518cc8fb89094638ff32c40d310374"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/platform-browser@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-6.0.5.tgz#b6b15424a7aa9342284ce7fba6a700f7aad2fd9c"
+"@angular/platform-browser@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-6.0.9.tgz#3f6738046eca03fffdd4558ab3ca75673b6f11d1"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/router@^6.0.3":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-6.0.5.tgz#e9e9e5986e238588020d0531aff3362e836db2a8"
+"@angular/router@^6.0.9":
+  version "6.0.9"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-6.0.9.tgz#c40572031c7ff2e1dfb5279a8cb508b962a85262"
   dependencies:
     tslib "^1.9.0"
 
@@ -248,9 +248,9 @@
   version "2.53.43"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
 
-"@vcpsh/sso.clientlib@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@vcpsh/sso.clientlib/-/sso.clientlib-0.2.0.tgz#d7c65a546712fffc95076f12849bd9652847ea01"
+"@vcpsh/sso-client-lib@0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@vcpsh/sso-client-lib/-/sso-client-lib-0.0.3.tgz#79bc583cdc52f2f430fc5fc9a698080f09994291"
   dependencies:
     tslib "^1.9.0"
 
@@ -2421,6 +2421,14 @@ fs-access@^1.0.0:
   dependencies:
     null-check "^1.0.0"
 
+fs-extra@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.0.tgz#8cc3f47ce07ef7b3593a11b9fb245f7e34c041d6"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
 fs-minipass@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
@@ -2510,6 +2518,14 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+git-describe@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/git-describe/-/git-describe-4.0.3.tgz#d81482a8ada7a1d81e060d438ac8e11b4a390336"
+  dependencies:
+    lodash "^4.16.6"
+  optionalDependencies:
+    semver "^5.3.0"
 
 glob-base@^0.3.0:
   version "0.3.0"
@@ -3441,6 +3457,12 @@ json5@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
 
+jsonfile@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
+  optionalDependencies:
+    graceful-fs "^4.1.6"
+
 jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
@@ -3670,7 +3692,7 @@ lodash@^3.8.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.5.0, lodash@~4.17.10:
+lodash@^4.0.0, lodash@^4.16.6, lodash@^4.17.10, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.5.0, lodash@~4.17.10:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -5172,6 +5194,12 @@ rxjs@^6.0.0:
   dependencies:
     tslib "^1.9.0"
 
+rxjs@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.2.tgz#eb75fa3c186ff5289907d06483a77884586e1cf9"
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
@@ -6121,6 +6149,10 @@ unique-slug@^2.0.0:
   resolved "https://registry.yarnpkg.com/unique-slug/-/unique-slug-2.0.0.tgz#db6676e7c7cc0629878ff196097c78855ae9f4ab"
   dependencies:
     imurmurhash "^0.1.4"
+
+universalify@^0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"

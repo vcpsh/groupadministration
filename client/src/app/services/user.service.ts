@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {OidcService, UserModel} from '@vcpsh/sso.clientlib';
+import {OidcService, UserModel} from '@vcpsh/sso-client-lib';
 import {UserActionTypes} from '../actions/user.actions';
 import {AppState} from '../models/app.state';
 import {IUserState} from '../models/user.state';

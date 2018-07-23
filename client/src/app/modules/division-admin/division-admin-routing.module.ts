@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {OidcService} from '@vcpsh/sso.clientlib';
+import {OidcService} from '@vcpsh/sso-client-lib';
 import {MemberImportComponent} from './components/member-import/member-import.component';
 
 const routes: Routes = [

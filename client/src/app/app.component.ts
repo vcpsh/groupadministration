@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {OidcService} from '@vcpsh/sso.clientlib';
+import {OidcService} from '@vcpsh/sso-client-lib';
 import {Observable} from 'rxjs';
 import {VERSION} from '../environments/version';
 import {BaseComponent} from './components/BaseComponent';

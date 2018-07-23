@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, Route} from '@angular/router';
-import {OidcService} from '@vcpsh/sso.clientlib';
+import {OidcService} from '@vcpsh/sso-client-lib';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {TribeDetailComponent} from './components/tribe-detail/tribe-detail.component';

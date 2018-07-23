@@ -1,9 +1,10 @@
-import {Component, Input} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {Component, Input, ViewChild} from '@angular/core';
+import {MatDialog, MatSelectionList} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../models/app.state';
 import {IGroupState} from '../../models/group.state';
 import {IMinimalMember} from '../../models/member.state';
+import {GroupService} from '../../services/group.service';
 import {BaseComponent} from '../BaseComponent';
 import {GroupMemberAddDialogComponent} from '../group-member-add-dialog/group-member-add-dialog.component';
 
@@ -15,11 +16,13 @@ import {GroupMemberAddDialogComponent} from '../group-member-add-dialog/group-me
 export class GroupMemberListComponent extends BaseComponent {
   @Input() public Group: IGroupState | null = null;
   @Input() public CanEdit = false;
+  @ViewChild('selectionList') public selectionList: MatSelectionList;
   public Members: { [p: string]: IMinimalMember } = {};
 
   constructor(
     private _dialog: MatDialog,
     store: Store<AppState>,
+    private _service: GroupService,
   ) {
     super();
     this.addSub(
@@ -36,5 +39,14 @@ export class GroupMemberListComponent extends BaseComponent {
       disableClose: true,
       width: '60%',
     });
+  }
+
+  public onMemberRemoveClick() {
+    if (this.Group) {
+      const removedMembers = this.selectionList.selectedOptions.selected.map(v => v.value);
+      let newMembers = this.Group.MemberIds;
+      newMembers = newMembers.filter(v => !removedMembers.includes(v));
+      this._service.setMembers(this.Group, newMembers);
+    }
   }
 }

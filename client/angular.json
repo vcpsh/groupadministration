@@ -44,6 +44,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/site.webmanifest",
+              "src/browserconfig.xml",
               { "glob": "**/*.min.js", "input": "node_modules/oidc-client/dist", "output": "assets" },
               { "glob": "silent-renew.html", "input": "src", "output": "/" }
             ],
