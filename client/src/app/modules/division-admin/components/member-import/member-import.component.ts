@@ -87,8 +87,8 @@ export class MemberImportComponent extends BaseComponent {
   public onFileContinueClick() {
     if (this.FileStepForm.valid) {
       const fileList = this._fileInput.nativeElement.files as FileList;
-      this._service.readFile(fileList.item(0))
-        .then(_ => {
+      this._service.readFile(fileList.item(0) as File)
+        .then(() => {
           this.MappingKeys = Object.keys(this._service.Mapping);
         });
     }
