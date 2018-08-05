@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authority: 'http://localhost:5000',
+  redirect_uri: 'http://localhost:4200/signin',
+  post_logout_redirect_uri: 'http://localhost:4200',
+  silent_redirect_uri: 'http://localhost:4200/silent-renew.html',
 };
 
 /*

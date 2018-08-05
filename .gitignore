@@ -43,3 +43,5 @@ UserPrefs.xml
 *.iws
 .vs
 appsettings.json
+client/src/environments/version.ts
+docker-compose.override.yml

@@ -2,7 +2,10 @@ version: '3.4'
 
 services:
   sh.vcp.groupadministration:
-    image: ${DOCKER_REGISTRY}shvcpgroupadministration
+    image: vcpsh/groupadministration
+    container_name: gv.vcp.sh
     build:
       context: .
-      dockerfile: sh.vcp.groupadministration/Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "80"

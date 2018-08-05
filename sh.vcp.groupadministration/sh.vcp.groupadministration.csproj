@@ -23,10 +23,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\single-sign-on\sh.vcp.identity\sh.vcp.identity.csproj" />
     <ProjectReference Include="..\..\single-sign-on\sh.vcp.ldap\sh.vcp.ldap.csproj" />
     <ProjectReference Include="..\sh.vcp.groupadministration.dal\sh.vcp.groupadministration.dal.csproj" />

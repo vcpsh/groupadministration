@@ -4,5 +4,3 @@ services:
   sh.vcp.groupadministration:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"

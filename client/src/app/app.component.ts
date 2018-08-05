@@ -20,7 +20,6 @@ import {UserService} from './services/user.service';
 export class AppComponent extends BaseComponent {
   public Version = VERSION;
   public Date = { FullYear: new Date(Date.now()).getFullYear() };
-  public CookieConsent = false;
   public StartIconVisible = false;
   public User: Observable<IUserState | null>;
 
@@ -36,9 +35,6 @@ export class AppComponent extends BaseComponent {
   ) {
     super();
     this.User = this._store.pipe(select('User'));
-    if (document.cookie.split(';').filter(i => i.includes('consent=')).length) {
-      this.CookieConsent = true;
-    }
     router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
         this.StartIconVisible = e.url !== '/start';
@@ -52,10 +48,5 @@ export class AppComponent extends BaseComponent {
 
   public onLogoutClick() {
     this._oidc.logout();
-  }
-
-  public onCookieConsentClick() {
-    document.cookie = 'consent=true';
-    this.CookieConsent = true;
   }
 }
