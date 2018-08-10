@@ -39,5 +39,5 @@ RUN dotnet publish sh.vcp.groupadministration.csproj -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-COPY --from=ngbuild /src/client/dist/client/* ./wwwroot/
+COPY --from=ngbuild /src/client/dist/client/ ./wwwroot/
 ENTRYPOINT ["dotnet", "sh.vcp.groupadministration.dll"]
