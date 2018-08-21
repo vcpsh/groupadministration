@@ -7,4 +7,9 @@
     <ProjectReference Include="..\..\single-sign-on\sh.vcp.identity\sh.vcp.identity.csproj" />
     <ProjectReference Include="..\..\single-sign-on\sh.vcp.ldap\sh.vcp.ldap.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

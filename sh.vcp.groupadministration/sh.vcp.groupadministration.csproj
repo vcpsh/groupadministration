@@ -11,16 +11,13 @@
     <Folder Include="wwwroot" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="2.0.0-preview1" />
-    <PackageReference Include="App.Metrics.AspNetCore.Reporting" Version="2.0.0-preview1" />
-    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="2.0.0-preview1" />
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.3.0" />
-    <PackageReference Include="MailKit" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
-    <PackageReference Include="Microsoft.NETCore.App" Version="2.0.5" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
+    <PackageReference Include="MailKit" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.2" />
     <PackageReference Include="NETCore.MailKit" Version="2.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\single-sign-on\sh.vcp.identity\sh.vcp.identity.csproj" />

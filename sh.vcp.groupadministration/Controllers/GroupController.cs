@@ -11,13 +11,14 @@ using sh.vcp.groupadministration.dal.Managers;
 using sh.vcp.groupadministration.dal.Model;
 using sh.vcp.groupadministration.Extensions;
 using sh.vcp.identity.Models;
+using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {
     [Route("api/group")]
     [Authorize]
-    public class GroupController: Controller
+    public class GroupController : Controller
     {
         private readonly IGroupManager _manager;
         private readonly ITribeManager _tribeManager;
@@ -25,7 +26,8 @@ namespace Server.Controllers
         private readonly IHostingEnvironment _env;
         private readonly ILogger<GroupController> _logger;
 
-        public GroupController(IGroupManager manager, ITribeManager tribeManager, IMemberManager memberManager, IHostingEnvironment env, ILogger<GroupController> logger)
+        public GroupController(IGroupManager manager, ITribeManager tribeManager, IMemberManager memberManager,
+            IHostingEnvironment env, ILogger<GroupController> logger)
         {
             this._manager = manager;
             this._tribeManager = tribeManager;
@@ -35,7 +37,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("{dn}/possiblemembers")]
-        [SwaggerResponse(200, typeof(List<WireMember>))]
+        [SwaggerResponse(200, "", typeof(List<WireMember>))]
         public async Task<IActionResult> GetPossibleMembers(string dn, CancellationToken cancellationToken)
         {
             try
@@ -45,7 +47,9 @@ namespace Server.Controllers
                 {
                     return this.NotFound();
                 }
-                switch (group.Type) {
+
+                switch (group.Type)
+                {
                     case LdapGroup.GroupType.Group:
                         break;
                     case LdapGroup.GroupType.Division:
@@ -58,13 +62,15 @@ namespace Server.Controllers
                     case LdapGroup.GroupType.TribeSl:
                     case LdapGroup.GroupType.TribeLr:
                     case LdapGroup.GroupType.TribeLv:
-                        var tribe = await this._tribeManager.GetByDn(dn.Replace($"cn={group.Id},", ""), cancellationToken);
+                        var tribe = await this._tribeManager.GetByDn(dn.Replace($"cn={group.Id},", ""),
+                            cancellationToken);
                         if (!this.CanEditTribe(tribe))
                         {
                             return this.Unauthorized();
                         }
+
                         return this.Ok(await this._memberManager.ListTribeMembers(tribe, cancellationToken));
-                        
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -77,9 +83,10 @@ namespace Server.Controllers
                 return this.Error(this._env, ex);
             }
         }
-        
+
         [HttpPost("{dn}/members")]
-        public async Task<IActionResult> SetMembers(string dn, [FromBody] string[] members, CancellationToken cancellationToken)
+        public async Task<IActionResult> SetMembers(string dn, [FromBody] string[] members,
+            CancellationToken cancellationToken)
         {
             try
             {
@@ -100,11 +107,13 @@ namespace Server.Controllers
                     case LdapGroup.GroupType.TribeSl:
                     case LdapGroup.GroupType.TribeLr:
                     case LdapGroup.GroupType.TribeLv:
-                        var tribe = await this._tribeManager.GetByDn(dn.Replace($"cn={group.Id},", ""), cancellationToken);
+                        var tribe = await this._tribeManager.GetByDn(dn.Replace($"cn={group.Id},", ""),
+                            cancellationToken);
                         if (!this.CanEditTribe(tribe))
                         {
                             return this.Unauthorized();
                         }
+
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -118,7 +127,7 @@ namespace Server.Controllers
             {
                 this._logger.LogError(ex, nameof(GroupController) + nameof(this.SetMembers));
                 return this.Error(this._env, ex);
-            }  
+            }
         }
 
 //        [HttpGet("{dn}/members")]

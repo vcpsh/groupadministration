@@ -15,6 +15,7 @@ using sh.vcp.groupadministration.Extensions;
 using sh.vcp.identity.Model;
 using sh.vcp.identity.Model.Tribe;
 using Server.Filters;
+using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
@@ -28,7 +29,8 @@ namespace Server.Controllers
         private readonly ILogger<TribeController> _logger;
         private readonly IHostingEnvironment _env;
 
-        public TribeController(IMemberManager memberManager, ITribeManager manager, ILogger<TribeController> logger, IHostingEnvironment env)
+        public TribeController(IMemberManager memberManager, ITribeManager manager, ILogger<TribeController> logger,
+            IHostingEnvironment env)
         {
             this._memberManager = memberManager;
             this._manager = manager;
@@ -37,7 +39,7 @@ namespace Server.Controllers
         }
 
         [HttpGet]
-        [SwaggerResponse(200, typeof(ICollection<Tribe>))]
+        [SwaggerResponse(200, "", typeof(ICollection<Tribe>))]
         public async Task<IActionResult> List()
         {
             try
@@ -54,7 +56,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        [SwaggerResponse(200, typeof(Tribe))]
+        [SwaggerResponse(200, "", typeof(Tribe))]
         public async Task<IActionResult> Get(int id)
         {
             try
@@ -74,7 +76,7 @@ namespace Server.Controllers
         /// <param name="tribeId"></param>
         /// <returns></returns>
         [HttpGet("{tribeId}/specialmembers")]
-        [SwaggerResponse(200, typeof(List<WireMember>))]
+        [SwaggerResponse(200, "", typeof(List<WireMember>))]
         public async Task<IActionResult> GetSpecialMembers(int tribeId)
         {
             try
@@ -94,14 +96,14 @@ namespace Server.Controllers
                 return this.Error(this._env, ex);
             }
         }
-        
+
         /// <summary>
         /// Get all members (only for admin)
         /// </summary>
         /// <param name="tribeId"></param>
         /// <returns></returns>
         [HttpGet("{tribeId}/members")]
-        [SwaggerResponse(200, typeof(List<WireMember>))]
+        [SwaggerResponse(200, "", typeof(List<WireMember>))]
         public async Task<IActionResult> GetMembers(int tribeId)
         {
             try

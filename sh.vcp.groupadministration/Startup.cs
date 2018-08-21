@@ -1,12 +1,15 @@
-﻿using IdentityServer4.AccessTokenValidation;
+﻿using System.IO;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Swashbuckle.AspNetCore.Swagger;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
 using sh.vcp.groupadministration.dal.Extensions;
@@ -35,12 +38,22 @@ namespace Server
             services.AddVcpShIdentity();
             services.AddVcpShGroupAdministrationDal();
 
-            // configure redis cache
-//            services.AddDistributedRedisCache(options =>
-//            {
-//                options.Configuration = "localhost";
-//                options.InstanceName = "cache";
-//            });
+            if (this._env.IsProduction())
+            {
+                services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
+            }
+
+            // configure proxy stuff
+            if (this._configuration.GetValue("Proxy", false))
+            {
+                services.Configure<ForwardedHeadersOptions>(options =>
+                {
+                    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                    options.RequireHeaderSymmetry = false;
+                });
+            }
+
+            services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
 
             // configure smtp
             services.AddMailKit(optionsBuilder =>
@@ -60,7 +73,7 @@ namespace Server
             });
 
             // additional configuration
-            services.AddMvcCore(/*options => options.AddMetricsResourceFilter()*/)
+            services.AddMvcCore( /*options => options.AddMetricsResourceFilter()*/)
                 .AddAuthorization()
                 .AddApiExplorer()
                 .AddDataAnnotations()
@@ -98,12 +111,41 @@ namespace Server
                     c.SwaggerEndpoint("/swagger/1.0.0/swagger.json", "sh.vcp.gruppenverwaltung@1.0.0");
                 });
             }
+            else
+            {
+                app.UseHsts();
+            }
 
+            if (this._configuration.GetValue("Proxy", false))
+            {
+                app.UseForwardedHeaders();
+            }
+
+            app.UseCors("sso-backend");
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+                if (ctx.Response.StatusCode == 404 || ctx.Request.Path == "/")
+                {
+                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
+                    var tokens = antiforgery.GetAndStoreTokens(ctx);
+                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
+                        new CookieOptions() {HttpOnly = false, Path = "/"});
+                }
+
+                if (ctx.Response.StatusCode == 404)
+                {
+                    ctx.Response.StatusCode = 200;
+                    ctx.Response.ContentType = "text/html";
+                    await ctx.Response.SendFileAsync(Path.Combine(this._env.WebRootPath, "index.html"));
+                }
+            });
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 //            app.UseMetricsPostAndPutSizeTrackingMiddleware();
 //            app.UseMetricsErrorTrackingMiddleware();
 //            app.UseMetricsRequestTrackingMiddleware();
 //            app.UseMetricsActiveRequestMiddleware();
-            app.UseCors("sso-backend");
 
 //            app.UseSwagger();
             app.UseAuthentication();

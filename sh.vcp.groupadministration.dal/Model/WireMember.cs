@@ -5,36 +5,38 @@ using sh.vcp.identity.Model;
 namespace sh.vcp.groupadministration.dal.Model
 {
     /// <summary>
-    /// A model class for users that allowes partial serialisation.
+    ///     A model class for users that allowes partial serialisation.
     /// </summary>
     public class WireMember
     {
-        [JsonProperty("Id")]
-        public string Id { get; set; }
-        
-        [JsonProperty("Dn")]
-        public string Dn { get; set; }
-        
-        [JsonProperty("Type")]
-        public UserType Type { get; set; }
-        
-        [JsonProperty("Username")]
-        public string UserName { get; set; }
-        
-        [JsonProperty("FirstName")] 
-        public string FirstName { get; set; }
+        /// <summary>
+        ///     Enum for the types of wire user we have.
+        /// </summary>
+        public enum UserType
+        {
+            /// <summary>
+            ///     Include all properties. Use it only for the user or the admin on import
+            /// </summary>
+            FullUser,
 
-        [JsonProperty("LastName")] 
-        public string LastName { get; set; }
-        
+            /// <summary>
+            ///     User with basic contact information.
+            /// </summary>
+            ContactUser,
+
+            /// <summary>
+            ///     Include only the id, name and username.
+            /// </summary>
+            MinimalUser
+        }
+
         public WireMember()
         {
-            
         }
 
         public WireMember(LdapMember member, UserType type)
         {
-            switch(type)
+            switch (type)
             {
                 case UserType.FullUser:
                 case UserType.ContactUser:
@@ -49,26 +51,23 @@ namespace sh.vcp.groupadministration.dal.Model
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
-        
-        /// <summary>
-        /// Enum for the types of wire user we have.
-        /// </summary>
-        public enum UserType
-        {
-            /// <summary>
-            /// Include all properties. Use it only for the user or the admin on import
-            /// </summary>
-            FullUser,
-            
-            /// <summary>
-            /// User with basic contact information.
-            /// </summary>
-            ContactUser,
-            
-            /// <summary>
-            /// Include only the id, name and username.
-            /// </summary>
-            MinimalUser,
-        }
+
+        [JsonProperty("Id")]
+        public string Id { get; set; }
+
+        [JsonProperty("Dn")]
+        public string Dn { get; set; }
+
+        [JsonProperty("Type")]
+        public UserType Type { get; set; }
+
+        [JsonProperty("Username")]
+        public string UserName { get; set; }
+
+        [JsonProperty("FirstName")]
+        public string FirstName { get; set; }
+
+        [JsonProperty("LastName")]
+        public string LastName { get; set; }
     }
 }

@@ -12,13 +12,14 @@ using sh.vcp.groupadministration.dal.Managers;
 using sh.vcp.groupadministration.Extensions;
 using sh.vcp.identity.Claims;
 using sh.vcp.identity.Models;
+using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {
     [Authorize]
     [Route("api/divisions")]
-    public class DivisionController: Controller
+    public class DivisionController : Controller
     {
         private readonly IDivisionManager _manager;
         private readonly ILogger<DivisionController> _logger;
@@ -32,7 +33,7 @@ namespace Server.Controllers
         }
 
         [HttpGet]
-        [SwaggerResponse(200, typeof(ICollection<Division>))]
+        [SwaggerResponse(200, "", typeof(ICollection<Division>))]
         public async Task<IActionResult> List(CancellationToken cancellationToken)
         {
             try
@@ -47,9 +48,9 @@ namespace Server.Controllers
                 return this.Error(this._env, ex);
             }
         }
-        
+
         [HttpGet("{id}")]
-        [SwaggerResponse(200, typeof(Division))]
+        [SwaggerResponse(200, "", typeof(Division))]
         public async Task<IActionResult> Get(string id, CancellationToken cancellationToken)
         {
             try
@@ -58,6 +59,7 @@ namespace Server.Controllers
                 {
                     return this.Unauthorized();
                 }
+
                 var division = await this._manager.Get(id, cancellationToken);
                 return this.Ok(division);
             }

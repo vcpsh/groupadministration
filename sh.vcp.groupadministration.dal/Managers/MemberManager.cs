@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,10 +11,10 @@ using ILdapConnection = sh.vcp.ldap.ILdapConnection;
 
 namespace sh.vcp.groupadministration.dal.Managers
 {
-    internal class MemberManager: IMemberManager
+    internal class MemberManager : IMemberManager
     {
-        private readonly ILdapConnection _connection;
         private readonly LdapConfig _config;
+        private readonly ILdapConnection _connection;
         private readonly IDivisionManager _divisionManager;
 
         public MemberManager(ILdapConnection connection, LdapConfig config, IDivisionManager divisionManager)
@@ -24,14 +23,12 @@ namespace sh.vcp.groupadministration.dal.Managers
             this._config = config;
             this._divisionManager = divisionManager;
         }
-        
-        public async Task<ICollection<LdapMember>> ListDivisionMembers(string divisionId, CancellationToken cancellationToken = default)
+
+        public async Task<ICollection<LdapMember>> ListDivisionMembers(string divisionId,
+            CancellationToken cancellationToken = default)
         {
             var division = await this._divisionManager.Get(divisionId, cancellationToken);
-            if (division == null)
-            {
-                return  new List<LdapMember>();
-            }
+            if (division == null) return new List<LdapMember>();
             // TODO: I'm pretty shure it is faster to load all members and filter them with LINQ in comparision to individual searches for each member id.
             ICollection<LdapMember> allMembers = await this._connection.Search<LdapMember>(this._config.MemberDn, null,
                 LdapObjectTypes.Member, LdapConnection.SCOPE_ONE, LdapMember.LoadProperties, cancellationToken);
@@ -39,7 +36,8 @@ namespace sh.vcp.groupadministration.dal.Managers
             return allMembers.Where(m => division.MemberIds.Contains(m.Id)).ToList();
         }
 
-        public Task<ICollection<LdapMember>> ListTribeSpecialMembers(Tribe tribe, CancellationToken cancellationToken = default)
+        public Task<ICollection<LdapMember>> ListTribeSpecialMembers(Tribe tribe,
+            CancellationToken cancellationToken = default)
         {
             List<string> memberIds = new List<string>();
             memberIds.AddRange(tribe.Sl.MemberIds);
@@ -62,7 +60,8 @@ namespace sh.vcp.groupadministration.dal.Managers
             return member;
         }
 
-        public Task<ICollection<LdapMember>> ListTribeMembers(Tribe tribe, CancellationToken cancellationToken = default)
+        public Task<ICollection<LdapMember>> ListTribeMembers(Tribe tribe,
+            CancellationToken cancellationToken = default)
         {
             return tribe.MemberIds.SelectAsync(m => this.Get(m, cancellationToken));
         }

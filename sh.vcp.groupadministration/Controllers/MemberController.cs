@@ -10,13 +10,14 @@ using Microsoft.Extensions.Logging;
 using sh.vcp.groupadministration.dal.Managers;
 using sh.vcp.groupadministration.Extensions;
 using sh.vcp.identity.Model;
+using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {
     [Authorize]
     [Route("api/member")]
-    public class MemberController: Controller
+    public class MemberController : Controller
     {
         private readonly IDivisionManager _division;
         private readonly IMemberManager _manager;
@@ -25,7 +26,8 @@ namespace Server.Controllers
         private readonly ILogger<MemberController> _logger;
         private readonly IHostingEnvironment _env;
 
-        public MemberController(IDivisionManager division, IMemberManager manager, ITribeManager tribe, IGroupManager group, ILogger<MemberController> logger, IHostingEnvironment env)
+        public MemberController(IDivisionManager division, IMemberManager manager, ITribeManager tribe,
+            IGroupManager group, ILogger<MemberController> logger, IHostingEnvironment env)
         {
             this._division = division;
             this._manager = manager;
@@ -36,7 +38,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("division/{id}")]
-        [SwaggerResponse(200, typeof(List<LdapMember>))]
+        [SwaggerResponse(200, "", typeof(List<LdapMember>))]
         public async Task<IActionResult> GetDivisionMembers(string id)
         {
             try
@@ -45,6 +47,7 @@ namespace Server.Controllers
                 {
                     return this.Unauthorized();
                 }
+
                 return this.Ok(await this._manager.ListDivisionMembers(id));
             }
             catch (Exception ex)
@@ -55,7 +58,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        [SwaggerResponse(200, typeof(LdapMember))]
+        [SwaggerResponse(200, "", typeof(LdapMember))]
         public async Task<IActionResult> Get(string id)
         {
             try
@@ -76,7 +79,7 @@ namespace Server.Controllers
         }
 
         [HttpPost("create/{tribeId}")]
-        [SwaggerResponse(200, typeof(LdapMember))]
+        [SwaggerResponse(200, "", typeof(LdapMember))]
         public async Task<IActionResult> Create(int tribeId, [FromBody] LdapMember member)
         {
             try
@@ -94,7 +97,7 @@ namespace Server.Controllers
                 t.MemberIds.Add(m.Id);
                 await this._group.SetMembers(division);
                 await this._group.SetMembers(t);
-                
+
                 return this.Ok(m);
             }
             catch (Exception ex)
@@ -103,6 +106,5 @@ namespace Server.Controllers
                 return this.Error(this._env, ex);
             }
         }
-        
     }
 }
