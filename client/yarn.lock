@@ -266,9 +266,9 @@
   version "2.53.43"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.43.tgz#2de3d718819bc20165754c4a59afb7e9833f6707"
 
-"@vcpsh/sso-client-lib@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@vcpsh/sso-client-lib/-/sso-client-lib-0.2.1.tgz#a584956ccb03381289cb253628fc2efdd401b03d"
+"@vcpsh/sso-client-lib@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@vcpsh/sso-client-lib/-/sso-client-lib-0.2.2.tgz#b53c0023951fcc92b0cde067db4fb4419a5eaf2d"
   dependencies:
     tslib "^1.9.0"
 

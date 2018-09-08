@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { VcpshSsoClientLib } from '@vcpsh/sso-client-lib';
+import { SsoClientLibModule } from '@vcpsh/sso-client-lib';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,15 +59,12 @@ import { environment } from '../environments/environment';
       }
     ),
     StoreDevtoolsModule.instrument({}),
-    VcpshSsoClientLib.forRoot({
+    SsoClientLibModule.forRoot({
       authority: 'https://account.vcp.sh',
       client_id: 'sh.vcp.gruppenverwaltung-client@1.0.0',
-      redirect_uri: `${document.location.origin}/signin`,
       response_type: 'id_token token',
       scope: 'openid profile sh.vcp.gruppenverwaltung@1.0.0 division tribe',
       automaticSilentRenew: true,
-      post_logout_redirect_uri: document.location.origin,
-      silent_redirect_uri: `${document.location.origin}/silent-renew.html`,
       loadUserInfo: true,
       debug: true
     }),
