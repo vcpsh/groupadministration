@@ -119,7 +119,7 @@ namespace Server.Controllers
                         throw new ArgumentOutOfRangeException();
                 }
 
-                group.MemberIds = group.MemberIds.Intersect(members).ToList();
+                group.MemberIds = members.Distinct().ToList();
                 await this._manager.SetMembers(group, cancellationToken);
                 return this.Ok();
             }
