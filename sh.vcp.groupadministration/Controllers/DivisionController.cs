@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -10,10 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using sh.vcp.groupadministration.dal.Managers;
 using sh.vcp.groupadministration.Extensions;
-using sh.vcp.identity.Claims;
 using sh.vcp.identity.Models;
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {

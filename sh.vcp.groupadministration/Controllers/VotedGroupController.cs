@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -9,15 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using sh.vcp.groupadministration.dal.Managers;
 using sh.vcp.groupadministration.Extensions;
-using sh.vcp.identity.Claims;
 using sh.vcp.identity.Models;
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {
     [Authorize]
-    [Route("api/votedgroups")]
+    [Route("api/votedgroup")]
     public class VotedGroupController : Controller
     {
         private readonly IVotedGroupManager _manager;
@@ -34,11 +31,13 @@ namespace Server.Controllers
 
         [HttpGet]
         [SwaggerResponse(200, "", typeof(ICollection<VotedLdapGroup>))]
-        public async Task<IActionResult> List(CancellationToken cancellationToken)
+        public async Task<IActionResult> List()
         {
             try
             {
-                return this.Ok(await this._manager.List(this.GetUserDivisions(), cancellationToken));
+                ICollection<VotedLdapGroup> groups = await this._manager.List();
+                ICollection<string> userDivisions = this.GetUserDivisions();
+                return this.Ok(groups.Where(group => userDivisions.Contains(group.DivisionId)));
             }
             catch (Exception ex)
             {

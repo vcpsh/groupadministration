@@ -12,7 +12,6 @@ using sh.vcp.groupadministration.dal.Model;
 using sh.vcp.groupadministration.Extensions;
 using sh.vcp.identity.Models;
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Server.Controllers
 {
