@@ -8,5 +8,6 @@ namespace sh.vcp.groupadministration.dal.Managers
     public interface IVotedGroupManager
     {
         Task<ICollection<VotedLdapGroup>> List(CancellationToken cancellationToken = default);
+        Task<VotedLdapGroup> Create(VotedLdapGroup group, CancellationToken cancellationToken = default);
     }
 }

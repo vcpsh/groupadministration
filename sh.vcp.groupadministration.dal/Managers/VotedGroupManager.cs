@@ -27,5 +27,10 @@ namespace sh.vcp.groupadministration.dal.Managers
                 VotedLdapGroup.LoadProperties, cancellationToken);
             return groups.ToList();
         }
+
+        public async Task<VotedLdapGroup> Create(VotedLdapGroup group, CancellationToken cancellationToken = default)
+        {
+            return await this._connection.Add(group, cancellationToken);
+        }
     }
 }

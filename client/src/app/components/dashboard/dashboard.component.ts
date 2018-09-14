@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {Component} from '@angular/core';
 import {BaseComponent} from '../BaseComponent';
-import {TribeCreateComponent} from '../tribe-create/tribe-create.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent extends BaseComponent {
   // cards = [
