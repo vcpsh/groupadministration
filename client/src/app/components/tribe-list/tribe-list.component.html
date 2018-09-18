@@ -3,21 +3,23 @@
     <div mat-subheader><span>{{ division.displayName }}</span>
       <div class="spacer"></div>
       <div *ngIf="division.isLgs">
-      <button mat-icon-button [matMenuTriggerFor]="adminMenu"><mat-icon>settings</mat-icon></button>
-      <mat-menu #adminMenu="matMenu">
-        <button mat-menu-item (click)="onTribeCreateClick(division.divisionId)">
-          <mat-icon>add</mat-icon>
-          <span>Stamm erstellen</span>
+        <button mat-icon-button [matMenuTriggerFor]="adminMenu">
+          <mat-icon>settings</mat-icon>
         </button>
-        <button mat-menu-item [routerLink]="['/admin', division.divisionId, 'import']">
-          <mat-icon>import_export</mat-icon>
-          <span>Mitglieder importieren</span>
-        </button>
-      </mat-menu>
+        <mat-menu #adminMenu="matMenu">
+          <button mat-menu-item (click)="onTribeCreateClick(division.divisionId)">
+            <mat-icon>add</mat-icon>
+            <span>Stamm erstellen</span>
+          </button>
+          <button mat-menu-item [routerLink]="['/admin', division.divisionId, 'import']">
+            <mat-icon>import_export</mat-icon>
+            <span>Mitglieder importieren</span>
+          </button>
+        </mat-menu>
       </div>
     </div>
     <mat-list-item *ngFor="let tribe of division.tribes">
-      <button mat-button [routerLink]="[ '/tribe', tribe.Id ]">
+      <button mat-button [routerLink]="[ '/tribe', tribe.DivisionId, tribe.Id ]">
         {{tribe.DisplayName}}
       </button>
     </mat-list-item>

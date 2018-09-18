@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 import {MatStepperModule} from '@angular/material/stepper';
 import {BaseModule} from '../base-module/base.module';
 import {MemberImportComponent} from './components/member-import/member-import.component';
@@ -18,6 +18,7 @@ import {ImportService} from './services/import.service';
   ],
   declarations: [
     MemberImportComponent,
-  ]
+  ],
 })
-export class DivisionAdminModule { }
+export class DivisionAdminModule {
+}

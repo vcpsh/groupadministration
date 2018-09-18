@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {OidcService, UserModel} from '@vcpsh/sso-client-lib';
 import {UserActionTypes} from '../actions/user.actions';
@@ -42,7 +41,7 @@ export class UserService {
             ? user.profile.tribe_member
             : [user.profile.tribe_member])
           : [],
-        TribesAdmin: tribeAdmin
+        TribesAdmin: tribeAdmin,
       };
       this._store.dispatch({
         type: UserActionTypes.LOGIN,

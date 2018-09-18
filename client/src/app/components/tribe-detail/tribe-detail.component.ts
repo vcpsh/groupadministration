@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
+import {BaseComponent} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../models/app.state';
 import {ITribeState} from '../../models/tribe.state';
 import {TribeService} from '../../services/tribe.service';
-import {BaseComponent} from '../BaseComponent';
 
 @Component({
   selector: 'app-tribe-detail',
@@ -12,10 +12,10 @@ import {BaseComponent} from '../BaseComponent';
   styleUrls: ['./tribe-detail.component.scss'],
 })
 export class TribeDetailComponent extends BaseComponent {
-  private _tribeId = '';
   public Tribe: ITribeState | null = null;
-  private CanEdit = false;
   public CanView = false;
+  private _tribeId = '';
+  private CanEdit = false;
 
   constructor(
     private _store: Store<AppState>,
@@ -41,7 +41,7 @@ export class TribeDetailComponent extends BaseComponent {
         }
         if (!this.Tribe && data.tribe) {
           if (this.CanEdit) {
-           service.loadTribeMembers(data.tribe.TribeId);
+            service.loadTribeMembers(data.tribe.TribeId);
           } else {
             service.loadTribeSpecialMembers(data.tribe.TribeId);
           }

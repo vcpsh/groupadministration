@@ -1,9 +1,7 @@
 import {MemberActions, MemberActionTypes, MemberAdd, MemberAddMultiple} from '../actions/member.actions';
-import {UserActionTypes} from '../actions/user.actions';
 import {IMemberState} from '../models/member.state';
-import {ITribeState} from '../models/tribe.state';
 
-export function memberReducer(state: { [key: string]: IMemberState}, action: MemberActions) {
+export function memberReducer(state: { [key: string]: IMemberState }, action: MemberActions) {
   switch (action.type) {
     case MemberActionTypes.ADD: {
       const a = action as MemberAdd;

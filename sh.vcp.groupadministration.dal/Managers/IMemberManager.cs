@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using sh.vcp.identity.Model;
 using sh.vcp.identity.Model.Tribe;
+using sh.vcp.identity.Models;
 
 namespace sh.vcp.groupadministration.dal.Managers
 {
@@ -45,5 +46,6 @@ namespace sh.vcp.groupadministration.dal.Managers
         Task<LdapMember> Create(LdapMember member, CancellationToken cancellationToken = default );
 
         Task<ICollection<LdapMember>> ListTribeMembers(Tribe tribe, CancellationToken cancellationToken = default);
+        Task<ICollection<LdapMember>> ListVotedGroupMembers(VotedLdapGroup group, CancellationToken cancellationToken = default);
     }
 }

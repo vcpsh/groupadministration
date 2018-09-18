@@ -6,7 +6,8 @@
     <li>
       <div class="mat-tree-node" matTreeNodePadding>
         <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.title">
-          <mat-icon class="mat-icon-rtl-mirror">{{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}</mat-icon>
+          <mat-icon class="mat-icon-rtl-mirror">{{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
         </button>
         {{ node.title }}
         <ul [class.tree-invisible]="!treeControl.isExpanded(node)">

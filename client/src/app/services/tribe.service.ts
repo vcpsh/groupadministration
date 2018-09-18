@@ -20,11 +20,11 @@ export class TribeService {
 
   public createTribe(DisplayName: string, id: number, Dn: string, divisionId: string) {
     this._api.post(
-      { content: { DisplayName, DepartmentId: id, DivisionId: divisionId, Dn, Id: DisplayName.toLocaleLowerCase().replace(' ', '_')}})
+      {content: {DisplayName, DepartmentId: id, DivisionId: divisionId, Dn, Id: DisplayName.toLocaleLowerCase().replace(' ', '_')}})
       .then(res => {
         this._store.dispatch({
           type: TribeActionTypes.ADD,
-          tribe: res
+          tribe: res,
         });
       });
   }
@@ -33,7 +33,7 @@ export class TribeService {
    * Load the gs, lr, lv and sl members.
    */
   public loadTribeSpecialMembers(tribeId: number) {
-    this._api.get({ url: [tribeId.toString(10), 'specialmembers']})
+    this._api.get({url: [tribeId.toString(10), 'specialmembers']})
       .then(res => {
         this._store.dispatch({
           type: MemberActionTypes.ADD_MULTIPLE,
@@ -46,7 +46,7 @@ export class TribeService {
    * Load all tribe members. Only for admins.
    */
   public loadTribeMembers(tribeId: number) {
-    this._api.get({ url: [tribeId.toString(10), 'members']})
+    this._api.get({url: [tribeId.toString(10), 'members']})
       .then(res => {
         this._store.dispatch({
           type: MemberActionTypes.ADD_MULTIPLE,

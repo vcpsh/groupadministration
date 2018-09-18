@@ -1,7 +1,6 @@
-import { BehaviorSubject ,  Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams as HP} from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 /**
  * Extends the angular http params to allow booleans and numbers in the key value pairs.
@@ -11,6 +10,7 @@ import { map } from 'rxjs/operators';
 interface HPO {
   [key: string]: string | boolean | number;
 }
+
 type HttpParams = HP | HPO;
 
 /**
@@ -34,15 +34,6 @@ export class RestService {
   private _baseurl = new BehaviorSubject('');
   private _http: HttpClient | null = null;
 
-  public get BaseUrl(): string {
-    if (this._parent) {
-      return this._baseurl.value === ''
-        ? this._parent.BaseUrl
-        : `${this._parent.BaseUrl}/${this._baseurl.value}`;
-    } else {
-      return '/api';
-    }
-  }
   /**
    * Creates an instance of RestService.
    * @param {HttpClient} [http] HttpClient to use
@@ -51,6 +42,16 @@ export class RestService {
   constructor(http: HttpClient) {
     if (http) {
       this._http = http;
+    }
+  }
+
+  public get BaseUrl(): string {
+    if (this._parent) {
+      return this._baseurl.value === ''
+        ? this._parent.BaseUrl
+        : `${this._parent.BaseUrl}/${this._baseurl.value}`;
+    } else {
+      return '/api';
     }
   }
 
@@ -85,7 +86,7 @@ export class RestService {
       return this._parent.get<TResponse>(params);
     }
     return this.internalGet(params.url ? params.url : this.BaseUrl, {
-      queryParams: params.queryParams
+      queryParams: params.queryParams,
     });
   }
 
@@ -101,13 +102,13 @@ export class RestService {
     return this.internalPost(
       params.url ? params.url : this.BaseUrl,
       params.content,
-      params
+      params,
     );
   }
 
   private internalGet<TResponse>(
     url: string,
-    params?: { queryParams?: HttpParams }
+    params?: { queryParams?: HttpParams },
   ): Promise<TResponse | null> {
     // TODO: Handle errors
     if (!this._http) {
@@ -122,12 +123,12 @@ export class RestService {
       const newParas: { [key: string]: string } = {};
       if (params.queryParams && !(params.queryParams instanceof HP)) {
         Object.keys(params.queryParams).forEach(
-          val => (newParas[val] = (params.queryParams as HPO)[val].toString())
+          val => (newParas[val] = (params.queryParams as HPO)[val].toString()),
         );
       }
       // TODO: ErrorHandling
       return this._http.get<TResponse>(url, {
-        params: params.queryParams instanceof HP ? params.queryParams : newParas
+        params: params.queryParams instanceof HP ? params.queryParams : newParas,
       }).toPromise();
     } else {
       return this._http.get<TResponse>(url).toPromise();
@@ -137,7 +138,7 @@ export class RestService {
   private internalPost<TResponse>(
     url: string,
     content: any,
-    params?: {}
+    params?: {},
   ): Promise<TResponse> {
     if (params) {
       // TODO: implement
@@ -168,7 +169,7 @@ export class RestService {
       case 400:
         return {
           Code: 400,
-          Message: error.error
+          Message: error.error,
         };
       default:
         console.error('Rest error', error);

@@ -1,11 +1,11 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {MatDialog, MatSelectionList} from '@angular/material';
 import {Store} from '@ngrx/store';
+import {BaseComponent} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../models/app.state';
 import {IGroupState} from '../../models/group.state';
 import {IMinimalMember} from '../../models/member.state';
 import {GroupService} from '../../services/group.service';
-import {BaseComponent} from '../BaseComponent';
 import {GroupMemberAddDialogComponent} from '../group-member-add-dialog/group-member-add-dialog.component';
 
 @Component({
@@ -26,16 +26,16 @@ export class GroupMemberListComponent extends BaseComponent {
   ) {
     super();
     this.addSub(
-    store.select(s => ({
-      members: s.Members ? s.Members : {},
-    })).subscribe(data => {
-      this.Members = data.members;
-    }));
+      store.select(s => ({
+        members: s.Members ? s.Members : {},
+      })).subscribe(data => {
+        this.Members = data.members;
+      }));
   }
 
   public onMemberAddClick() {
     const dialogRef = this._dialog.open(GroupMemberAddDialogComponent, {
-      data: { group: this.Group},
+      data: {group: this.Group},
       disableClose: true,
       width: '60%',
     });

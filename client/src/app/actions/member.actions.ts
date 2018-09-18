@@ -9,13 +9,16 @@ export enum MemberActionTypes {
 
 export class MemberAdd implements Action {
   readonly type = MemberActionTypes.ADD;
+
   constructor(public member: IMemberState) {
   }
 }
 
 export class MemberAddMultiple implements Action {
   readonly type = MemberActionTypes.ADD_MULTIPLE;
-  constructor(public members: IMemberState[]) {}
+
+  constructor(public members: IMemberState[]) {
+  }
 }
 
 export class MemberReset implements Action {

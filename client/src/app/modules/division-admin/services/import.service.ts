@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
+import * as moment from 'moment';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {IMemberState, UserType} from '../../../models/member.state';
 import {RestError, RestService} from '../../../services/rest.service';
-import * as moment from 'moment';
 
 export type IImportMember = IMemberState & { Imported: boolean, Error: string | null, TribeId: string };
 
@@ -39,14 +39,13 @@ export class ImportService {
     TITLE,
     EMAIL,
   ];
-
-  private _reverseMapping: { [key: string]: string } = {};
   public Mapping: { [key: string]: string } = {};
-  private _rawMembers: { [key: string]: string }[];
   public NewMembers: IImportMember[] = [];
   public DeletedMembers: IImportMember[] = [];
-  private _memberApi: RestService;
   public DivisionId: string;
+  private _reverseMapping: { [key: string]: string } = {};
+  private _rawMembers: { [key: string]: string }[];
+  private _memberApi: RestService;
 
   constructor(
     rest: RestService,
@@ -168,30 +167,30 @@ export class ImportService {
   public startNewMemberImport(): Observable<number> {
     const obs = new BehaviorSubject(this.NewMembers.length);
     const fnImportOne = () => {
-        const unimportedNew = this.NewMembers.find(m => !m.Imported && m.Error == null);
-        if (!unimportedNew) {
+      const unimportedNew = this.NewMembers.find(m => !m.Imported && m.Error == null);
+      if (!unimportedNew) {
+        obs.next(this.NewMembers.filter(m => !m.Imported).length);
+        return;
+      }
+      this._memberApi.post({url: `create/${unimportedNew.TribeId}`, content: unimportedNew})
+        .then(res => {
+          unimportedNew.Imported = true;
+          fnImportOne();
           obs.next(this.NewMembers.filter(m => !m.Imported).length);
-          return;
-        }
-        this._memberApi.post({ url: `create/${unimportedNew.TribeId}`, content: unimportedNew})
-          .then(res => {
-            unimportedNew.Imported = true;
-            fnImportOne();
-            obs.next(this.NewMembers.filter(m => !m.Imported).length);
-          })
-          .catch((err: RestError) => {
-            if (err.Code === 400) {
-              unimportedNew.Error = err.Message;
+        })
+        .catch((err: RestError) => {
+          if (err.Code === 400) {
+            unimportedNew.Error = err.Message;
 
-              // if the tribe does not exist mark all members of the tribe as not importable
-              if (err.Message === `The tribe ${unimportedNew.TribeId} does not exist.`) {
-                this.NewMembers
-                  .filter(m => m.TribeId === unimportedNew.TribeId)
-                  .forEach(m => m.Error = err.Message);
-              }
+            // if the tribe does not exist mark all members of the tribe as not importable
+            if (err.Message === `The tribe ${unimportedNew.TribeId} does not exist.`) {
+              this.NewMembers
+                .filter(m => m.TribeId === unimportedNew.TribeId)
+                .forEach(m => m.Error = err.Message);
             }
-            fnImportOne();
-          });
+          }
+          fnImportOne();
+        });
     };
     const p = new Promise(resolve => fnImportOne());
     return obs.asObservable();

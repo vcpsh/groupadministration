@@ -11,7 +11,8 @@ export class Node {
     public title: string,
     public type: string,
     public children: Node[] = [],
-  ) {}
+  ) {
+  }
 }
 
 @Component({

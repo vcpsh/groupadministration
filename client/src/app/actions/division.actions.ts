@@ -10,12 +10,15 @@ export enum DivisionActionTypes {
 export class DivisionAdd implements Action {
   readonly type = DivisionActionTypes.ADD;
 
-  constructor(public division: IDivisionState) {}
+  constructor(public division: IDivisionState) {
+  }
 }
 
 export class DivisionAddMultiple implements Action {
   readonly type = DivisionActionTypes.ADD_MULTIPLE;
-  constructor(public divisions: IDivisionState[]) {}
+
+  constructor(public divisions: IDivisionState[]) {
+  }
 }
 
 export class DivisionReset implements Action {

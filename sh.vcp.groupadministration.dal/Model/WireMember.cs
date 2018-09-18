@@ -40,13 +40,19 @@ namespace sh.vcp.groupadministration.dal.Model
             {
                 case UserType.FullUser:
                 case UserType.ContactUser:
+                {
+                    this.OfficialMail = member.OfficialMail;
+                    goto case UserType.MinimalUser;
+                }
                 case UserType.MinimalUser:
+                {
                     this.Id = member.Id;
                     this.Dn = member.Dn;
                     this.UserName = member.UserName;
                     this.FirstName = member.FirstName;
                     this.LastName = member.LastName;
                     break;
+                }
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -69,5 +75,8 @@ namespace sh.vcp.groupadministration.dal.Model
 
         [JsonProperty("LastName")]
         public string LastName { get; set; }
+        
+        [JsonProperty("OfficialMail")]
+        public string OfficialMail { get; set; }
     }
 }

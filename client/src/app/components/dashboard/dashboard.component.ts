@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseComponent} from '../BaseComponent';
+import {BaseComponent} from '@vcpsh/sso-client-lib';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +7,4 @@ import {BaseComponent} from '../BaseComponent';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent extends BaseComponent {
-  // cards = [
-  //   { title: 'Card 2', cols: 1, rows: 1 },
-  //   { title: 'Card 3', cols: 1, rows: 2 },
-  //   { title: 'Card 4', cols: 1, rows: 1 }
-  // ];
 }

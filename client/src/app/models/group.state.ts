@@ -15,4 +15,10 @@ export interface IGroupState {
   Dn: string;
   MemberIds: string[];
   Type: GroupType;
+  OfficialMail?: string;
+  /**
+   * Used internal only to keep track of loaded members for the group.
+   * //TODO: implement it!
+   */
+  _membersLoaded: boolean;
 }

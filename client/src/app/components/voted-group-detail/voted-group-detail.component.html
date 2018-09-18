@@ -1,0 +1,71 @@
+<mat-card class="gv-card" *ngIf="Group">
+  <mat-card-header>
+    <mat-card-title>{{ Group.DisplayName }} <span *ngIf="CanEdit">({{ Group.Dn }})</span></mat-card-title>
+    <mat-card-subtitle *ngIf="Group.OfficialMail">{{ Group.OfficialMail }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="gv-card-content" *ngIf="Group && !CanView">You are not allowed to view this VotedGroup. //
+    TODO:
+    Route Check
+  </mat-card-content>
+  <mat-card-content class="gv-card-content group" *ngIf="CanView">
+    <mat-divider></mat-divider>
+    <div class="list">
+      <span class="mat-subheading-2">Mitglieder</span>
+      <mat-list dense *ngIf="!CanEdit">
+        <mat-list-item *ngFor="let entry of Group.ActiveVoteEntries">
+          <h3 matLine *ngIf="Members[entry.MemberId] === undefined">{{ entry.MemberId }}</h3>
+          <h3 matLine *ngIf="Members[entry.MemberId] !== undefined && Members[entry.MemberId].Username">{{
+            Members[entry.MemberId].Username}} ({{ Members[entry.MemberId].FirstName }} {{
+            Members[entry.MemberId].LastName}})</h3>
+          <h3 matLine *ngIf="Members[entry.MemberId] !== undefined && !Members[entry.MemberId].Username">{{
+            Members[entry.MemberId].FirstName }} {{ Members[entry.MemberId].LastName}}</h3>
+          <span matLine>{{ entry.VoteStartEvent }}-{{ entry.VoteEndEvent }}</span>
+        </mat-list-item>
+      </mat-list>
+      <mat-selection-list *ngIf="CanEdit" #selectionList>
+        <mat-list-option *ngFor="let entry of Group.ActiveVoteEntries" [value]="entry.MemberId">
+          <h3 matLine *ngIf="Members[entry.MemberId] === undefined">{{ entry.MemberId}}</h3>
+          <h3 matLine *ngIf="Members[entry.MemberId] !== undefined && Members[entry.MemberId].Username">{{
+            Members[entry.MemberId].Username}} ({{ Members[entry.MemberId].FirstName }} {{
+            Members[entry.MemberId].LastName}})</h3>
+          <h3 matLine *ngIf="Members[entry.MemberId] !== undefined && !Members[entry.MemberId].Username">{{
+            Members[entry.MemberId].FirstName }} {{ Members[entry.MemberId].LastName}}</h3>
+          <span matLine>{{ entry.VoteStartEvent }}-{{ entry.VoteEndEvent }}</span>
+        </mat-list-option>
+        <mat-list-item *ngIf="selectionList.selectedOptions.selected.length > 0">
+          <button mat-button (click)="onMemberRemoveClick()">
+            <mat-icon>delete</mat-icon>
+            Mitglieder entfernen
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button (click)="onMemberAddClick()">
+            <mat-icon>add</mat-icon>
+            Mitglied hinzufügen
+          </button>
+        </mat-list-item>
+      </mat-selection-list>
+    </div>
+    <!--<div class="list">-->
+    <!--<span class="mat-subheading-2">Stammesleitung</span>-->
+    <!--<app-group-member-list [Group]="Tribe.Sl" [CanEdit]="CanEdit"></app-group-member-list>-->
+    <!--</div>-->
+    <!--<div class="list">-->
+    <!--<span class="mat-subheading-2">Geschäftsstelle</span>-->
+    <!--<app-group-member-list [Group]="Tribe.Gs" [CanEdit]="canEdit"></app-group-member-list>-->
+    <!--</div>-->
+    <!--<div class="list">-->
+    <!--<span class="mat-subheading-2">LR-Delegierte</span>-->
+    <!--<app-group-member-list [Group]="Tribe.Lr" [CanEdit]="CanEdit"></app-group-member-list>-->
+    <!--</div>-->
+    <!--<div class="list">-->
+    <!--<span class="mat-subheading-2">LV-Delegierte</span>-->
+    <!--<app-group-member-list [Group]="Tribe.Lv" [CanEdit]="CanEdit"></app-group-member-list>-->
+    <!--</div>-->
+    <!--<mat-divider></mat-divider>-->
+    <!--<div class="list memberlist" *ngIf="CanEdit">-->
+    <!--<span class="mat-subheading-2">Mitglieder</span>-->
+    <!--<app-group-member-list [Group]="Tribe"></app-group-member-list>-->
+    <!--</div>-->
+  </mat-card-content>
+</mat-card>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using sh.vcp.groupadministration.dal.Managers;
 using sh.vcp.groupadministration.Extensions;
+using sh.vcp.identity.Model;
 using sh.vcp.identity.Models;
 using Server.Filters;
 using Swashbuckle.AspNetCore.Annotations;
@@ -67,6 +69,76 @@ namespace Server.Controllers
                 this._logger.LogError(ex, nameof(VotedGroupController) + nameof(this.Create));
                 return this.Error(this._env, ex);
             }
+        }
+
+        [HttpPost("{dn}/addMembers")]
+        [ValidateModelState]
+        [SwaggerResponse(200, "The updated group", typeof(VotedLdapGroup))]
+        public async Task<IActionResult> AddMembers(string dn, [FromBody] AddMembersModel newMembers, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var group = await this._manager.Get(dn, cancellationToken);
+                if (group == null)
+                {
+                    return this.NotFound();
+                }
+
+                group = await this._manager.AddMembers(group, newMembers.StartEvent, newMembers.EndEvent, newMembers.StartDate, newMembers.NewMembers, cancellationToken);
+                return this.Ok(group);
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex, nameof(VotedGroupController) + nameof(this.AddMembers));
+                return this.Error(this._env, ex);
+            }
+        }
+        
+        [HttpPost("{dn}/removeMembers")]
+        [ValidateModelState]
+        [SwaggerResponse(200, "The updated group", typeof(VotedLdapGroup))]
+        public async Task<IActionResult> RemoveMembers(string dn, [FromBody] RemoveMembersModel removedMembers, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var group = await this._manager.Get(dn, cancellationToken);
+                if (group == null)
+                {
+                    return this.NotFound();
+                }
+
+                group = await this._manager.RemoveMembers(group, removedMembers.EndEvent, removedMembers.EndDate, removedMembers.RemovedMembers, cancellationToken);
+                return this.Ok(group);
+            }
+            catch (Exception ex)
+            {
+                this._logger.LogError(ex, nameof(VotedGroupController) + nameof(this.RemoveMembers));
+                return this.Error(this._env, ex);
+            }
+        }
+
+        public class AddMembersModel
+        {
+            [Required]
+            public string StartEvent { get; set; }
+            [Required]
+            public string EndEvent { get; set; }
+            [Required]
+            public DateTime StartDate { get; set; }
+            [Required]
+            [MinLength(1)]
+            public List<string> NewMembers { get; set; }
+        }
+        
+        public class RemoveMembersModel
+        {
+            [Required]
+            public string EndEvent { get; set; }
+            [Required]
+            public DateTime EndDate { get; set; }
+            [Required]
+            [MinLength(1)]
+            public List<VoteEntry> RemovedMembers { get; set; }
         }
     }
 }

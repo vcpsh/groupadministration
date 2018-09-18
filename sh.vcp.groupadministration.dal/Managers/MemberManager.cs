@@ -6,12 +6,13 @@ using Novell.Directory.Ldap;
 using sh.vcp.groupadministration.dal.Extensions;
 using sh.vcp.identity.Model;
 using sh.vcp.identity.Model.Tribe;
+using sh.vcp.identity.Models;
 using sh.vcp.ldap;
 using ILdapConnection = sh.vcp.ldap.ILdapConnection;
 
 namespace sh.vcp.groupadministration.dal.Managers
 {
-    internal class MemberManager : IMemberManager
+    internal class MemberManager :IMemberManager
     {
         private readonly LdapConfig _config;
         private readonly ILdapConnection _connection;
@@ -29,7 +30,7 @@ namespace sh.vcp.groupadministration.dal.Managers
         {
             var division = await this._divisionManager.Get(divisionId, cancellationToken);
             if (division == null) return new List<LdapMember>();
-            // TODO: I'm pretty shure it is faster to load all members and filter them with LINQ in comparision to individual searches for each member id.
+            // TODO: I'm pretty sure it is faster to load all members and filter them with LINQ in comparision to individual searches for each member id.
             ICollection<LdapMember> allMembers = await this._connection.Search<LdapMember>(this._config.MemberDn, null,
                 LdapObjectTypes.Member, LdapConnection.SCOPE_ONE, LdapMember.LoadProperties, cancellationToken);
 
@@ -64,6 +65,18 @@ namespace sh.vcp.groupadministration.dal.Managers
             CancellationToken cancellationToken = default)
         {
             return tribe.MemberIds.SelectAsync(m => this.Get(m, cancellationToken));
+        }
+
+        public async Task<ICollection<LdapMember>> ListVotedGroupMembers(VotedLdapGroup group, CancellationToken cancellationToken = default)
+        {
+            List<string> memberIds = new List<string>();
+            group.ActiveVoteEntries.ToList().ForEach(m => memberIds.Add(m.MemberUid));
+            group.InactiveVoteEntries.ToList().ForEach(m => memberIds.Add(m.MemberUid));
+            // TODO: I'm pretty sure it is faster to load all members and filter them with LINQ in comparision to individual searches for each member id.
+            ICollection<LdapMember> allMembers = await this._connection.Search<LdapMember>(this._config.MemberDn, null,
+                LdapObjectTypes.Member, LdapConnection.SCOPE_ONE, LdapMember.LoadProperties, cancellationToken);
+
+            return allMembers.Where(m => memberIds.Contains(m.Id)).ToList();
         }
     }
 }

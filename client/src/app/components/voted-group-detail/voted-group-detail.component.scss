@@ -1,0 +1,22 @@
+.group {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-row-gap: 1em;
+}
+
+.mat-divider {
+  position: unset !important;
+  grid-column-start: 1;
+  grid-column-end: span 4;
+}
+
+.mat-subheading-2 {
+  margin-left: 1em;
+  font-weight: bold;
+}
+
+.memberlist {
+  grid-column-start: 1;
+  grid-column-end: span 4;
+}

@@ -1,16 +1,24 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
+  MAT_DATE_LOCALE,
   MatButtonModule,
-  MatCardModule,
-  MatDialogModule, MatDividerModule,
+  MatCardModule, MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
   MatFormFieldModule,
-  MatGridListModule, MatIconModule,
+  MatGridListModule,
+  MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule, MatProgressBarModule, MatSelectModule, MatToolbarModule, MatTreeModule,
+  MatMenuModule,
+  MatProgressBarModule,
+  MatSelectModule,
+  MatToolbarModule,
+  MatTreeModule,
 } from '@angular/material';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
 
 @NgModule({
   imports: [
@@ -19,6 +27,7 @@ import {
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
@@ -27,6 +36,7 @@ import {
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatMomentDateModule,
     MatProgressBarModule,
     MatSelectModule,
     MatToolbarModule,
@@ -38,6 +48,7 @@ import {
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
@@ -46,10 +57,15 @@ import {
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatMomentDateModule,
     MatProgressBarModule,
     MatSelectModule,
     MatToolbarModule,
     MatTreeModule,
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'de-DE'}
   ]
 })
-export class BaseModule { }
+export class BaseModule {
+}

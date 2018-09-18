@@ -9,6 +9,7 @@ export interface IInternalMinimalMember {
 export type IMinimalMember = IInternalMinimalMember & { Type: UserType.MinimalUser | UserType.ContactUser | UserType.FullUser };
 
 export interface IInternalContactMember {
+  OfficialMail?: string;
 }
 
 export type IContactMember = IInternalMinimalMember & IInternalContactMember & { Type: UserType.ContactUser | UserType.FullUser };

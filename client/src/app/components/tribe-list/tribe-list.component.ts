@@ -1,11 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {Subscription} from 'rxjs/internal/Subscription';
+import {BaseComponent} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../models/app.state';
 import {ITribeState} from '../../models/tribe.state';
-import {BaseComponent} from '../BaseComponent';
 import {TribeCreateComponent} from '../tribe-create/tribe-create.component';
 
 @Component({
@@ -13,7 +12,7 @@ import {TribeCreateComponent} from '../tribe-create/tribe-create.component';
   templateUrl: './tribe-list.component.html',
   styleUrls: ['./tribe-list.component.scss'],
 })
-export class TribeListComponent extends BaseComponent  {
+export class TribeListComponent extends BaseComponent {
   public Divisions?: { divisionId: string; displayName: string; isLgs: boolean; tribes: ITribeState[] }[];
 
   constructor(

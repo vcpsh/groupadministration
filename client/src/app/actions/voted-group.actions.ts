@@ -4,6 +4,8 @@ import {IVotedGroupState} from '../models/voted-group.state';
 export enum VotedGroupActionTypes {
   ADD = '[VotedGroup] ADD',
   ADD_MULTIPLE = '[VotedGroup] ADD_MULTIPLE',
+  MEMBERS_LOADED = '[VotedGroup] MEMBERS_LOADED',
+  UPDATE = '[VotedGroup] UPDATE',
   RESET = '[VotedGroup] RESET',
 }
 
@@ -21,8 +23,19 @@ export class VotedGroupAddMultiple implements Action {
   }
 }
 
+export class VotedGroupMembersLoaded implements Action {
+  readonly type = VotedGroupActionTypes.MEMBERS_LOADED;
+
+  constructor(public dn: string) {}
+}
+
+export class VotedGroupUpdate implements Action {
+  readonly type = VotedGroupActionTypes.UPDATE;
+  constructor(public group: IVotedGroupState) {}
+}
+
 export class VotedGroupReset implements Action {
   readonly type = VotedGroupActionTypes.RESET;
 }
 
-export type VotedGroupActions = VotedGroupAdd | VotedGroupAddMultiple | VotedGroupReset;
+export type VotedGroupActions = VotedGroupAdd | VotedGroupAddMultiple | VotedGroupMembersLoaded | VotedGroupUpdate | VotedGroupReset;

@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {OidcService} from '@vcpsh/sso-client-lib';
 import {MemberImportComponent} from './components/member-import/member-import.component';
 
 const routes: Routes = [
-  { path: ':id', children: [
-      { path: 'import', component: MemberImportComponent, canActivate: [OidcService] },
-    ]
+  {
+    path: ':id', children: [
+      {path: 'import', component: MemberImportComponent, canActivate: [OidcService]},
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DivisionAdminRoutingModule { }
+export class DivisionAdminRoutingModule {
+}

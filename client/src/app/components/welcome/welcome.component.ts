@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
-import {OidcService} from '@vcpsh/sso-client-lib';
+import {BaseComponent, OidcService} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../models/app.state';
-import {BaseComponent} from '../BaseComponent';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.scss']
+  styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent extends BaseComponent {
 

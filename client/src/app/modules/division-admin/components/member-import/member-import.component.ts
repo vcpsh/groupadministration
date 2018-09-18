@@ -2,10 +2,9 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {BaseComponent} from '../../../../components/BaseComponent';
+import {BaseComponent} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../../../models/app.state';
 import {IDivisionState} from '../../../../models/division.state';
-import {IMemberState} from '../../../../models/member.state';
 import {IImportMember, ImportService} from '../../services/import.service';
 
 @Component({
@@ -14,30 +13,26 @@ import {IImportMember, ImportService} from '../../services/import.service';
   styleUrls: ['./member-import.component.scss'],
 })
 export class MemberImportComponent extends BaseComponent {
-  private _divisionId: string | null = null;
   public Division: IDivisionState | null = null;
   public FileStepForm: FormGroup;
   public MappingStepForm: FormGroup;
   public FieldNamesMember = ImportService.FieldNamesMember;
-
   // step new members
   public NewMembers: IImportMember[] = [];
   public NewMemberStepForm: FormGroup;
   public NewMemberPercentImported = 0;
   public NewMemberImported = 0;
-
   // step deleted members
   public DeletedMembers: IImportMember[] = [];
   public DeletedMemberStepForm: FormGroup;
-
   // step changed members
   public ChangedMemberStepForm: FormGroup;
-
   // step result
   public ResultForm: FormGroup;
-
-  @ViewChild('fileInput') private _fileInput: ElementRef;
   public MappingKeys: string[] = [];
+  private _divisionId: string | null = null;
+  @ViewChild('fileInput') private _fileInput: ElementRef;
+
   constructor(
     route: ActivatedRoute,
     private _store: Store<AppState>,
@@ -56,7 +51,7 @@ export class MemberImportComponent extends BaseComponent {
     this.FileStepForm = fb.group({
       fileSelect: ['', Validators.required],
     });
-    const kvreversedMapping: {[key: string]: string} = {};
+    const kvreversedMapping: { [key: string]: string } = {};
     Object.keys(this._service.Mapping).forEach(key => {
       if (this._service.Mapping[key] !== '') {
         kvreversedMapping[this._service.Mapping[key]] = key;
@@ -64,21 +59,19 @@ export class MemberImportComponent extends BaseComponent {
     });
     const mappingFormObj: { [key: string]: any } = {};
     ImportService.FieldNamesMember.forEach(val => {
-      mappingFormObj[val] = [kvreversedMapping[val] !== undefined ? kvreversedMapping[val] : '', Validators.required ];
+      mappingFormObj[val] = [kvreversedMapping[val] !== undefined ? kvreversedMapping[val] : '', Validators.required];
     });
     this.MappingStepForm = fb.group(mappingFormObj);
     this.NewMemberStepForm = fb.group({
-      toImport: [0, Validators.max(0)]
+      toImport: [0, Validators.max(0)],
     });
     this.DeletedMemberStepForm = fb.group({
-      toImport: [0, Validators.max(0)]
+      toImport: [0, Validators.max(0)],
     });
     this.ChangedMemberStepForm = fb.group({
-      toImport: [0, Validators.max(0)]
+      toImport: [0, Validators.max(0)],
     });
-    this.ResultForm = fb.group({
-
-    });
+    this.ResultForm = fb.group({});
   }
 
   /**
@@ -103,8 +96,8 @@ export class MemberImportComponent extends BaseComponent {
         .then(_ => {
           this.NewMembers = this._service.NewMembers;
           this.DeletedMembers = this._service.DeletedMembers;
-          this.NewMemberStepForm.setValue({ toImport: this.NewMembers.length });
-          this.DeletedMemberStepForm.setValue({ toImport: this.DeletedMembers.length });
+          this.NewMemberStepForm.setValue({toImport: this.NewMembers.length});
+          this.DeletedMemberStepForm.setValue({toImport: this.DeletedMembers.length});
         });
     }
   }
@@ -123,7 +116,7 @@ export class MemberImportComponent extends BaseComponent {
   onNewMemberImportClick() {
     this.addSub(this._service.startNewMemberImport().subscribe(val => {
       this.NewMembers = this._service.NewMembers;
-      this.NewMemberStepForm.setValue({ toImport: val - this.NewMembers.filter(m => m.Error !== null).length });
+      this.NewMemberStepForm.setValue({toImport: val - this.NewMembers.filter(m => m.Error !== null).length});
       this.NewMemberPercentImported = (this.NewMembers.length * 1.0 - val) / this.NewMembers.length * 100;
       this.NewMemberImported = this.NewMembers.filter(m => m.Imported).length;
     }));

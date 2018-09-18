@@ -1,7 +1,9 @@
 <div class="container mat-typography">
   <mat-toolbar color="primary">
     <span>Gruppenverwaltung</span>
-    <button mat-icon-button="" routerLink="/start" *ngIf="StartIconVisible && (User | async) !== null"><mat-icon>home</mat-icon></button>
+    <button mat-icon-button="" routerLink="/start" *ngIf="StartIconVisible && (User | async) !== null">
+      <mat-icon>home</mat-icon>
+    </button>
     <span class="spacer"></span>
     <button *ngIf="(User | async) === null" mat-button (click)="navigateLogin()">Login</button>
     <div *ngIf="(User | async) !== null">
@@ -23,7 +25,8 @@
   </div>
   <mat-toolbar class="bottomBar">
     <mat-toolbar-row>
-      <a class="mat-subheading-2 link" href="https://vcp.sh">&copy;2017-{{ Date.FullYear }}, VCP Land Schleswig-Holstein e.V.</a>
+      <a class="mat-subheading-2 link" href="https://vcp.sh">&copy;2017-{{ Date.FullYear }}, VCP Land Schleswig-Holstein
+        e.V.</a>
     </mat-toolbar-row>
     <mat-toolbar-row>
       <div class="privacy"><a class="mat-subheading-1 link" routerLink="/privacy">Datenschutzerklärung</a></div>

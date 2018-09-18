@@ -4,7 +4,7 @@ import {Subscription} from 'rxjs';
 import {VotedGroupActionTypes} from '../actions/voted-group.actions';
 import {AppState} from '../models/app.state';
 import {IUserState} from '../models/user.state';
-import {IVotedGroupState} from '../models/voted-group.state';
+import {IVotedEntryState, IVotedGroupState} from '../models/voted-group.state';
 import {RestService} from './rest.service';
 
 @Injectable({
@@ -23,6 +23,7 @@ export class VotedGroupService {
     if (user) {
       this._api.list<IVotedGroupState>({}).then(groups => {
         if (groups) {
+          groups.forEach(g => g._membersLoaded = false);
           this._store.dispatch({
             type: VotedGroupActionTypes.ADD_MULTIPLE,
             groups,
@@ -40,16 +41,33 @@ export class VotedGroupService {
     }
   }
 
-  public loadGroupMembers(TribeId: string) {
-
-  }
-
   public createVotedGroup(DisplayName: string, Dn: string, DivisionId: string, Email: string) {
     this._api.post(
       {content: {DisplayName, DivisionId: DivisionId, Dn, OfficialMail: Email, Id: DisplayName.toLocaleLowerCase().replace(' ', '_')}})
       .then(res => {
         this._store.dispatch({
           type: VotedGroupActionTypes.ADD,
+          group: res,
+        });
+      });
+  }
+
+  public addMembers(group: IVotedGroupState, newMembers: { StartEvent: string, EndEvent: string, StartDate: Date, NewMembers: string[]}) {
+    return this._api.post({ url: `${group.Dn}/addMembers`, content: newMembers})
+      .then(res => {
+        this._store.dispatch({
+          type: VotedGroupActionTypes.UPDATE,
+          group: res,
+        });
+      });
+  }
+
+  public removeMembers(Group: IVotedGroupState, removedMembers: { EndEvent: string, EndDate: Date, RemovedMembers: IVotedEntryState[]}) {
+    return this._api.post({ url: [Group.Dn, 'removeMembers'], content: removedMembers})
+      .then(res => {
+        console.log(res);
+        this._store.dispatch({
+          type: VotedGroupActionTypes.UPDATE,
           group: res,
         });
       });

@@ -1,0 +1,40 @@
+<ng-container *ngIf="Group">
+<h2 mat-dialog-title>Mitglieder hinzufügen ({{Group.DivisionId}}/{{ Group.DisplayName }})</h2>
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <mat-form-field class="form-field">
+        <input matInput placeholder="Beginn der Amtszeit" type="text" formControlName="StartEvent">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput placeholder="Ende der Amtszeit" type="text" formControlName="EndEvent">
+      </mat-form-field>
+      <mat-form-field class="form-field">
+          <input matInput [matDatepicker]="startDate" formControlName="StartDate">
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <input matInput placeholder="Filtern" (ngModelChange)="onFilterChange()" formControlName="filter">
+      </mat-form-field>
+      <mat-selection-list formControlName="NewMembers">
+        <mat-list-option *ngFor="let m of PossibleMembers" [value]="m.Id" [disabled]="!ShownMembers.includes(m.Id)">
+          <span *ngIf="m.Username">{{ m.Username}} ({{ m.FirstName }} {{ m.LastName }})</span>
+          <span *ngIf="!m.Username">{{ m.FirstName }} {{ m.LastName }}</span>
+        </mat-list-option>
+      </mat-selection-list>
+      <!--<mat-form-field class="form-field">-->
+        <!--<input matInput type="email" placeholder="offizielle Email" formControlName="email">-->
+      <!--</mat-form-field>-->
+      <!--<mat-form-field class="form-field">-->
+        <!--<input matInput placeholder="DN" formControlName="dn">-->
+      <!--</mat-form-field>-->
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="spacer"></div>
+  <button mat-raised-button mat-dialog-close>Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="onClickOk()">Ok</button>
+</mat-dialog-actions>
+</ng-container>

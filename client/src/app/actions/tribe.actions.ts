@@ -9,13 +9,16 @@ export enum TribeActionTypes {
 
 export class TribeAdd implements Action {
   readonly type = TribeActionTypes.ADD;
+
   constructor(public tribe: ITribeState) {
   }
 }
 
 export class TribeAddMultiple implements Action {
   readonly type = TribeActionTypes.ADD_MULTIPLE;
-  constructor(public tribes: ITribeState[]) {}
+
+  constructor(public tribes: ITribeState[]) {
+  }
 }
 
 export class TribeReset implements Action {

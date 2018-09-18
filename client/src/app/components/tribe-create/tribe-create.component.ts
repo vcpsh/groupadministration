@@ -2,9 +2,9 @@ import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Store} from '@ngrx/store';
+import {BaseComponent} from '@vcpsh/sso-client-lib';
 import {AppState} from '../../models/app.state';
 import {TribeService} from '../../services/tribe.service';
-import {BaseComponent} from '../BaseComponent';
 
 @Component({
   selector: 'app-tribe-create',
@@ -51,7 +51,7 @@ export class TribeCreateComponent extends BaseComponent {
     this.form.markAsTouched();
     if (!this.form.valid) {
       Object.keys(this.form.controls).forEach(field => {
-        this.form.controls[field].markAsTouched({ onlySelf: true});
+        this.form.controls[field].markAsTouched({onlySelf: true});
       });
     } else {
       const val = this.form.getRawValue();

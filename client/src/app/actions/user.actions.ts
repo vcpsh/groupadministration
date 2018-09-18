@@ -8,7 +8,9 @@ export enum UserActionTypes {
 
 export class UserLogin implements Action {
   readonly type = UserActionTypes.LOGIN;
-  constructor(public user: IUserState | null) {}
+
+  constructor(public user: IUserState | null) {
+  }
 }
 
 export class UserLogout implements Action {

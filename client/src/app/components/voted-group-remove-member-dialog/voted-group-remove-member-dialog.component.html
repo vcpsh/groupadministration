@@ -1,0 +1,22 @@
+<ng-container *ngIf="Group">
+  <h2 mat-dialog-title>Mitglieder entfernen ({{Group.DivisionId}}/{{ Group.DisplayName }})</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Ende der Amtszeit" type="text" formControlName="EndEvent">
+        </mat-form-field>
+        <mat-form-field class="form-field">
+          <input matInput [matDatepicker]="endDate" formControlName="EndDate">
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="spacer"></div>
+    <button mat-raised-button mat-dialog-close>Abbrechen</button>
+    <button mat-raised-button color="primary" (click)="onClickOk()">Ok</button>
+  </mat-dialog-actions>
+</ng-container>

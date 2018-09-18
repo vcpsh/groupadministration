@@ -1,14 +1,10 @@
 import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import { OidcService } from '@vcpsh/sso-client-lib';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {DivisionActionTypes} from '../actions/division.actions';
-import {TribeActionTypes} from '../actions/tribe.actions';
-import {UserActionTypes} from '../actions/user.actions';
 import {AppState} from '../models/app.state';
 import {IDivisionState} from '../models/division.state';
-import {ITribeState} from '../models/tribe.state';
-import { IUserState} from '../models/user.state';
+import {IUserState} from '../models/user.state';
 import {RestService} from './rest.service';
 
 @Injectable()
@@ -31,12 +27,13 @@ export class DivisionService {
           });
         } else {
           this._store.dispatch({
-          type: DivisionActionTypes.RESET});
+            type: DivisionActionTypes.RESET,
+          });
         }
       });
     } else {
       this._store.dispatch({
-        type: DivisionActionTypes.RESET
+        type: DivisionActionTypes.RESET,
       });
     }
   }

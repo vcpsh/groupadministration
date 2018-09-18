@@ -1,0 +1,24 @@
+<mat-list>
+  <div *ngFor="let division of Divisions">
+    <div mat-subheader><span>{{ division.displayName }}</span>
+      <div class="spacer"></div>
+      <div *ngIf="division.isLgs">
+        <button mat-icon-button [matMenuTriggerFor]="adminMenu">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <mat-menu #adminMenu="matMenu">
+          <button mat-menu-item (click)="onVotedGroupCreateClick(division.divisionId)">
+            <mat-icon>add</mat-icon>
+            <span>Beauftragung erstellen</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <mat-list-item *ngFor="let group of division.votedGroups">
+      <button mat-button [routerLink]="[ '/votedgroup', group.DivisionId, group.Id ]">
+        {{group.DisplayName}}
+      </button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+</mat-list>
