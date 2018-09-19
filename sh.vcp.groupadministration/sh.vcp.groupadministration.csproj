@@ -24,4 +24,9 @@
     <ProjectReference Include="..\..\single-sign-on\sh.vcp.ldap\sh.vcp.ldap.csproj" />
     <ProjectReference Include="..\sh.vcp.groupadministration.dal\sh.vcp.groupadministration.dal.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Pomelo.EntityFrameworkCore.MySql, Version=2.1.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\.nuget\packages\pomelo.entityframeworkcore.mysql\2.1.2\lib\netstandard2.0\Pomelo.EntityFrameworkCore.MySql.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

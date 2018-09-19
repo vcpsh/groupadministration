@@ -20,12 +20,12 @@ namespace sh.vcp.groupadministration.dal.Managers
             this._config = config;
         }
         
-        public Task<bool> SetMembers<TModel>(TModel model, CancellationToken cancellationToken = default) where TModel: LdapGroup
+        public Task<bool> SetMembers<TModel>(TModel model, CancellationToken cancellationToken = default) where TModel: LdapGroup, new()
         {
             IEnumerable<LdapModification> memberUidModifications =
                 model.GetModifications().Where(mod => mod.Attribute.Name == LdapProperties.Member);
             
-            return this._connection.Update(model.Dn, memberUidModifications.ToArray(), cancellationToken);
+            return this._connection.Update<TModel>(model.Dn, memberUidModifications.ToArray(), cancellationToken);
         }
 
         public Task<object> GetMembers(string dn, CancellationToken cancellationToken = default)
