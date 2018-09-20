@@ -16,7 +16,7 @@ using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
 using sh.vcp.groupadministration.dal.Extensions;
 using sh.vcp.identity.Extensions;
-using sh.vcp.ldap.Util;
+using sh.vcp.ldap.Extensions;
 
 namespace Server
 {
