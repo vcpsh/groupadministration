@@ -30,7 +30,7 @@ export class TribeDetailComponent extends BaseComponent {
       this._store.select(s => ({
         tribe: s.Tribes.find(t => t.Id === this._tribeId),
         lgsDivisions: s.User ? s.User.DivisionsLgs : [],
-        admin: s.User ? s.User.TribesAdmin.includes(this._tribeId) : false,
+        admin: false, //s.User ? s.User.TribesAdmin.includes(this._tribeId) : false,
         divisions: s.User ? s.User.Divisions : [],
         tribes: s.User ? s.User.Tribes : [],
       })).subscribe(data => {
