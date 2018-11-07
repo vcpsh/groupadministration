@@ -43,11 +43,6 @@ namespace Server
             services.AddVcpShIdentity();
             services.AddVcpShGroupAdministrationDal();
 
-            if (this._env.IsProduction())
-            {
-                services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
-            }
-
             // configure proxy stuff
             if (this._configuration.GetValue("Proxy", false)) {
                 services.Configure<ForwardedHeadersOptions>(options => {
