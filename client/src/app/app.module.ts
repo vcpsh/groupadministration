@@ -77,6 +77,7 @@ import {UserService} from './services/user.service';
       scope: 'openid profile sh.vcp.gruppenverwaltung@1.0.0 division tribe',
       automaticSilentRenew: true,
       loadUserInfo: true,
+      route_after_user_unloaded: '/',
       debug: true,
     }),
     AppRoutingModule,
