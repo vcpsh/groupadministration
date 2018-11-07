@@ -51,15 +51,17 @@ namespace sh.vcp.groupadministration.Extensions
 
         public static ICollection<string> GetUserAdminTribes(this Controller controller)
         {
-            return controller.User.Claims
-                .Where(c => c.Type == LdapClaims.IsTribeGsClaim || c.Type == LdapClaims.IsTribeSlClaim)
-                .Select(c => c.Value).ToList();
+            return new List<string>();
+//            return controller.User.Claims
+//                .Where(c => c.Type == LdapClaims.IsTribeGsClaim || c.Type == LdapClaims.IsTribeSlClaim)
+//                .Select(c => c.Value).ToList();
         }
 
         public static bool CanEditTribe(this Controller controller, Tribe tribe)
         {
-            return controller.GetUserDivisions().Contains(tribe.DivisionId) ||
-                   controller.GetUserAdminTribes().Contains(tribe.Id);
+            return controller.GetUserLgsDivisions().Contains(tribe.DivisionId);
+//            return controller.GetUserDivisions().Contains(tribe.DivisionId) ||
+//                   controller.GetUserAdminTribes().Contains(tribe.Id);
         }
 
         private class ErrorObjectResult : ObjectResult
