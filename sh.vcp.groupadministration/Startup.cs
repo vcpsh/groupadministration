@@ -49,14 +49,19 @@ namespace Server
             }
 
             // configure proxy stuff
-            if (this._configuration.GetValue("Proxy", false))
-            {
-                services.Configure<ForwardedHeadersOptions>(options =>
-                {
+            if (this._configuration.GetValue("Proxy", false)) {
+                services.Configure<ForwardedHeadersOptions>(options => {
                     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
                     options.RequireHeaderSymmetry = false;
                 });
             }
+            
+            services.AddHttpsRedirection(options => {
+                options.RedirectStatusCode = this._env.IsDevelopment()
+                    ? StatusCodes.Status307TemporaryRedirect
+                    : StatusCodes.Status308PermanentRedirect;
+                options.HttpsPort = 443;
+            });
 
             services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
 
@@ -83,7 +88,8 @@ namespace Server
                 .AddApiExplorer()
                 .AddDataAnnotations()
                 .AddFormatterMappings()
-                .AddJsonFormatters(builder => { builder.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
+                .AddJsonFormatters(builder => { builder.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddMvc();
 
@@ -119,6 +125,7 @@ namespace Server
             else
             {
                 app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
             if (this._configuration.GetValue("Proxy", false))
@@ -127,6 +134,8 @@ namespace Server
             }
 
             app.UseCors("sso-backend");
+            app.UseAuthentication();
+            app.UseMvc();
             app.Use(async (ctx, next) =>
             {
                 await next();
@@ -145,16 +154,18 @@ namespace Server
                     await ctx.Response.SendFileAsync(Path.Combine(this._env.WebRootPath, "index.html"));
                 }
             });
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            if (bool.TryParse(this._configuration["SpaProxy"], out var spaProxy) && spaProxy) {
+                app.UseSpa(spa => { spa.UseProxyToSpaDevelopmentServer("http://localhost:4200"); });
+            }
+            else {
+                app.UseStaticFiles();
+            }
 //            app.UseMetricsPostAndPutSizeTrackingMiddleware();
 //            app.UseMetricsErrorTrackingMiddleware();
 //            app.UseMetricsRequestTrackingMiddleware();
 //            app.UseMetricsActiveRequestMiddleware();
 
 //            app.UseSwagger();
-            app.UseAuthentication();
-            app.UseMvc();
         }
     }
 }
