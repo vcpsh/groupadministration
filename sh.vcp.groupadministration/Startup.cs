@@ -55,13 +55,6 @@ namespace Server
                     options.RequireHeaderSymmetry = false;
                 });
             }
-            
-            services.AddHttpsRedirection(options => {
-                options.RedirectStatusCode = this._env.IsDevelopment()
-                    ? StatusCodes.Status307TemporaryRedirect
-                    : StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 443;
-            });
 
             services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
 
@@ -125,7 +118,6 @@ namespace Server
             else
             {
                 app.UseHsts();
-                app.UseHttpsRedirection();
             }
 
             if (this._configuration.GetValue("Proxy", false))
