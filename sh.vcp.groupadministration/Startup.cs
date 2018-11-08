@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Antiforgery;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +38,10 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
+            if (!this._env.IsDevelopment()) {
+            services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
+            }
+        
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddVcpShLdap(this._configuration,
                 builder => builder.UseMySql(this._configuration.GetConnectionString("ChangeTracking"),
@@ -50,8 +56,6 @@ namespace Server
                     options.RequireHeaderSymmetry = false;
                 });
             }
-
-            services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
 
             // configure smtp
             services.AddMailKit(optionsBuilder =>
@@ -71,15 +75,20 @@ namespace Server
             });
 
             // additional configuration
-            services.AddMvcCore( /*options => options.AddMetricsResourceFilter()*/)
+            services.AddMvcCore(options =>
+                {
+                    if (!this._env.IsDevelopment()) {
+                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                    }
+
+//            options.AddMetricsResourceFilter()
+                })
                 .AddAuthorization()
                 .AddApiExplorer()
                 .AddDataAnnotations()
                 .AddFormatterMappings()
                 .AddJsonFormatters(builder => { builder.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddMvc();
 
             services.AddCors(options =>
             {
@@ -113,6 +122,22 @@ namespace Server
             else
             {
                 app.UseHsts();
+                app.Use(next => context =>
+                    {
+                        string path = context.Request.Path.Value;
+                
+                        if (
+                            string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+                            string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
+                            var tokens = antiforgery.GetAndStoreTokens(context);
+                            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
+                                new CookieOptions() { HttpOnly = false });
+                        }
+                
+                        return next(context);
+                    });
             }
 
             if (this._configuration.GetValue("Proxy", false))
@@ -126,15 +151,7 @@ namespace Server
             app.Use(async (ctx, next) =>
             {
                 await next();
-                if (ctx.Response.StatusCode == 404 || ctx.Request.Path == "/")
-                {
-                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
-                    var tokens = antiforgery.GetAndStoreTokens(ctx);
-                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
-                        new CookieOptions() {HttpOnly = false, Path = "/"});
-                }
-
-                if (ctx.Response.StatusCode == 404)
+                if (string.Equals(ctx.Request.Path, "/", StringComparison.OrdinalIgnoreCase) && ctx.Response.StatusCode == 404)
                 {
                     ctx.Response.StatusCode = 200;
                     ctx.Response.ContentType = "text/html";
