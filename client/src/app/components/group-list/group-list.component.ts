@@ -5,6 +5,7 @@ import {select, Store} from '@ngrx/store';
 import {of as observableOf} from 'rxjs';
 import {Subscription} from 'rxjs/internal/Subscription';
 import {AppState} from '../../models/app.state';
+import {ITribeState} from '../../models/tribe.state';
 
 export class Node {
   constructor(
@@ -33,7 +34,7 @@ export class GroupListComponent implements OnInit, OnDestroy {
     this.dataSource = new MatTreeNestedDataSource();
     this._subs.push(this._store.pipe(select('Tribes')).subscribe(tribes => {
       const data: Node[] = [];
-      tribes.forEach(tribe => {
+      tribes.forEach((tribe: ITribeState) => {
         let division = data.find(nod => nod.title === tribe.DivisionId);
         if (!division) {
           division = new Node(tribe.DivisionId, 'division', []);

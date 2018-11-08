@@ -66,7 +66,7 @@ export class ImportService {
       const reader = new FileReader();
       reader.onload = () => {
         // parse the string result
-        const lines: string[] = reader.result.split(/[\r\n]+/g);
+        const lines: string[] = reader.result != null ? (reader.result as string).split(/[\r\n]+/g) : [];
         const dataRaw = lines.map(val => val.split(/;/));
         const newMapping = dataRaw[0].reduce(
           (prev, curr) => {
