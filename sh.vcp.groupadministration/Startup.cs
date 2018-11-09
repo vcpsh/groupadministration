@@ -151,7 +151,7 @@ namespace Server
             app.Use(async (ctx, next) =>
             {
                 await next();
-                if (sctx.Response.StatusCode == 404)
+                if (ctx.Response.StatusCode == 404)
                 {
                     ctx.Response.StatusCode = 200;
                     ctx.Response.ContentType = "text/html";
