@@ -39,7 +39,7 @@ namespace Server
         public void ConfigureServices(IServiceCollection services)
         {            
             if (!this._env.IsDevelopment()) {
-            services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
+                services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
             }
         
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -75,7 +75,7 @@ namespace Server
             });
 
             // additional configuration
-            services.AddMvcCore(options =>
+            services.AddMvc(options =>
                 {
                     if (!this._env.IsDevelopment()) {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
@@ -83,11 +83,6 @@ namespace Server
 
 //            options.AddMetricsResourceFilter()
                 })
-                .AddAuthorization()
-                .AddApiExplorer()
-                .AddDataAnnotations()
-                .AddFormatterMappings()
-                .AddJsonFormatters(builder => { builder.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddCors(options =>
