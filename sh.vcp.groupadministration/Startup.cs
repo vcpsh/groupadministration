@@ -117,22 +117,6 @@ namespace Server
             else
             {
                 app.UseHsts();
-                app.Use(next => context =>
-                    {
-                        string path = context.Request.Path.Value;
-                
-                        if (
-                            string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
-                            string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
-                            var tokens = antiforgery.GetAndStoreTokens(context);
-                            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, 
-                                new CookieOptions() { HttpOnly = false });
-                        }
-                
-                        return next(context);
-                    });
             }
 
             if (this._configuration.GetValue("Proxy", false))
@@ -146,6 +130,15 @@ namespace Server
             app.Use(async (ctx, next) =>
             {
                 await next();
+                if (!this._env.IsDevelopment() && (
+                                        string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+                                        string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase) ||
+                                        ctx.Response.StatusCode == StatusCodes.Status404NotFound)) {
+                                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
+                                    var tokens = antiforgery.GetAndStoreTokens(ctx);
+                                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
+                                        new CookieOptions() {HttpOnly = false});
+                                }
                 if (ctx.Response.StatusCode == 404)
                 {
                     ctx.Response.StatusCode = 200;
