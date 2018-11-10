@@ -37,11 +37,11 @@ namespace Server
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {
             if (!this._env.IsDevelopment()) {
                 services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
             }
-        
+
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddVcpShLdap(this._configuration,
                 builder => builder.UseMySql(this._configuration.GetConnectionString("ChangeTracking"),
@@ -51,7 +51,8 @@ namespace Server
 
             // configure proxy stuff
             if (this._configuration.GetValue("Proxy", false)) {
-                services.Configure<ForwardedHeadersOptions>(options => {
+                services.Configure<ForwardedHeadersOptions>(options =>
+                {
                     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
                     options.RequireHeaderSymmetry = false;
                 });
@@ -106,21 +107,18 @@ namespace Server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/1.0.0/swagger.json", "sh.vcp.gruppenverwaltung@1.0.0");
                 });
             }
-            else
-            {
+            else {
                 app.UseHsts();
             }
 
-            if (this._configuration.GetValue("Proxy", false))
-            {
+            if (this._configuration.GetValue("Proxy", false)) {
                 app.UseForwardedHeaders();
             }
 
@@ -130,17 +128,18 @@ namespace Server
             app.Use(async (ctx, next) =>
             {
                 await next();
+                var path = ctx.Request.Path;
                 if (!this._env.IsDevelopment() && (
-                                        string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
-                                        string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase) ||
-                                        ctx.Response.StatusCode == StatusCodes.Status404NotFound)) {
-                                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
-                                    var tokens = antiforgery.GetAndStoreTokens(ctx);
-                                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
-                                        new CookieOptions() {HttpOnly = false});
-                                }
-                if (ctx.Response.StatusCode == 404)
-                {
+                        string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+                        string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase) ||
+                        ctx.Response.StatusCode == StatusCodes.Status404NotFound)) {
+                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
+                    var tokens = antiforgery.GetAndStoreTokens(ctx);
+                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
+                        new CookieOptions() {HttpOnly = false});
+                }
+
+                if (ctx.Response.StatusCode == 404) {
                     ctx.Response.StatusCode = 200;
                     ctx.Response.ContentType = "text/html";
                     await ctx.Response.SendFileAsync(Path.Combine(this._env.WebRootPath, "index.html"));
