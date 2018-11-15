@@ -54,10 +54,10 @@ namespace sh.vcp.groupadministration.dal.Managers
             return this._connection.Read<LdapMember>($"cn={id},{this._config.MemberDn}", cancellationToken);
         }
 
-        public async Task<LdapMember> Create(LdapMember member, CancellationToken cancellationToken = default)
+        public async Task<LdapMember> Create(LdapMember member, string changedBy, CancellationToken cancellationToken = default)
         {
             member.Dn = $"cn={member.Id},{this._config.MemberDn}";
-            await this._connection.Add(member, cancellationToken);
+            await this._connection.Add(member, changedBy, cancellationToken);
             return member;
         }
 

@@ -25,7 +25,7 @@ namespace sh.vcp.groupadministration.dal.Managers
             IEnumerable<LdapModification> memberUidModifications =
                 model.GetModifications().Where(mod => mod.Attribute.Name == LdapProperties.Member);
             
-            return this._connection.Update<TModel>(model.Dn, memberUidModifications.ToArray(), cancellationToken);
+            return this._connection.Update<TModel>(model.Dn, memberUidModifications.ToArray(), nameof(GroupManager) + nameof(this.SetMembers), cancellationToken);
         }
 
         public Task<object> GetMembers(string dn, CancellationToken cancellationToken = default)

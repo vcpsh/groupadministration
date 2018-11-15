@@ -61,7 +61,7 @@ namespace Server.Controllers
                 {
                     return this.Unauthorized();
                 }
-                var newGroup = await this._manager.Create(group, cancellationToken);
+                var newGroup = await this._manager.Create(group, nameof(VotedGroupController) + nameof(this.Create), cancellationToken);
                 return this.Ok(newGroup);
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace Server.Controllers
                     return this.NotFound();
                 }
 
-                group = await this._manager.AddMembers(group, newMembers.StartEvent, newMembers.EndEvent, newMembers.StartDate, newMembers.NewMembers, cancellationToken);
+                group = await this._manager.AddMembers(group, newMembers.StartEvent, newMembers.EndEvent, newMembers.StartDate, newMembers.NewMembers, nameof(VotedGroupController) + nameof(this.AddMembers), cancellationToken);
                 return this.Ok(group);
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace Server.Controllers
                     return this.NotFound();
                 }
 
-                group = await this._manager.RemoveMembers(group, removedMembers.EndEvent, removedMembers.EndDate, removedMembers.RemovedMembers, cancellationToken);
+                group = await this._manager.RemoveMembers(group, removedMembers.EndEvent, removedMembers.EndDate, removedMembers.RemovedMembers, nameof(VotedGroupController) + nameof(this.RemoveMembers), cancellationToken);
                 return this.Ok(group);
             }
             catch (Exception ex)

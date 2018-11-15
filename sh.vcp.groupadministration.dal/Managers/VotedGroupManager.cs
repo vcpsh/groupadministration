@@ -31,9 +31,9 @@ namespace sh.vcp.groupadministration.dal.Managers
             return groups.ToList();
         }
 
-        public async Task<VotedLdapGroup> Create(VotedLdapGroup group, CancellationToken cancellationToken = default)
+        public async Task<VotedLdapGroup> Create(VotedLdapGroup group, string changedBy, CancellationToken cancellationToken = default)
         {
-            return await this._connection.Add(group, cancellationToken);
+            return await this._connection.Add(group, changedBy, cancellationToken);
         }
 
         public Task<VotedLdapGroup> Get(string dn, CancellationToken cancellationToken = default)
@@ -41,7 +41,7 @@ namespace sh.vcp.groupadministration.dal.Managers
             return this._connection.Read<VotedLdapGroup>(dn, cancellationToken);
         }
 
-        public async Task<VotedLdapGroup> AddMembers(VotedLdapGroup group, string startEvent, string endEvent, DateTime startDate, List<string> newMembers,
+        public async Task<VotedLdapGroup> AddMembers(VotedLdapGroup group, string startEvent, string endEvent, DateTime startDate, List<string> newMembers, string changedBy,
             CancellationToken cancellationToken)
         {
             await newMembers.ForEachAsync(async m =>
@@ -58,15 +58,15 @@ namespace sh.vcp.groupadministration.dal.Managers
                     VoteStartDate = startDate,
                     
                 };
-                await this._connection.Add(voteEntry, cancellationToken);
+                await this._connection.Add(voteEntry, changedBy, cancellationToken);
                 group.ActiveVoteEntries.Add(voteEntry);
                 group.MemberIds.Add(m);
             });
-            await this._connection.Update(group, cancellationToken);
+            await this._connection.Update(group, changedBy, cancellationToken);
             return group;
         }
 
-        public async Task<VotedLdapGroup> RemoveMembers(VotedLdapGroup group, string endEvent, DateTime endDate, List<VoteEntry> removedMembers,
+        public async Task<VotedLdapGroup> RemoveMembers(VotedLdapGroup group, string endEvent, DateTime endDate, List<VoteEntry> removedMembers, string changedBy,
             CancellationToken cancellationToken = default)
         {
             await removedMembers.ForEachAsync(async m =>
@@ -74,12 +74,12 @@ namespace sh.vcp.groupadministration.dal.Managers
                 m.VoteEndDate = endDate;
                 m.VoteEndEvent = endEvent;
                 m.Active = false;
-                await this._connection.Update(m, cancellationToken);
+                await this._connection.Update(m, changedBy, cancellationToken);
                 group.MemberIds.Remove(m.MemberUid);
                 group.ActiveVoteEntries.Remove(m);
                 group.InactiveVoteEntries.Add(m);
             });
-            await this._connection.Update(group, cancellationToken);
+            await this._connection.Update(group, changedBy, cancellationToken);
             return group;
         }
     }
