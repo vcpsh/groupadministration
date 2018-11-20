@@ -96,7 +96,7 @@ namespace Server
             if (!this._env.IsDevelopment()) {
                 services.AddAntiforgery(options =>
                 {
-                    options.Cookie.Name = "XSRF-Token";
+                    options.Cookie.Name = "XSRF-TOKEN";
                     options.HeaderName = "X-XSRF-TOKEN";
                 });
             }
