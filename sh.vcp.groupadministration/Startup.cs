@@ -38,10 +38,6 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            if (!this._env.IsDevelopment()) {
-                services.AddAntiforgery(options => { options.HeaderName = "X-XSRF-TOKEN"; });
-            }
-
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddVcpShLdap(this._configuration,
                 builder => builder.UseMySql(this._configuration.GetConnectionString("ChangeTracking"),
@@ -97,11 +93,13 @@ namespace Server
                 });
             });
 
-            // Register the Swagger generator, defining one or more Swagger documents
-//            services.AddSwaggerGen(c =>
-//            {
-//                c.SwaggerDoc("1.0.0", new Info {Title = "sh.vcp.gruppenverwaltung", Version = "1.0.0"});
-//            });
+            if (!this._env.IsDevelopment()) {
+                services.AddAntiforgery(options =>
+                {
+                    options.Cookie.Name = "XSRF-Token";
+                    options.HeaderName = "X-XSRF-TOKEN";
+                });
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -155,8 +153,6 @@ namespace Server
 //            app.UseMetricsErrorTrackingMiddleware();
 //            app.UseMetricsRequestTrackingMiddleware();
 //            app.UseMetricsActiveRequestMiddleware();
-
-//            app.UseSwagger();
         }
     }
 }
