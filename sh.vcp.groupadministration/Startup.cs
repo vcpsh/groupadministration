@@ -74,9 +74,9 @@ namespace Server
             // additional configuration
             services.AddMvc(options =>
                 {
-                    if (!this._env.IsDevelopment()) {
-                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                    }
+//                    if (!this._env.IsDevelopment()) {
+//                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+//                    }
 
 //            options.AddMetricsResourceFilter()
                 })
@@ -93,12 +93,12 @@ namespace Server
                 });
             });
 
-            if (!this._env.IsDevelopment()) {
-                services.AddAntiforgery(options =>
-                {
-                    options.HeaderName = "X-XSRF-TOKEN";
-                });
-            }
+//            if (!this._env.IsDevelopment()) {
+//                services.AddAntiforgery(options =>
+//                {
+//                    options.HeaderName = "X-XSRF-TOKEN";
+//                });
+//            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -126,15 +126,15 @@ namespace Server
             {
                 await next();
                 var path = ctx.Request.Path;
-                if (!this._env.IsDevelopment() && (
-                        string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
-                        string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase) ||
-                        ctx.Response.StatusCode == StatusCodes.Status404NotFound)) {
-                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
-                    var tokens = antiforgery.GetAndStoreTokens(ctx);
-                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
-                        new CookieOptions() {HttpOnly = false});
-                }
+//                if (!this._env.IsDevelopment() && (
+//                        string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+//                        string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase) ||
+//                        ctx.Response.StatusCode == StatusCodes.Status404NotFound)) {
+//                    var antiforgery = app.ApplicationServices.GetService<IAntiforgery>();
+//                    var tokens = antiforgery.GetAndStoreTokens(ctx);
+//                    ctx.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
+//                        new CookieOptions() {HttpOnly = false});
+//                }
 
                 if (ctx.Response.StatusCode == 404) {
                     ctx.Response.StatusCode = 200;
