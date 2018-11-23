@@ -55,7 +55,6 @@ export class TribeCreateComponent extends BaseComponent {
       });
     } else {
       const val = this.form.getRawValue();
-      console.log(this.form.getRawValue());
       this._tribeService.createTribe(val.displayName, val.tribeId, val.dn, this._data.divisionId);
       this._dialogRef.close();
     }

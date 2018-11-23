@@ -20,7 +20,7 @@ export class TribeService {
 
   public createTribe(DisplayName: string, id: number, Dn: string, divisionId: string) {
     this._api.post(
-      {content: {DisplayName, DepartmentId: id, DivisionId: divisionId, Dn, Id: DisplayName.toLocaleLowerCase().replace(' ', '_')}})
+      {content: {DisplayName, TribeId: id, DivisionId: divisionId, Dn, Id: DisplayName.toLocaleLowerCase().replace(' ', '_')}})
       .then(res => {
         this._store.dispatch({
           type: TribeActionTypes.ADD,
