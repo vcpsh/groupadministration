@@ -71,7 +71,7 @@ import {UserService} from './services/user.service';
     ),
     StoreDevtoolsModule.instrument({}),
     SsoClientLibModule.forRoot({
-      authority: 'https://account.vcp.sh',
+    authority: 'http://localhost:5000',//https://account.vcp.sh',
       client_id: 'sh.vcp.gruppenverwaltung-client@1.0.0',
       response_type: 'id_token token',
       scope: 'openid profile sh.vcp.gruppenverwaltung@1.0.0 division tribe',

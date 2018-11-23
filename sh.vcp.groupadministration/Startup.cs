@@ -4,6 +4,7 @@ using System.Reflection;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -38,6 +39,11 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            if (!this._env.IsDevelopment()) {
+                services.AddDataProtection()
+                    .PersistKeysToFileSystem(new DirectoryInfo("/keys/"));  
+            }
+                      
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddVcpShLdap(this._configuration,
                 builder => builder.UseMySql(this._configuration.GetConnectionString("ChangeTracking"),
