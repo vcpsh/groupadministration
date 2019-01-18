@@ -25,7 +25,7 @@ WORKDIR /app
 EXPOSE 80
 
 FROM microsoft/dotnet:2.2-sdk AS build
-RUN git clone https://github.com/vcpsh/single-sign-on --branch release
+RUN git clone https://github.com/vcpsh/single-sign-on --branch master
 WORKDIR /src
 COPY sh.vcp.groupadministration/sh.vcp.groupadministration.csproj sh.vcp.groupadministration/
 COPY sh.vcp.groupadministration.dal/sh.vcp.groupadministration.dal.csproj sh.vcp.groupadministration.dal/
