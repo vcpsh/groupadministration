@@ -1,6 +1,7 @@
 FROM node:alpine AS yarninstall
 RUN apk add yarn
 RUN apk add git
+RUN apk add python
 RUN yarn global add @angular/cli
 WORKDIR /src/client
 COPY client/package.json ./package.json
@@ -19,11 +20,11 @@ FROM copy_client_sources AS ngbuild
 WORKDIR /src/client
 RUN yarn run build:production
 
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM microsoft/dotnet:2.2-sdk AS build
 RUN git clone https://github.com/vcpsh/single-sign-on --branch release
 WORKDIR /src
 COPY sh.vcp.groupadministration/sh.vcp.groupadministration.csproj sh.vcp.groupadministration/
