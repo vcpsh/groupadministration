@@ -46,7 +46,7 @@ namespace sh.vcp.groupadministration.dal.Managers
             return tribes;
         }
 
-        public async Task<Tribe> Create(Tribe tribe, CancellationToken cancellationToken = default)
+        public async Task<Tribe> Create(Tribe tribe, string changedBy, CancellationToken cancellationToken = default)
         {
             tribe.Gs = new TribeGs
             {
@@ -77,8 +77,8 @@ namespace sh.vcp.groupadministration.dal.Managers
                 DivisionId = tribe.DivisionId
             };
 
-            await this._connection.Add(tribe, cancellationToken);
-            await this._connection.AddChildren(tribe, cancellationToken);
+            await this._connection.Add(tribe, changedBy, cancellationToken);
+            await this._connection.AddChildren(tribe, changedBy, cancellationToken);
 
             return tribe;
         }

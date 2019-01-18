@@ -137,7 +137,7 @@ namespace Server.Controllers
                     return this.Unauthorized();
                 }
 
-                var newTribe = await this._manager.Create(tribe, cancellationToken);
+                var newTribe = await this._manager.Create(tribe, nameof(TribeController) + nameof(this.Create), cancellationToken);
                 return this.Ok(newTribe);
             }
             catch (Exception ex)

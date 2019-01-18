@@ -82,6 +82,7 @@ namespace Server.Controllers
             try
             {
                 // TODO: null checks
+                // TODO: different methods for memberimport & membercreate to log the changes in the right way
                 var t = await this._tribe.Get(tribeId);
                 if (t == null)
                 {
@@ -89,7 +90,7 @@ namespace Server.Controllers
                 }
 
                 var division = await this._division.Get(t.DivisionId);
-                var m = await this._manager.Create(member);
+                var m = await this._manager.Create(member, nameof(MemberController) + nameof(this.Create));
                 division.MemberIds.Add(m.Id);
                 t.MemberIds.Add(m.Id);
                 await this._group.SetMembers(division);

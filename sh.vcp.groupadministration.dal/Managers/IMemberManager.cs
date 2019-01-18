@@ -43,7 +43,7 @@ namespace sh.vcp.groupadministration.dal.Managers
         /// <param name="member">Member to create.</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<LdapMember> Create(LdapMember member, CancellationToken cancellationToken = default );
+        Task<LdapMember> Create(LdapMember member, string changedBy, CancellationToken cancellationToken = default );
 
         Task<ICollection<LdapMember>> ListTribeMembers(Tribe tribe, CancellationToken cancellationToken = default);
         Task<ICollection<LdapMember>> ListVotedGroupMembers(VotedLdapGroup group, CancellationToken cancellationToken = default);
