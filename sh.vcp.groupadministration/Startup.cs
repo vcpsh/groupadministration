@@ -1,20 +1,16 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
 using sh.vcp.groupadministration.dal.Extensions;
@@ -26,11 +22,10 @@ namespace Server
     // ReSharper disable once ClassNeverInstantiated.Global
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             this._configuration = configuration;
             this._env = env;
-            loggerFactory.AddConsole(this._configuration.GetSection("Logging"));
         }
 
         private readonly IConfiguration _configuration;
@@ -43,6 +38,12 @@ namespace Server
                 services.AddDataProtection()
                     .PersistKeysToFileSystem(new DirectoryInfo("/keys/"));  
             }
+
+            services.AddLogging(config =>
+            {
+                config.AddConfiguration(this._configuration);
+                config.AddConsole();
+            });
                       
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddVcpShLdap(this._configuration,
