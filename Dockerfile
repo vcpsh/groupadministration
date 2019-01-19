@@ -2,7 +2,6 @@ FROM node:alpine AS yarninstall
 RUN apk add yarn
 RUN apk add git
 RUN apk add python
-RUN yarn global add @angular/cli
 WORKDIR /src/client
 COPY client/package.json ./package.json
 COPY client/yarn.lock ./yarn.lock
