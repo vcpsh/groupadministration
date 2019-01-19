@@ -29,8 +29,10 @@
     "@vcpsh/sso-client-lib": "0.2.7",
     "core-js": "^2.6.2",
     "moment": "^2.23.0",
+    "ngrx-actions": "^4.0.0",
     "oidc-client": "^1.6.1",
     "rxjs": "^6.3.3",
+    "ts-optchain": "^0.1.2",
     "zone.js": "^0.8.28"
   },
   "devDependencies": {

@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SsoClientLibModule} from '@vcpsh/sso-client-lib';
+import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -71,14 +72,14 @@ import {UserService} from './services/user.service';
     ),
     StoreDevtoolsModule.instrument({}),
     SsoClientLibModule.forRoot({
-      authority: 'https://account.vcp.sh',
+      authority: environment.authority,
       client_id: 'sh.vcp.gruppenverwaltung-client@1.0.0',
       response_type: 'id_token token',
       scope: 'openid profile sh.vcp.gruppenverwaltung@1.0.0 division tribe',
       automaticSilentRenew: true,
       loadUserInfo: true,
       route_after_user_unloaded: '/',
-      debug: true,
+      debug: !environment.production,
     }),
     AppRoutingModule,
   ],

@@ -4725,6 +4725,11 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
+ngrx-actions@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ngrx-actions/-/ngrx-actions-4.0.0.tgz#54631296e8eb310913d51fc2c27ef3082639057b"
+  integrity sha512-Kk9LAU7OuI1MvR62CLULJDuqjm5C5CZWTZCfy8/lNvCVe/63xly1qGnCzKPf6MnpLZrQk0vxh8180wAgc1I/Cw==
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -7047,6 +7052,11 @@ ts-node@~7.0.1:
     mkdirp "^0.5.1"
     source-map-support "^0.5.6"
     yn "^2.0.0"
+
+ts-optchain@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ts-optchain/-/ts-optchain-0.1.2.tgz#41178e1b3268e5231078a24cb38cb07df0fc6e02"
+  integrity sha512-Xs1/xpXgTQhvgjP1qLIm5LWsgwAdpRnlfrHvMTyMPCNb4MP0WgYGCnK4xJBx0l4ZM+//IDubrmHkvp6BWfZfCg==
 
 tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.9.3"
