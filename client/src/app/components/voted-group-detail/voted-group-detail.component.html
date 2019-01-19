@@ -19,7 +19,7 @@
             Members[entry.MemberId].LastName}})</h3>
           <h3 matLine *ngIf="Members[entry.MemberId] !== undefined && !Members[entry.MemberId].Username">{{
             Members[entry.MemberId].FirstName }} {{ Members[entry.MemberId].LastName}}</h3>
-          <span matLine>{{ entry.VoteStartEvent }}-{{ entry.VoteEndEvent }}</span>
+          <span matLine>{{ entry.VoteStartEvent }} - {{ entry.VoteEndEvent }}</span>
         </mat-list-item>
       </mat-list>
       <mat-selection-list *ngIf="CanEdit" #selectionList>
@@ -30,7 +30,7 @@
             Members[entry.MemberId].LastName}})</h3>
           <h3 matLine *ngIf="Members[entry.MemberId] !== undefined && !Members[entry.MemberId].Username">{{
             Members[entry.MemberId].FirstName }} {{ Members[entry.MemberId].LastName}}</h3>
-          <span matLine>{{ entry.VoteStartEvent }}-{{ entry.VoteEndEvent }}</span>
+          <span matLine>{{ entry.VoteStartEvent }} - {{ entry.VoteEndEvent }}</span>
         </mat-list-option>
         <mat-list-item *ngIf="selectionList.selectedOptions.selected.length > 0">
           <button mat-button (click)="onMemberRemoveClick()">

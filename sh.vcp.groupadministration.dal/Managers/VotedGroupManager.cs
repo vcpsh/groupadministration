@@ -71,12 +71,13 @@ namespace sh.vcp.groupadministration.dal.Managers
         {
             await removedMembers.ForEachAsync(async m =>
             {
+                m = await this._connection.Read<VoteEntry>(m.Dn, cancellationToken);
                 m.VoteEndDate = endDate;
                 m.VoteEndEvent = endEvent;
                 m.Active = false;
                 await this._connection.Update(m, changedBy, cancellationToken);
                 group.MemberIds.Remove(m.MemberUid);
-                group.ActiveVoteEntries.Remove(m);
+                group.ActiveVoteEntries.Remove(group.ActiveVoteEntries.First(ve => ve.Dn == m.Dn));
                 group.InactiveVoteEntries.Add(m);
             });
             await this._connection.Update(group, changedBy, cancellationToken);
