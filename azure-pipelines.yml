@@ -20,14 +20,5 @@ steps:
     dockerRegistryConnection: 'vcp-sh-dockerhub'
     imageName: vcpsh/groupadministration
 
-- task: Docker@0
-  displayName: 'Push an image'
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryConnection: 'vcp-sh-dockerhub'
-    action: 'Push an image'
-    imageName: vcpsh/groupadministration
-    includeLatestTag: true
-
 resources:
 - repo: self
