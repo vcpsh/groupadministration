@@ -28,7 +28,7 @@
     "@ngrx/store": "^7.0.0",
     "@vcpsh/sso-client-lib": "0.2.7",
     "core-js": "^2.6.3",
-    "moment": "^2.23.0",
+    "moment": "^2.24.0",
     "ngrx-actions": "^4.0.0",
     "oidc-client": "^1.6.1",
     "rxjs": "^6.3.3",
