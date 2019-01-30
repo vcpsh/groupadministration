@@ -31,7 +31,7 @@
     "moment": "^2.24.0",
     "ngrx-actions": "^4.0.0",
     "oidc-client": "^1.6.1",
-    "rxjs": "^6.3.3",
+    "rxjs": "^6.4.0",
     "ts-optchain": "^0.1.2",
     "zone.js": "^0.8.29"
   },
