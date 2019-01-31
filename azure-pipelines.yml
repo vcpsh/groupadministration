@@ -17,6 +17,15 @@ steps:
   displayName: 'Build an image'
   inputs:
     containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: 'vcpsh-dockerhub-groupadministration'
+    imageName: $(imageName)
+
+- task: Docker@0
+  displayName: 'Push an image'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: 'vcpsh-dockerhub-groupadministration'
+    action: 'Push an image'
     imageName: $(imageName)
 
 resources:
