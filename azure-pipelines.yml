@@ -10,14 +10,14 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'your-container-image-name:$(build.buildId)'
+  imageName: 'vcpsh/groupadministration:$(build.buildId)'
 
 steps:
 - task: Docker@0
   displayName: 'Build an image'
   inputs:
     containerregistrytype: 'Container Registry'
-    imageName: vcpsh/groupadministration
+    imageName: $(imageName)
 
 resources:
 - repo: self
