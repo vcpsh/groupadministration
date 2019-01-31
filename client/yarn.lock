@@ -113,14 +113,6 @@
     rxjs "6.3.3"
     source-map "0.7.3"
 
-"@angular-devkit/schematics@7.2.3":
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-7.2.3.tgz#e85269fc44d87fd79314875084ecdecdc42020b5"
-  integrity sha512-zhnI1zxEcjx4OZ0yIzAAOujS8fzXE6nxjyC1viqliQbbjbikA6WIL7UT0jQXZKDsRBl8VXOyutBOaeOXuqktTQ==
-  dependencies:
-    "@angular-devkit/core" "7.2.3"
-    rxjs "6.3.3"
-
 "@angular-devkit/schematics@7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-7.3.0.tgz#112c1f59ff2778157aff6fb7484a6c132d4156ac"
@@ -244,14 +236,14 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/pwa@^0.12.3":
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.12.3.tgz#da74f4bdfddaa1eb48c311f9f64f3033be02f7f3"
-  integrity sha512-mUiU+71xOir2A0LKoY5zenwFCtazb18dP5WgJK9IxxiFDVvoHdAS/QO702WqMTWMNucmoYuPrWkC1Ceb7d+uxQ==
+"@angular/pwa@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.13.0.tgz#4ee1be75e4104dd82c32d2351df7667d270ec0d0"
+  integrity sha512-E1rOMduecaUw6sZfm5u3nFWi2B90SD6NriGjciVTcKCjPmHKeIWmpWGhVdgGEzCbg1Gxj8ZhsvvBjJzfbDPF6g==
   dependencies:
-    "@angular-devkit/core" "7.2.3"
-    "@angular-devkit/schematics" "7.2.3"
-    "@schematics/angular" "7.2.3"
+    "@angular-devkit/core" "7.3.0"
+    "@angular-devkit/schematics" "7.3.0"
+    "@schematics/angular" "7.3.0"
     parse5-html-rewriting-stream "5.1.0"
     rxjs "6.3.3"
 
@@ -370,15 +362,6 @@
     rxjs "6.3.3"
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
-
-"@schematics/angular@7.2.3":
-  version "7.2.3"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-7.2.3.tgz#e08baf642fad4ff7b27a2724379c4583a5a381b5"
-  integrity sha512-hKp+qaM8YU55+JukteXOVY2N5IQBDIIIXkyPcikbC2GBXUeNOMiPqw9au9sjHrgtFp+SVGoaFzzz9+MOCc1gig==
-  dependencies:
-    "@angular-devkit/core" "7.2.3"
-    "@angular-devkit/schematics" "7.2.3"
-    typescript "3.2.2"
 
 "@schematics/angular@7.3.0":
   version "7.3.0"
