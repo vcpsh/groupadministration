@@ -226,10 +226,10 @@
     parse5-html-rewriting-stream "5.1.0"
     rxjs "6.3.3"
 
-"@angular/router@^7.2.4":
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.2.4.tgz#83f1997c2a4e6acda93b991b8d7f3dad2b3f91f0"
-  integrity sha512-T8Uqf2H1SV1MQI38WwYJ4aa+4NNnvlp2Tp/rkfg6tKcp/cLkKqE6OOfiy9lmW+i/624v8tMgYoBMOUNBjAG23g==
+"@angular/router@^7.2.5":
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.2.5.tgz#b1ec5211ee3368db3a5a3d098123d74d27e4a9aa"
+  integrity sha512-WjEdnTyLQRntB8ixQ4qH8PFURFhgTtUjAsu3S3lf2wWbDDADIJO/xTMtXDhGubTmzRbBVROw6ZQzgDZtJyYKrw==
   dependencies:
     tslib "^1.9.0"
 
