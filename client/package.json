@@ -23,7 +23,7 @@
     "@angular/material-moment-adapter": "^7.3.3",
     "@angular/platform-browser": "^7.2.1",
     "@angular/platform-browser-dynamic": "^7.2.1",
-    "@angular/pwa": "^0.13.3",
+    "@angular/pwa": "^0.13.4",
     "@angular/router": "^7.2.5",
     "@ngrx/store": "^7.0.0",
     "@vcpsh/sso-client-lib": "0.2.9",
